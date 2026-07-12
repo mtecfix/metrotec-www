@@ -16,6 +16,13 @@ backend:
   name: github
   repo: mtecfix/metrotec-www
   branch: main
+  auth_type: pkce
+  # Create OAuth App at https://github.com/settings/applications/new
+  # Name: MetroTec Blog CMS
+  # Homepage: https://mtecfix.github.io/metrotec-www/
+  # Callback: https://api.netlify.com/auth/done
+  # Then paste the Client ID below:
+  app_id: "" # ← GitHub OAuth App Client ID goes here
 
 local_backend: true
 
