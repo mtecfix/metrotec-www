@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>
+  if (/Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent) && !sessionStorage.getItem('prefer_desktop')) {
+    window.location.replace('../m/blog/kubernetes-basics.html');
+  }
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8815300775068949" crossorigin="anonymous"></script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-17815464842">,
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://metrotec.biz"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://metrotec.biz/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Article"
+    }
+  ]
+}
+</script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'AW-17815464842');
+</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kubernetes Basics for Business Applications | MetroTec IT Blog</title>
+  <meta property="og:title" content="Kubernetes Basics for Business Applications">
+  <meta property="og:description" content="Kubernetes is becoming the standard for deploying containerized applications. Understanding Kubernetes basics helps business leaders evaluate cloud...">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://metrotec.biz/blog/kubernetes-basics.html">
+  <meta property="og:image" content="https://metrotec.biz/metrotec-logo.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://metrotec.biz/blog/kubernetes-basics.html">
+  <meta name="description" content="Kubernetes is becoming the standard for deploying containerized applications. Understanding Kubernetes basics helps business leaders evaluate cloud...">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Merriweather', serif; line-height: 1.8; color: #1a1a1a; background: #f5f5f5; }
+    
+    .newspaper-wrapper { max-width: 1200px; margin: 2rem auto; background: white; box-shadow: 0 0 30px rgba(0,0,0,0.1); }
+    
+    .masthead { background: #000; color: white; padding: 2rem; text-align: center; border-bottom: 4px solid #7c3aed; }
+    .masthead-title { font-family: 'Playfair Display', serif; font-size: 4rem; font-weight: 900; letter-spacing: 0.1em; margin: 0; }
+    .masthead-tagline { font-size: 0.875rem; margin-top: 0.5rem; letter-spacing: 0.2em; text-transform: uppercase; }
+    
+    .article-header { padding: 3rem 3rem 2rem; border-bottom: 3px solid #000; }
+    .article-category { color: #7c3aed; font-size: 0.875rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem; }
+    .article-title { font-family: 'Playfair Display', serif; font-size: 3.5rem; font-weight: 700; line-height: 1.1; margin-bottom: 1rem; }
+    .article-subtitle { font-size: 1.5rem; color: #666; line-height: 1.4; margin-bottom: 1rem; }
+    
+    .article-body { padding: 2rem 3rem; column-count: 3; column-gap: 2rem; }
+    .article-body p { margin-bottom: 1.25rem; text-align: left; }
+    
+    .featured-image { column-span: all; margin: 2rem 0; text-align: center; }
+    .featured-image img { width: 400px; height: 400px; object-fit: cover; border: 3px solid #000; }
+    .image-caption { font-size: 0.875rem; color: #666; margin-top: 0.5rem; font-style: italic; }
+    
+    .article-body h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; margin: 2rem 0 1rem; column-span: all; border-bottom: 2px solid #000; padding-bottom: 0.5rem; }
+    
+    @media (max-width: 1024px) { .article-body { column-count: 2; } }
+    @media (max-width: 768px) { 
+      .article-body { column-count: 1; padding: 2rem 1.5rem; }
+      .article-header { padding: 2rem 1.5rem; }
+      .article-title { font-size: 2.5rem; }
+      .masthead-title { font-size: 2.5rem; }
+      .featured-image img { width: 100%; height: auto; }
+    }
+  
+/* UI/UX Improvements */
+body { font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 16px; line-height: 1.8; }
+.article-body { line-height: 1.8; }
+.article-body h3 { margin: 2.5rem 0 1.5rem; }
+.article-body p { margin-bottom: 1.5rem; }
+.section { margin-bottom: 40px; }
+@media (max-width: 768px) { 
+  .article-body { column-count: 1; padding: 1.5rem; }
+  .masthead-title { font-size: 2.5rem; }
+  nav { padding: 0.75rem 1.5rem; }
+}
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Kubernetes Basics for Business Applications",
+  "datePublished": "2026-02-22",
+  "dateModified": "2026-02-22",
+  "author": {
+    "@type": "Organization",
+    "name": "MetroTec"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "MetroTec",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://metrotec.biz/metrotec-logo.png"
+    }
+  },
+  "description": "Learn Kubernetes fundamentals for container orchestration, scaling, and managing business applications in the cloud."
+}
+</script>
+
+  <style>
+    .hero-image { width: 100%; max-height: 420px; overflow: hidden; margin-bottom: 0; }
+    .hero-image img { width: 100%; height: 420px; object-fit: cover; display: block; }
+  </style>
+<style>
+/* UI/UX Improvements */
+body { font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 16px; line-height: 1.8; }
+.article-body { line-height: 1.8; }
+.article-body h3 { margin: 2.5rem 0 1.5rem; }
+.article-body p { margin-bottom: 1.5rem; }
+.section { margin-bottom: 40px; }
+@media (max-width: 768px) { 
+  .article-body { column-count: 1; padding: 1.5rem; }
+  .masthead-title { font-size: 2.5rem; }
+  nav { padding: 0.75rem 1.5rem; }
+}
+</style>
+  <link rel="stylesheet" href="../universal-ui.css">
+  <link rel="stylesheet" href="../mobile-optimized.css">
+</head>
+<body>
+<!-- Created: February 22, 2026 -->
+
+<!-- Skip to Content Link -->
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<!-- Header (matches main site) -->
+<header class="header">
+  <div class="container">
+    <nav class="nav" role="navigation" aria-label="Main navigation">
+      <a href="../index.html" class="nav-brand" aria-label="MetroTec Home">
+        <div style="display: inline-block;"><img class="responsive-img" src="../metrotec-logo.png" alt="MetroTec"></div>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="../services.html" class="nav-link">Services</a></li>
+        <li><a href="../about.html" class="nav-link">About</a></li>
+        <li><a href="../industries.html" class="nav-link">Industries</a></li>
+        <li><a href="index.html" class="nav-link">Blog</a></li>
+        <li><a href="../contact.html" class="nav-link">Contact</a></li>
+      </ul>
+      <div class="desktop-only">
+        <a href="../get-quote.html" class="btn btn-primary" style="white-space: nowrap;">Get Quote</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<div class="newspaper-wrapper">
+  
+    <nav style="padding: 1rem 3rem; background: #f9fafb; border-bottom: 1px solid #e5e7eb;" aria-label="Breadcrumb">
+    <ol style="list-style: none; padding: 0; margin: 0; display: flex; gap: 0.5rem; font-size: 0.875rem;">
+      <li><a href="../index.html" style="color: #6b7280; text-decoration: none;">Home</a></li>
+      <li style="color: #9ca3af;">›</li>
+      <li><a href="index.html" style="color: #6b7280; text-decoration: none;">Blog</a></li>
+      <li style="color: #9ca3af;">›</li>
+      <li style="color: #1a1a1a;">Article</li>
+    </ol>
+  </nav>
+
+
+
+
+
+<div class="masthead">
+    <h1 class="masthead-title">THE METROTEC TIMES</h1>
+    <p class="masthead-tagline">Metro Detroit's Technology Chronicle</p>
+  </div>
+
+  <div class="article-header">
+    <div class="article-category">Cloud</div>
+    <h1 class="article-title">Kubernetes Basics for Business Leaders</h1>
+    <p class="article-subtitle">Understanding container orchestration</p>
+    <p class="article-byline">By MetroTec Team • December 04, 2025 • 9 min read</p>
+  </div>
+  <div class="hero-image"><img src="https://source.unsplash.com/1200x420/?server+room&sig=50" alt="Kubernetes Basics" loading="lazy"></div>
+
+  <div class="article-body">
+    <p class="drop-cap">Kubernetes is becoming the standard for deploying containerized applications. Understanding Kubernetes basics helps business leaders evaluate cloud strategies. Kubernetes enables rapid scaling, high availability, and efficient resource utilization.</p>
+
+    <h2>Container Fundamentals</h2>
+
+
+
+    <p>Containers package applications with all dependencies. Unlike virtual machines, containers share the host OS kernel, reducing overhead. Containers start in seconds versus minutes for VMs.</p>
+<ins class="adsbygoogle" style="display:block;margin:1.5rem 0;" data-ad-client="ca-pub-8815300775068949" data-ad-slot="6120355328" data-ad-format="auto" data-full-width-responsive="true"></ins>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+
+    <p>Docker is the most popular container format. Applications run identically in development, testing, and production. This eliminates "works on my machine" problems.</p>
+
+    <div class="pullquote">
+      "Kubernetes reduces infrastructure costs by 40-60% through efficient resource utilization"
+    </div>
+
+    <h2>Kubernetes Architecture</h2>
+
+    <p>Kubernetes manages containers across multiple servers. It automatically schedules containers on available resources, handles failures, and scales applications. Kubernetes abstracts underlying infrastructure, enabling portability across cloud providers.</p>
+
+    <p>Kubernetes clusters consist of master nodes managing the cluster and worker nodes running containers. Services expose applications to users. Persistent volumes provide storage for stateful applications.</p>
+
+    <div class="sidebar">
+      <h4>Key Concepts</h4>
+      <ul style="margin-left: 1.5rem; line-height: 1.6;">
+        <li>Container orchestration</li>
+        <li>Automatic scaling</li>
+        <li>Self-healing</li>
+        <li>Rolling updates</li>
+        <li>Service discovery</li>
+        <li>Persistent storage</li>
+      </ul>
+    </div>
+
+    <h2>Deployment Benefits</h2>
+
+    <p>Kubernetes enables rapid deployment of new versions. Rolling updates gradually replace old containers with new ones, maintaining availability. Rollback to previous versions is instant if problems occur.</p>
+
+    <p>Automatic scaling adjusts resources based on demand. Applications scale up during peak usage and scale down during off-peak times, reducing costs. Self-healing restarts failed containers automatically.</p>
+
+    <h2>Business Impact</h2>
+
+    <p>Kubernetes reduces infrastructure costs through efficient resource utilization. Enables faster time-to-market through rapid deployment. Improves reliability through automatic failover and self-healing. Reduces operational overhead through automation.</p>
+
+  </div>
+
+  
+  <div style="
+
+  <div style="background: #f0f9ff; border: 2px solid #0284c7; border-radius: 8px; padding: 2rem; margin: 3rem 0; text-align: center;">
+    <h3 style="color: #0284c7; margin-bottom: 1rem;">Need IT Support for Your Metro Detroit Business?</h3>
+    <p style="margin-bottom: 1.5rem; font-size: 1.125rem;">MetroTec provides managed IT services, cybersecurity, and cloud solutions to businesses across Metro Detroit.</p>
+    <a href="../get-quote.html" style="display: inline-block; background: #0284c7; color: white; padding: 1rem 2rem; border-radius: 6px; text-decoration: none; font-weight: 600; transition: background 0.3s;">Get a Free Quote</a>
+  </div>
+
+
+  <div style="background: #f9fafb; border-left: 4px solid #7c3aed; padding: 2rem; margin: 2rem 0;">
+    <h3 style="margin-bottom: 1rem;">Related Articles</h3>
+    <ul style="list-style: none; padding: 0; margin: 0;">
+      <li style="margin-bottom: 0.75rem;"><a href="cloud-migration-guide.html" style="color: #7c3aed; text-decoration: none; font-weight: 600;">→ Cloud Migration Guide</a></li>
+      <li style="margin-bottom: 0.75rem;"><a href="server-virtualization-benefits.html" style="color: #7c3aed; text-decoration: none; font-weight: 600;">→ Server Virtualization Benefits</a></li>
+      <li style="margin-bottom: 0.75rem;"><a href="aws-vs-azure.html" style="color: #7c3aed; text-decoration: none; font-weight: 600;">→ AWS vs Azure: Which Cloud Platform is Right?</a></li>
+    </ul>
+  </div>
+
+<div style="padding: 2rem 3rem; border-top: 2px solid #e5e7eb; text-align: center;">
+    <a href="index.html" style="color: #7c3aed; text-decoration: none; font-weight: 600;">← Back to Blog</a>
+  </div>
+
+</div>
+
+
+<!-- Ad slot -->
+<div style="max-width:728px;margin:2rem auto;text-align:center;padding:0 1rem;">
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+       data-ad-slot="0000000000"
+       data-ad-format="auto"
+       data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+<!-- Footer -->
+<footer style="background:#0284c7;padding:24px 0;color:white"><div style="max-width:1200px;margin:auto;display:flex;flex-wrap:wrap;justify-content:space-around;padding:0 20px"><div style="flex:1;min-width:200px;margin:10px"><h4 style="margin-top:0;font-size:1rem">Quick Links</h4><ul style="list-style:none;padding:0;font-size:0.875rem"><li style="margin:8px 0"><a href="../index.html" style="color:white;text-decoration:none">Home</a></li><li style="margin:8px 0"><a href="../services.html" style="color:white;text-decoration:none">Services</a></li><li style="margin:8px 0"><a href="../about.html" style="color:white;text-decoration:none">About Us</a></li><li style="margin:8px 0"><a href="../contact.html" style="color:white;text-decoration:none">Contact</a></li></ul></div><div style="flex:1;min-width:200px;margin:10px"><h4 style="margin-top:0;font-size:1rem">Connect</h4><ul style="list-style:none;padding:0;font-size:0.875rem"><li style="margin:8px 0"><a href="https://www.linkedin.com/company/metrotec" target="_blank" style="color:white;text-decoration:none">LinkedIn</a></li><li style="margin:8px 0"><a href="../get-quote.html" style="color:white;text-decoration:none">Get a Quote</a></li><li style="margin:8px 0"><a href="index.html" style="color:white;text-decoration:none">Blog</a></li></ul></div><div style="flex:1;min-width:200px;margin:10px"><h4 style="margin-top:0;font-size:1rem">Troy, Michigan</h4><p style="font-size:0.875rem;margin:8px 0">Professional IT Services<br>Managed IT & Cybersecurity</p></div></div><div style="text-align:center;padding:12px 0;font-size:0.75rem;border-top:1px solid rgba(255,255,255,0.2);margin-top:20px">&copy; 2026 MetroTec | <a href="../terms-of-service.html" style="color:white;text-decoration:none">Terms</a> | <a href="../privacy-policy.html" style="color:white;text-decoration:none">Privacy</a></div></footer>
+<style>
+.ft-footer{background:#0284c7;padding:12px 0;color:white;}
+.ft-container{max-width:1200px;margin:0 auto;padding:0 12px;}
+.ft-columns{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;}
+.ft-col a:hover{opacity:1;text-decoration:underline;}
+@media(max-width:768px){.ft-columns{grid-template-columns:1fr 1fr;gap:12px;}}
+@media(max-width:480px){.ft-columns{grid-template-columns:1fr;}}
+
+/* UI/UX Improvements */
+body { font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 16px; line-height: 1.8; }
+.article-body { line-height: 1.8; }
+.article-body h3 { margin: 2.5rem 0 1.5rem; }
+.article-body p { margin-bottom: 1.5rem; }
+.section { margin-bottom: 40px; }
+@media (max-width: 768px) { 
+  .article-body { column-count: 1; padding: 1.5rem; }
+  .masthead-title { font-size: 2.5rem; }
+  nav { padding: 0.75rem 1.5rem; }
+}
+</style>
+</body>
+</html>
+
+    <h3>Kubernetes for Metro Detroit Businesses</h3>
+    <p>Kubernetes (K8s) is the leading platform for container orchestration — managing the deployment, scaling, and operation of containerized applications. While originally a tool for large enterprises, managed Kubernetes services from AWS (EKS), Azure (AKS), and Google (GKE) have made it accessible to businesses of all sizes. If your business runs modern web applications or microservices, Kubernetes is worth understanding.</p>
+    <h3>When Kubernetes Makes Sense</h3>
+    <p>Kubernetes adds complexity — it's not the right tool for every situation. It makes sense when you need to run multiple containerized services that scale independently, require high availability with automatic failover, need consistent deployment across development and production environments, or want to optimize infrastructure costs through efficient resource utilization. For simple applications, simpler solutions may be more appropriate.</p>

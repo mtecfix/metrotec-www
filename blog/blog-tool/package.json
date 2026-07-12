@@ -1,0 +1,19 @@
+{
+  "name": "metrotec-blog-tool",
+  "version": "1.0.0",
+  "description": "MetroTec Blog CLI - SEO analysis, content generation, and blog management",
+  "type": "module",
+  "bin": {
+    "blog": "./cli.mjs"
+  },
+  "scripts": {
+    "start": "node cli.mjs",
+    "audit": "node cli.mjs audit",
+    "generate": "node cli.mjs generate",
+    "index": "node cli.mjs reindex"
+  },
+  "dependencies": {},
+  "engines": {
+    "node": ">=18"
+  }
+}

@@ -1,0 +1,50 @@
+# Dependencies
+node_modules/
+package-lock.json
+
+# Archives & temp
+_archive/
+temp/
+*.log
+*.log.err
+deploy.log
+
+# Large binary files (use Git LFS or host separately)
+images/*.png
+images/*.jpg
+images/*.webp
+images/blog/*.png
+images/cards/
+avast/
+*.zip
+*.pptx
+*.docx
+*.pdf
+*.csv
+
+# Sensitive files
+*.env
+*credentials*
+*accessKeys*
+*secret*
+metrotec_*.csv
+
+# AWS CLI local install
+aws/
+
+# IDE
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# PHP (legacy)
+*.php
+
+# Shell scripts (dev tools, not content)
+*.sh
+
+# CMS node_modules (if any)
+cms/node_modules/
+cms-backend/node_modules/

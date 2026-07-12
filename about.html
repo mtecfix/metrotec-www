@@ -1,0 +1,508 @@
+<!doctype html>
+<html lang="en">
+  <head>
+<script>
+  if (/Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent) && !sessionStorage.getItem('prefer_desktop')) {
+    window.location.replace('m/about.html');
+  }
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8815300775068949" crossorigin="anonymous"></script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17815464842"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+      gtag('config', 'AW-17815464842');
+    </script>
+    <script src="js/mobile-detect.js"></script>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport" />
+    <title>About MetroTec - Metro Detroit IT Support</title>
+    <meta
+      name="description"
+      content="Learn about MetroTec's mission to provide reliable IT support for Metro Detroit businesses. Local expertise, proven results."
+    />
+    <link rel="canonical" href="https://metrotec.biz/about.html" />
+    <meta property="og:title" content="About MetroTec - Metro Detroit IT Support" />
+    <meta
+      property="og:description"
+      content="Learn about MetroTec's mission to provide reliable IT support for Metro Detroit businesses."
+    />
+    <meta property="og:type" content="website" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="universal-ui.css" />
+    <link rel="stylesheet" href="mobile-optimized.css" />
+    <style>
+      .about-mission {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+        align-items: start;
+      }
+      .about-mission-text p {
+        color: var(--gray-600);
+        font-size: 1.125rem;
+        line-height: 1.8;
+        margin-bottom: 1.25rem;
+      }
+      .why-card {
+        background: white;
+        border: 1px solid #e5e7eb;
+        border-radius: 12px;
+        padding: 2rem;
+      }
+      .why-item {
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+      }
+      .why-item:last-child {
+        margin-bottom: 0;
+      }
+      .why-icon {
+        width: 44px;
+        height: 44px;
+        background: #eff6ff;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+      .why-icon i {
+        font-size: 1.25rem;
+        color: #0284c7;
+      }
+      .why-item h4 {
+        font-size: 1rem;
+        font-weight: 600;
+        color: #111827;
+        margin-bottom: 0.25rem;
+      }
+      .why-item p {
+        font-size: 0.875rem;
+        color: var(--gray-600);
+        margin: 0;
+        line-height: 1.6;
+      }
+      .values-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+      }
+      .value-card {
+        text-align: center;
+        padding: 2rem 1.5rem;
+        background: white;
+        border: 1px solid #e5e7eb;
+        border-radius: 12px;
+      }
+      .value-icon {
+        width: 72px;
+        height: 72px;
+        background: #eff6ff;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1.25rem;
+      }
+      .value-icon i {
+        font-size: 1.75rem;
+        color: #0284c7;
+      }
+      .value-card h3 {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: #111827;
+        margin-bottom: 0.75rem;
+      }
+      .value-card p {
+        font-size: 0.875rem;
+        color: var(--gray-600);
+        line-height: 1.6;
+        margin: 0;
+      }
+      .stats-row {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1.5rem;
+      }
+      .stat-box {
+        text-align: center;
+        padding: 2rem 1rem;
+        background: white;
+        border: 1px solid #e5e7eb;
+        border-radius: 12px;
+      }
+      .stat-box .num {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: #0284c7;
+        line-height: 1;
+      }
+      .stat-box .lbl {
+        font-size: 0.875rem;
+        color: var(--gray-600);
+        margin-top: 0.5rem;
+      }
+      .cta-band {
+        background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+        border-radius: 16px;
+        padding: 3.5rem;
+        text-align: center;
+        color: white;
+      }
+      .cta-band h2 {
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+      }
+      .cta-band p {
+        font-size: 1.1rem;
+        opacity: 0.9;
+        margin-bottom: 2rem;
+      }
+      .cta-band-actions {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+      .btn-white {
+        background: white;
+        color: #0284c7;
+        border: none;
+        padding: 0.75rem 1.75rem;
+        border-radius: 8px;
+        font-weight: 600;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: opacity 0.2s;
+      }
+      .btn-white:hover {
+        opacity: 0.9;
+      }
+      .btn-outline-white {
+        background: transparent;
+        color: white;
+        border: 2px solid rgba(255, 255, 255, 0.5);
+        padding: 0.75rem 1.75rem;
+        border-radius: 8px;
+        font-weight: 600;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: border-color 0.2s;
+      }
+      .btn-outline-white:hover {
+        border-color: white;
+      }
+      @media (max-width: 768px) {
+        .about-mission {
+          grid-template-columns: 1fr;
+        }
+        .values-grid {
+          grid-template-columns: 1fr;
+        }
+        .stats-row {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .cta-band {
+          padding: 2rem 1.5rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <div class="container">
+        <nav class="nav" role="navigation" aria-label="Main navigation">
+          <a href="index.html" class="nav-brand" aria-label="MetroTec Home">
+            <img class="responsive-img" src="metrotec-logo.png" alt="MetroTec" />
+          </a>
+          <ul class="nav-links" id="navLinks">
+            <li><a href="services.html" class="nav-link">Services</a></li>
+            <li><a href="about.html" class="nav-link">About</a></li>
+            <li><a href="industries.html" class="nav-link">Industries</a></li>
+            <li><a href="blog/index.html" class="nav-link">Blog</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
+          </ul>
+          <div class="desktop-only">
+            <a href="get-quote.html" class="btn btn-primary" style="white-space: nowrap"
+              >Get Quote</a
+            >
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero hero-about">
+      <div class="container">
+        <h1 class="hero-title">About MetroTec</h1>
+        <p class="hero-subtitle">
+          Metro Detroit's trusted IT partner — local expertise, proven results, and a team that
+          actually picks up the phone.
+        </p>
+        <div class="hero-actions">
+          <a href="get-quote.html" class="btn btn-primary btn-lg">Get a Quote</a>
+          <a href="contact.html" class="btn btn-secondary btn-lg">Contact Us</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Mission + Why Different -->
+    <section class="section" style="background: #f9fafb">
+      <div class="container">
+        <div class="about-mission">
+          <div class="about-mission-text">
+            <h2 class="section-title text-left" style="margin-bottom: 1.5rem">Our Mission</h2>
+            <p>
+              MetroTec exists to empower Metro Detroit businesses with reliable, secure, and
+              innovative IT solutions. We believe technology should be an enabler — not a barrier —
+              to your success.
+            </p>
+            <p>
+              Since our founding, we've been committed to same-day support, proactive solutions, and
+              strategic guidance that helps our clients focus on what they do best: running their
+              business.
+            </p>
+          </div>
+          <div class="why-card">
+            <h3 style="font-size: 1.1rem; font-weight: 600; color: #111827; margin-bottom: 1.5rem">
+              Why We're Different
+            </h3>
+            <div class="why-item">
+              <div class="why-icon"><i class="bi bi-geo-alt-fill"></i></div>
+              <div>
+                <h4>Local Focus</h4>
+                <p>
+                  Based in Metro Detroit — we understand the unique challenges local businesses
+                  face.
+                </p>
+              </div>
+            </div>
+            <div class="why-item">
+              <div class="why-icon"><i class="bi bi-clock-fill"></i></div>
+              <div>
+                <h4>Rapid Response</h4>
+                <p>2-hour response guarantee during business hours, with 24/7 emergency support.</p>
+              </div>
+            </div>
+            <div class="why-item">
+              <div class="why-icon"><i class="bi bi-people-fill"></i></div>
+              <div>
+                <h4>Personal Service</h4>
+                <p>
+                  you will work with the same dedicated team who knows your business and your systems.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Values -->
+    <section class="section" style="background: white">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Our Values</h2>
+          <p class="section-subtitle">The principles that guide everything we do</p>
+        </div>
+        <div class="values-grid">
+          <div class="value-card">
+            <div class="value-icon"><i class="bi bi-shield-check"></i></div>
+            <h3>Reliability</h3>
+            <p>Consistent, dependable service you can count on — every single time.</p>
+          </div>
+          <div class="value-card">
+            <div class="value-icon"><i class="bi bi-lightbulb"></i></div>
+            <h3>Innovation</h3>
+            <p>We stay ahead of technology trends to bring you the best solutions available.</p>
+          </div>
+          <div class="value-card">
+            <div class="value-icon"><i class="bi bi-heart"></i></div>
+            <h3>Partnership</h3>
+            <p>
+              We're not just a vendor — we're your strategic technology partner for long-term
+              success.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section" style="background: white">
+      <div class="container">
+        <div class="cta-band">
+          <h2>Ready to Partner with MetroTec?</h2>
+          <p>Join over 500 Metro Detroit businesses who trust MetroTec with their IT needs.</p>
+          <div class="cta-band-actions">
+            <a href="get-quote.html" class="btn-white"
+              ><i class="bi bi-lightning-charge"></i> Get Started Today</a
+            >
+            <a href="tel:313-242-7311" class="btn-outline-white"
+              ><i class="bi bi-telephone"></i> Call (313) 242-7311</a
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats Slideshow -->
+  <section class="section" style="background: white;">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Why Metro Detroit Businesses Choose MetroTec</h2>
+        <p class="section-subtitle">
+          Over 200 local businesses trust us with their IT infrastructure. Here's what sets us apart:
+        </p>
+      </div>
+
+      <div style="position:relative;overflow:hidden;">
+        <div class="stats-slideshow" style="display:flex;transition:transform 0.5s ease;">
+          <div class="card" style="text-align:center;padding:32px 24px;min-width:100%;box-sizing:border-box;background:#0f172a;border-color:#1e293b;">
+            <div style="font-size:2.2rem;font-weight:800;color:#38bdf8;margin-bottom:6px;">&lt; 2 hrs</div>
+            <h4 class="font-semibold" style="color:white;margin-bottom:10px;">Guaranteed On-Site Response</h4>
+            <p style="color:rgba(255,255,255,0.75);font-size:0.875rem;line-height:1.6;">While the national MSP average response is 4–8 hours, we're at your door same day — every time.</p>
+          </div>
+          <div class="card" style="text-align:center;padding:32px 24px;min-width:100%;box-sizing:border-box;background:#0f172a;border-color:#1e293b;">
+            <div style="font-size:2.2rem;font-weight:800;color:#38bdf8;margin-bottom:6px;">73%</div>
+            <h4 class="font-semibold" style="color:white;margin-bottom:10px;">Fewer Unplanned Outages</h4>
+            <p style="color:rgba(255,255,255,0.75);font-size:0.875rem;line-height:1.6;">Our clients average 73% fewer critical incidents after switching to MetroTec's proactive monitoring.</p>
+          </div>
+          <div class="card" style="text-align:center;padding:32px 24px;min-width:100%;box-sizing:border-box;background:#0f172a;border-color:#1e293b;">
+            <div style="font-size:2.2rem;font-weight:800;color:#38bdf8;margin-bottom:6px;">40% less</div>
+            <h4 class="font-semibold" style="color:white;margin-bottom:10px;">Than National MSP Pricing</h4>
+            <p style="color:rgba(255,255,255,0.75);font-size:0.875rem;line-height:1.6;">Enterprise-grade infrastructure and support — without the enterprise price tag. Local overhead means real savings for you.</p>
+          </div>
+          <div class="card" style="text-align:center;padding:32px 24px;min-width:100%;box-sizing:border-box;background:#0f172a;border-color:#1e293b;">
+            <div style="font-size:2.2rem;font-weight:800;color:#38bdf8;margin-bottom:6px;">$9,000</div>
+            <h4 class="font-semibold" style="color:white;margin-bottom:10px;">Average Cost Per Hour of IT Downtime</h4>
+            <p style="color:rgba(255,255,255,0.75);font-size:0.875rem;line-height:1.6;">Every minute of downtime costs your business money. MetroTec's proactive monitoring keeps you running.</p>
+          </div>
+          <div class="card" style="text-align:center;padding:32px 24px;min-width:100%;box-sizing:border-box;background:#0f172a;border-color:#1e293b;">
+            <div style="font-size:2.2rem;font-weight:800;color:#38bdf8;margin-bottom:6px;">60%</div>
+            <h4 class="font-semibold" style="color:white;margin-bottom:10px;">of SMBs Close After a Cyberattack</h4>
+            <p style="color:rgba(255,255,255,0.75);font-size:0.875rem;line-height:1.6;">Small businesses hit by a cyberattack close within 6 months. MetroTec protects you before it happens.</p>
+          </div>
+          <div class="card" style="text-align:center;padding:32px 24px;min-width:100%;box-sizing:border-box;background:#0f172a;border-color:#1e293b;">
+            <div style="font-size:2.2rem;font-weight:800;color:#38bdf8;margin-bottom:6px;">$4.45M</div>
+            <h4 class="font-semibold" style="color:white;margin-bottom:10px;">Average Cost of a Data Breach</h4>
+            <p style="color:rgba(255,255,255,0.75);font-size:0.875rem;line-height:1.6;">Don't become a statistic. Our cybersecurity solutions keep your data and reputation safe.</p>
+          </div>
+        </div>
+        <div style="display:flex;justify-content:center;gap:8px;margin-top:16px;">
+          <button onclick="slideStats(0)" class="slide-dot active" style="width:10px;height:10px;border-radius:50%;border:none;background:var(--primary-600);cursor:pointer;"></button>
+          <button onclick="slideStats(1)" class="slide-dot" style="width:10px;height:10px;border-radius:50%;border:none;background:var(--gray-300);cursor:pointer;"></button>
+          <button onclick="slideStats(2)" class="slide-dot" style="width:10px;height:10px;border-radius:50%;border:none;background:var(--gray-300);cursor:pointer;"></button>
+          <button onclick="slideStats(3)" class="slide-dot" style="width:10px;height:10px;border-radius:50%;border:none;background:var(--gray-300);cursor:pointer;"></button>
+          <button onclick="slideStats(4)" class="slide-dot" style="width:10px;height:10px;border-radius:50%;border:none;background:var(--gray-300);cursor:pointer;"></button>
+          <button onclick="slideStats(5)" class="slide-dot" style="width:10px;height:10px;border-radius:50%;border:none;background:var(--gray-300);cursor:pointer;"></button>
+        </div>
+      </div>
+      <script>
+      (function(){
+        var idx=0,slides=document.querySelector('.stats-slideshow'),dots=document.querySelectorAll('.slide-dot');
+        function slideStats(i){idx=i;slides.style.transform='translateX(-'+idx*100+'%)';dots.forEach(function(d,j){d.style.background=j===idx?'var(--primary-600)':'var(--gray-300)';});}
+        window.slideStats=slideStats;
+        setInterval(function(){slideStats((idx+1)%6);},4000);
+      })();
+      </script>
+    </div>
+  </section>
+
+    <!-- Footer -->
+    <!-- Footer -->
+  
+  <!-- Newsletter Signup -->
+  <section class="nl-band" style="background:linear-gradient(135deg,var(--primary-600,#0284c7) 0%%,var(--primary-700,#0369a1) 100%%);padding:3rem 1.5rem;text-align:center;color:#fff;">
+    <div style="max-width:640px;margin:0 auto;">
+      <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:0.5rem;color:#fff;">Stay in the Loop</h2>
+      <p style="font-size:1.05rem;opacity:0.9;margin-bottom:1.5rem;">Get IT tips, security alerts, and Metro Detroit business insights in your inbox. No spam, unsubscribe anytime.</p>
+      <form class="nl-form" aria-label="Newsletter signup" style="display:flex;gap:0.5rem;max-width:480px;margin:0 auto;flex-wrap:wrap;justify-content:center;">
+        <input type="email" name="email" placeholder="Your email address" required aria-label="Email address" style="flex:1;min-width:220px;padding:0.85rem 1rem;border:none;border-radius:0.5rem;font-size:1rem;">
+        <input type="text" name="company_website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;">
+        <button type="submit" style="background:#fff;color:var(--primary-700,#0369a1);font-weight:700;padding:0.85rem 1.75rem;border:none;border-radius:0.5rem;font-size:1rem;cursor:pointer;">Subscribe</button>
+      </form>
+      <p class="nl-msg" style="font-size:0.85rem;margin-top:0.75rem;min-height:1rem;"></p>
+    </div>
+  </section>
+
+  <footer style="background:#0f172a;padding:20px 0;color:rgba(255,255,255,0.7);">
+    <div style="max-width:1200px;margin:auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
+      <span style="color:rgba(255,255,255,0.7);font-style:italic;font-size:0.875rem;">Business IT Support Solutions</span>
+      <ul style="list-style:none;padding:0;margin:0;display:flex;gap:24px;flex-wrap:wrap;">
+        <li><a href="index.html" style="color:rgba(255,255,255,0.7);text-decoration:none;font-size:0.875rem;">Home</a></li>
+        <li><a href="services.html" style="color:rgba(255,255,255,0.7);text-decoration:none;font-size:0.875rem;">Services</a></li>
+        <li><a href="about.html" style="color:rgba(255,255,255,0.7);text-decoration:none;font-size:0.875rem;">About</a></li>
+        <li><a href="blog/index.html" style="color:rgba(255,255,255,0.7);text-decoration:none;font-size:0.875rem;">Blog</a></li>
+        <li><a href="contact.html" style="color:rgba(255,255,255,0.7);text-decoration:none;font-size:0.875rem;">Contact</a></li>
+      </ul>
+      <span style="font-size:0.8rem;">&copy; 2026 MetroTec &nbsp;|&nbsp; <a href="terms-of-service.html" style="color:rgba(255,255,255,0.7);text-decoration:none;">Terms</a> &nbsp;|&nbsp; <a href="privacy-policy.html" style="color:rgba(255,255,255,0.7);text-decoration:none;">Privacy</a></span>
+    </div>
+  </footer>
+<style>
+.ft-footer{background:#0284c7;padding:12px 0;color:white;}
+.ft-container{max-width:1200px;margin:0 auto;padding:0 12px;}
+.ft-columns{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;}
+.ft-col a:hover{opacity:1;text-decoration:underline;}
+@media(max-width:768px){.ft-columns{grid-template-columns:1fr 1fr;gap:12px;}}
+@media(max-width:480px){.ft-columns{grid-template-columns:1fr;}}
+</style>
+
+    <script src="js/cms-integration.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        const toggle = document.getElementById('navMenuToggle');
+        const links = document.getElementById('navLinks');
+        if (toggle && links) {
+          toggle.addEventListener('click', () => links.classList.toggle('active'));
+        }
+      });
+    </script>
+  
+<script id="nl-subscribe-script">
+(function(){
+  var API_URL="https://sebm7k9d9c.execute-api.us-east-1.amazonaws.com/subscribe";
+  Array.prototype.forEach.call(document.querySelectorAll("form.nl-form"),function(form){
+    form.addEventListener("submit",function(e){
+      e.preventDefault();
+      var hp=form.querySelector('input[name="company_website"]');
+      var emailInput=form.querySelector('input[type="email"]');
+      var btn=form.querySelector('button[type="submit"]');
+      var msg=form.querySelector(".nl-msg")||form.parentNode.querySelector(".nl-msg");
+      var email=emailInput?emailInput.value.trim():"";
+      if(btn){btn.disabled=true;}
+      fetch(API_URL,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({email:email,source:location.pathname,company_website:hp?hp.value:""})})
+      .then(function(r){return r.json();})
+      .then(function(d){
+        if(msg){ if(d.ok){msg.style.color="#a7f3d0";msg.textContent="Thanks — you're subscribed!";form.reset();}
+        else{msg.style.color="#fecaca";msg.textContent=(d.error||"Something went wrong. Please try again.");} }
+      })
+      .catch(function(){if(msg){msg.style.color="#fecaca";msg.textContent="Network error. Please try again.";}})
+      .finally(function(){if(btn){btn.disabled=false;}});
+    });
+  });
+})();
+</script>
+
+</body>
+</html>

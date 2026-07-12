@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>
+  if (/Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent) && !sessionStorage.getItem('prefer_desktop')) {
+    window.location.replace('../m/blog/index.html');
+  }
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8815300775068949" crossorigin="anonymous"></script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-17815464842"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'AW-17815464842');
+</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MetroTec IT Blog | Tech News & Insights</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="universal-ui.css">
+  <style>
+    .newspaper-header { background: #1a1a1a; color: white; padding: 2.25rem 0; border-bottom: 4px solid #7c3aed; }
+    .newspaper-title { font-family: 'Playfair Display', serif; font-size: 3rem; font-weight: 900; text-align: center; letter-spacing: 0.04em; margin: 0; line-height: 1; }
+    .newspaper-date { text-align: center; font-size: 0.8125rem; color: #9ca3af; margin-top: 0.5rem; letter-spacing: 0.05em; text-transform: uppercase; }
+    
+    .blog-layout { display: block; max-width: 1400px; margin: 2rem auto; padding: 0 2rem; }
+    
+    .search-box { margin-bottom: 2rem; position: relative; }
+    .search-box input { width: 100%; padding: 1rem 1rem 1rem 1rem; border: 2px solid #e5e7eb; border-radius: 0.75rem; font-size: 1rem; transition: border-color 0.2s ease, box-shadow 0.2s ease; background: #fff; }
+    .search-box input:focus { outline: none; border-color: #7c3aed; box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.12); }
+    
+    .featured-article { position: relative; border-radius: 1rem; overflow: hidden; margin-bottom: 2.5rem; background: #1a1a1a; min-height: 420px; display: flex; align-items: flex-end; box-shadow: 0 12px 32px rgba(0,0,0,0.15); }
+    .featured-article::before { content: ''; position: absolute; inset: 0; background-image: var(--featured-bg, linear-gradient(135deg, #7c3aed 0%, #4f46e5 100%)); background-size: cover; background-position: center; transition: transform 0.6s ease; }
+    .featured-article:hover::before { transform: scale(1.03); }
+    .featured-article::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.85) 100%); }
+    .featured-article > * { position: relative; z-index: 1; }
+    .featured-article-inner { padding: 3rem; color: #fff; max-width: 800px; }
+    .featured-badge { display: inline-block; background: #7c3aed; color: #fff; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.4rem 0.9rem; border-radius: 999px; margin-bottom: 1rem; }
+    .featured-article h2 { font-family: 'Playfair Display', serif; font-size: 2.625rem; font-weight: 800; line-height: 1.15; margin: 0 0 1rem; color: #fff; letter-spacing: -0.01em; text-wrap: balance; }
+    .featured-article .featured-excerpt { font-size: 1.0625rem; line-height: 1.55; color: rgba(255,255,255,0.92); margin-bottom: 1.5rem; max-width: 640px; }
+    .featured-article .btn { background: #fff; color: #1a1a1a; border: none; padding: 0.85rem 1.75rem; border-radius: 0.5rem; font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; transition: transform 0.2s ease, background 0.2s ease; }
+    .featured-article .btn:hover { background: #7c3aed; color: #fff; transform: translateX(4px); }
+    @media (max-width: 768px) { 
+      .featured-article { min-height: 340px; }
+      .featured-article-inner { padding: 1.75rem; }
+      .featured-article h2 { font-size: 1.875rem; }
+      .featured-article .featured-excerpt { font-size: 1rem; }
+      .newspaper-title { font-size: 2rem; }
+    }
+    
+    /* Card grid replacing newspaper columns */
+    .article-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.75rem; }
+    @media (max-width: 1024px) { .article-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 640px) { .article-grid { grid-template-columns: 1fr; } }
+
+    /* Category chips */
+    .category-bar { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid #e5e7eb; }
+    .chip { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.5rem 1rem; background: #f3f4f6; color: #374151; border: 1px solid #e5e7eb; border-radius: 999px; font-size: 0.875rem; font-weight: 500; cursor: pointer; text-decoration: none; transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); white-space: nowrap; }
+    .chip:hover { background: #ede9fe; border-color: #c4b5fd; color: #7c3aed; transform: translateY(-1px); }
+    .chip.active { background: #7c3aed; color: #fff; border-color: #7c3aed; box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3); }
+    .chip i { font-size: 0.875rem; }
+
+    /* Ad slot styling */
+    .ad-slot { grid-column: 1 / -1; background: #fafafa; border: 1px dashed #d1d5db; border-radius: 0.75rem; padding: 1.5rem; text-align: center; margin: 0.5rem 0; }
+    .ad-slot-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: #9ca3af; font-weight: 600; margin-bottom: 0.75rem; }
+    .ad-slot ins { display: block; min-height: 90px; }
+    .ad-slot-bottom { max-width: 728px; margin: 2.5rem auto; }
+    /* View all button */
+    .view-all-btn { display: inline-flex; align-items: center; gap: 0.6rem; padding: 0.95rem 2rem; background: #1a1a1a; color: #fff; text-decoration: none; border-radius: 0.6rem; font-weight: 600; font-size: 1rem; transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); }
+    .view-all-btn:hover { background: #7c3aed; transform: translateY(-2px); box-shadow: 0 10px 24px rgba(124, 58, 237, 0.3); }
+    .view-all-btn:hover i { transform: translateX(4px); }
+    .view-all-btn i { transition: transform 0.25s ease; }
+
+    /* Date filter row */
+    .date-filter-row { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1rem; }
+    .date-filter { padding: 0.5rem 1rem; border: 2px solid #e5e7eb; background: #fff; color: #374151; border-radius: 0.5rem; cursor: pointer; font-size: 0.875rem; font-weight: 500; transition: all 0.2s ease; }
+    .date-filter:hover { border-color: #7c3aed; color: #7c3aed; transform: translateY(-1px); }
+    .date-filter.active { border-color: #7c3aed; color: #7c3aed; background: #faf5ff; box-shadow: 0 2px 8px rgba(124, 58, 237, 0.15); }
+
+    .article { background: #fff; border: 1px solid #e5e7eb; border-radius: 0.75rem; overflow: hidden; display: flex; flex-direction: column; transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s ease; position: relative; }
+    .article:hover { transform: translateY(-6px); box-shadow: 0 20px 40px -8px rgba(124, 58, 237, 0.18), 0 8px 16px -4px rgba(0,0,0,0.06); border-color: #c4b5fd; }
+    .article::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, #7c3aed 0%, #4f46e5 100%); transform: scaleX(0); transform-origin: left; transition: transform 0.3s ease; }
+    .article:hover::after { transform: scaleX(1); }
+
+    .article-image { position: relative; width: 100%; aspect-ratio: 16 / 9; overflow: hidden; background: linear-gradient(135deg, #7c3aed 0%, #4f46e5 100%); display: flex; align-items: center; justify-content: center; }
+    .article-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
+    .article:hover .article-image img { transform: scale(1.08); }
+    .article-image .placeholder-icon { color: rgba(255,255,255,0.35); font-size: 4rem; transition: transform 0.4s ease, color 0.3s ease; }
+    .article:hover .article-image .placeholder-icon { transform: scale(1.15); color: rgba(255,255,255,0.6); }
+
+    .article-body { padding: 1.5rem; display: flex; flex-direction: column; flex-grow: 1; }
+    .article h3 { font-family: 'Playfair Display', serif; font-size: 1.3125rem; font-weight: 700; margin: 0.625rem 0 0.625rem; line-height: 1.25; letter-spacing: -0.005em; text-wrap: balance; }
+    .article h3 a { color: #1a1a1a; text-decoration: none; transition: color 0.2s ease; }
+    .article:hover h3 a { color: #7c3aed; }
+    .article-meta { font-size: 0.6875rem; color: #7c3aed; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 700; }
+    .article-excerpt { font-size: 0.9375rem; line-height: 1.55; color: #4b5563; margin-bottom: 0; }
+
+    /* Subtle entrance animation */
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+    .article-grid > * { animation: fadeUp 0.5s ease backwards; }
+    .article-grid > *:nth-child(1) { animation-delay: 0.05s; }
+    .article-grid > *:nth-child(2) { animation-delay: 0.1s; }
+    .article-grid > *:nth-child(3) { animation-delay: 0.15s; }
+    .article-grid > *:nth-child(4) { animation-delay: 0.2s; }
+    .article-grid > *:nth-child(5) { animation-delay: 0.25s; }
+    .article-grid > *:nth-child(6) { animation-delay: 0.3s; }
+    .article-grid > *:nth-child(7) { animation-delay: 0.35s; }
+    @media (prefers-reduced-motion: reduce) { 
+      .article-grid > * { animation: none; }
+      .article, .article-image img, .featured-article::before { transition: none !important; }
+    }
+    
+    @media (max-width: 1024px) { 
+      .blog-layout { padding: 0 1.5rem; }
+    }
+  
+    /* Typography baseline */
+    body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 16px; line-height: 1.6; color: #1a1a1a; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+    .section { margin-bottom: 40px; }
+    @media (max-width: 768px) { 
+      .masthead-title { font-size: 2.5rem; }
+      nav { padding: 0.75rem 1.5rem; }
+    }
+</style>
+  <link rel="stylesheet" href="../universal-ui.css">
+  <link rel="stylesheet" href="../mobile-optimized.css">
+</head>
+<body>
+  
+  <!-- Skip to Content Link -->
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<!-- Header (matches main site) -->
+<header class="header">
+  <div class="container">
+    <nav class="nav" role="navigation" aria-label="Main navigation">
+      <a href="../index.html" class="nav-brand" aria-label="MetroTec Home">
+        <div style="display: inline-block;"><img class="responsive-img" src="../metrotec-logo.png" alt="MetroTec"></div>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="../services.html" class="nav-link">Services</a></li>
+        <li><a href="../about.html" class="nav-link">About</a></li>
+        <li><a href="../industries.html" class="nav-link">Industries</a></li>
+        <li><a href="index.html" class="nav-link">Blog</a></li>
+        <li><a href="../contact.html" class="nav-link">Contact</a></li>
+      </ul>
+      <div class="desktop-only">
+        <a href="../get-quote.html" class="btn btn-primary" style="white-space: nowrap;">Get Quote</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<div class="newspaper-header">
+    <div class="container">
+      <h1 class="newspaper-title">THE METROTEC TIMES</h1>
+      <p class="newspaper-date" id="mastheadDate">Metro Detroit IT News & Insights</p>
+    </div>
+  </div>
+
+  <div class="blog-layout">
+    
+    <main>
+      <!-- Category chips -->
+      <div class="category-bar" id="categoryBar">
+        <a class="chip active" data-category="all" onclick="filterByCategory(event, 'all')"><i class="bi bi-grid-fill"></i> All</a>
+        <a class="chip" data-category="Cybersecurity" onclick="filterByCategory(event, 'Cybersecurity')"><i class="bi bi-shield-lock-fill"></i> Cybersecurity</a>
+        <a class="chip" data-category="Cloud" onclick="filterByCategory(event, 'Cloud')"><i class="bi bi-cloud-fill"></i> Cloud</a>
+        <a class="chip" data-category="Data Protection" onclick="filterByCategory(event, 'Data Protection')"><i class="bi bi-hdd-stack-fill"></i> Data Protection</a>
+        <a class="chip" data-category="Manufacturing" onclick="filterByCategory(event, 'Manufacturing')"><i class="bi bi-gear-wide-connected"></i> Manufacturing</a>
+        <a class="chip" data-category="Healthcare" onclick="filterByCategory(event, 'Healthcare')"><i class="bi bi-heart-pulse"></i> Healthcare</a>
+        <a class="chip" data-category="Managed IT" onclick="filterByCategory(event, 'Managed IT')"><i class="bi bi-headset"></i> Managed IT</a>
+        <a class="chip" data-category="Security" onclick="filterByCategory(event, 'Security')"><i class="bi bi-key-fill"></i> Security</a>
+        <a class="chip" data-category="Compliance" onclick="filterByCategory(event, 'Compliance')"><i class="bi bi-clipboard-check-fill"></i> Compliance</a>
+      </div>
+
+      <div class="date-filter-row">
+        <button class="date-filter active" onclick="filterByDate(event, 'all')">All Posts</button>
+        <button class="date-filter" onclick="filterByDate(event, 'March 1')">March 2015</button>
+        <button class="date-filter" onclick="filterByDate(event, 'March 0')">March 2000</button>
+        <button class="date-filter" onclick="filterByDate(event, 'January')">January 2001</button>
+        <button class="date-filter" onclick="filterByDate(event, 'Februar')">February 2001</button>
+        <button class="date-filter" onclick="filterByDate(event, 'Decembe')">December 2001</button>
+        <button class="date-filter" onclick="filterByDate(event, '2026-03')">March 2026</button>
+      </div>
+      
+      <div class="search-box">
+        <input type="text" id="searchInput" placeholder="🔍 Search articles..." onkeyup="searchArticles()">
+      </div>
+      
+      <div class="featured-article" id="featuredArticle" style="--featured-bg: url('../images/blog/Cyber attack in a high-tech office.png');">
+        <div class="featured-article-inner">
+          <span class="featured-badge">Featured • Cybersecurity</span>
+          <h2>5 Cybersecurity Threats Facing Detroit Businesses in 2026</h2>
+          <p class="featured-excerpt">Ransomware attacks targeting Michigan businesses have surged 23% this year. Here's what every business owner needs to know to protect their data, customers, and bottom line.</p>
+          <a href="cybersecurity-threats-2026.html" class="btn">Read Full Story <i class="bi bi-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <div class="article-grid" id="articleList">
+        <article class="article" data-title="voip-troubleshooting" data-month="March 1" data-category="Technology">
+          <div class="article-image">
+            <i class="bi bi-file-earmark-text-fill placeholder-icon"></i>
+          </div>
+          <div class="article-body">
+            <span class="article-meta">Technology</span>
+            <h3><a href="voip-troubleshooting.html">VoIP Troubleshooting Guide</a></h3>
+            <p class="article-excerpt">Resolve common VoIP issues including call quality, connectivity, and configuration problems for Metr...</p>
+          </div>
+        </article>
+
+        <article class="article" data-title="cloud-backup-solutions" data-month="March 1" data-category="Cloud">
+          <div class="article-image">
+            <img src="https://source.unsplash.com/1200x420/?cloud+computing&sig=813" alt="Secure Cloud Backup for Business Data" loading="lazy">
+          </div>
+          <div class="article-body">
+            <span class="article-meta">Cloud</span>
+            <h3><a href="cloud-backup-solutions.html">Secure Cloud Backup for Business Data</a></h3>
+            <p class="article-excerpt">Discover cloud backup solutions that protect your business data with automated backups, encryption, ...</p>
+          </div>
+        </article>
+
+        <article class="article" data-title="cloud-cost-optimization" data-month="March 1" data-category="General">
+          <div class="article-image">
+            <img src="https://source.unsplash.com/1200x420/?cloud+computing&sig=608" alt="Cloud Cost Optimization Strategies" loading="lazy">
+          </div>
+          <div class="article-body">
+            <span class="article-meta">General</span>
+            <h3><a href="cloud-cost-optimization.html">Cloud Cost Optimization Strategies</a></h3>
+            <p class="article-excerpt">Reduce cloud spending by 30-50% with rightsizing, reserved instances, and cost monitoring strategies...</p>
+          </div>
+        </article>
+
+        <!-- In-grid ad slot (spans full row) -->
+        <div class="ad-slot">
+          <div class="ad-slot-label">Sponsored</div>
+          <ins class="adsbygoogle"
+               style="display:block"
+               data-ad-client="ca-pub-8815300775068949"
+               data-ad-slot="6120355328"
+               data-ad-format="auto"
+               data-full-width-responsive="true"></ins>
+          <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
+
+        <article class="article" data-title="it-documentation-guide" data-month="March 1" data-category="Technology">
+          <div class="article-image">
+            <img src="https://source.unsplash.com/1200x420/?business+technology&sig=226" alt="IT Documentation Best Practices Guide" loading="lazy">
+          </div>
+          <div class="article-body">
+            <span class="article-meta">Technology</span>
+            <h3><a href="it-documentation-guide.html">IT Documentation Best Practices Guide</a></h3>
+            <p class="article-excerpt">Proper IT documentation reduces downtime, improves security, and ensures business continuity. Learn ...</p>
+          </div>
+        </article>
+
+        <article class="article" data-title="network-segmentation" data-month="March 1" data-category="Security">
+          <div class="article-image">
+            <img src="https://source.unsplash.com/1200x420/?network+technology&sig=477" alt="Network Segmentation for Security and Performance" loading="lazy">
+          </div>
+          <div class="article-body">
+            <span class="article-meta">Security</span>
+            <h3><a href="network-segmentation.html">Network Segmentation for Security and Performance</a></h3>
+            <p class="article-excerpt">Network segmentation divides networks into zones with restricted traffic between zones. Segmentation...</p>
+          </div>
+        </article>
+
+        <article class="article" data-title="active-directory-security" data-month="March 1" data-category="Security">
+          <div class="article-image">
+            <img src="https://source.unsplash.com/1200x420/?cybersecurity&sig=251" alt="Active Directory Security Best Practices" loading="lazy">
+          </div>
+          <div class="article-body">
+            <span class="article-meta">Security</span>
+            <h3><a href="active-directory-security.html">Active Directory Security Best Practices</a></h3>
+            <p class="article-excerpt">Learn essential Active Directory security practices to protect your Metro Detroit business from unau...</p>
+          </div>
+        </article>
+
+      
+      </div>
+      
+      <div style="text-align: center; margin-top: 3rem;">
+        <a href="allposts.html" class="view-all-btn">View All Posts <i class="bi bi-arrow-right"></i></a>
+      </div>
+    </main>
+
+  </div>
+
+  <script>
+    const posts = [
+      {category: "Cybersecurity", title: "5 Cybersecurity Threats Facing Detroit Businesses in 2026", excerpt: "Ransomware attacks targeting Michigan businesses have surged 23% this year. Here's what every business owner needs to know.", url: "cybersecurity-threats-2026.html", image: "../images/blog/Cyber attack in a high-tech office.png"},
+      {category: "Security Planning", title: "Layered Security Approach for Small Business", excerpt: "Single-layer security fails 70% of the time against modern attacks. Build a defense in depth.", url: "layered-security-approach-small-business.html"},
+      {category: "Data Protection", title: "Cloud Backup and Disaster Recovery Guide", excerpt: "60% of businesses without backup fail within 6 months of data loss. Don't be a statistic.", url: "cloud-backup-disaster-recovery-guide.html", image: "../images/blog/data-backup-strategy-321-rule.png"},
+      {category: "Threat Prevention", title: "How Behavior-Based Security Stops Zero-Day Ransomware", excerpt: "Traditional antivirus misses 40% of new threats. See how behavior analysis fills the gap.", url: "behavior-shield-ransomware-protection.html"},
+      {category: "Network Security", title: "Secure Web Gateway: Protecting from Web-Based Threats", excerpt: "92% of malware is delivered via web traffic.", url: "secure-web-gateway-business-protection.html"},
+      {category: "IT Management", title: "Remote IT Support: Faster Response Times, Lower Costs", excerpt: "Remote support resolves 80% of IT issues in under 15 minutes.", url: "remote-control-it-support-efficiency.html"},
+      {category: "Cloud Migration", title: "Microsoft 365 Migration Guide for Small Businesses", excerpt: "Moving to Microsoft 365 improves collaboration and reduces IT costs.", url: "microsoft-365-migration-guide.html", image: "../images/blog/cloud-migration-guide.png"},
+      {category: "Network Management", title: "Network Monitoring: Catch Problems Before Downtime", excerpt: "Proactive monitoring detects 90% of issues before users notice.", url: "network-monitoring-prevent-downtime.html"},
+      {category: "Data Protection", title: "The 3-2-1 Backup Rule: Why Your Business Needs It", excerpt: "Single backup location = single point of failure. The 3-2-1 rule explained.", url: "data-backup-strategy-321-rule.html", image: "../images/blog/data-backup-strategy-321-rule.png"},
+      {category: "Manufacturing", title: "How Michigan Manufacturers Can Prevent Costly Downtime", excerpt: "Manufacturing downtime costs $260K per hour. Discover proactive IT strategies.", url: "manufacturing-downtime-prevention.html", image: "../images/blog/manufacturing-downtime-prevention.png"},
+      {category: "Remote Work", title: "Virtual Desktop Infrastructure: Remote Work Solution", excerpt: "VDI enables secure access from anywhere.", url: "virtual-desktop-infrastructure.html", image: "../images/blog/virtual-desktop-infrastructure.png"}
+    ];
+
+    const randomPost = posts[Math.floor(Math.random() * posts.length)];
+    document.addEventListener('DOMContentLoaded', function() {
+      // Dynamic masthead date
+      const mastheadDate = document.getElementById('mastheadDate');
+      if (mastheadDate) {
+        const today = new Date();
+        const formatted = today.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' });
+        mastheadDate.textContent = `Metro Detroit IT News & Insights • ${formatted}`;
+      }
+
+      const featured = document.getElementById('featuredArticle');
+      if (featured) {
+        const bgImage = randomPost.image ? `url('${randomPost.image}')` : 'linear-gradient(135deg, #7c3aed 0%, #4f46e5 100%)';
+        featured.style.setProperty('--featured-bg', bgImage);
+        featured.innerHTML = `
+          <div class="featured-article-inner">
+            <span class="featured-badge">Featured • ${randomPost.category}</span>
+            <h2>${randomPost.title}</h2>
+            <p class="featured-excerpt">${randomPost.excerpt}</p>
+            <a href="${randomPost.url}" class="btn">Read Full Story <i class="bi bi-arrow-right"></i></a>
+          </div>
+        `;
+      }
+    });
+
+    let currentDateFilter = 'all';
+    let currentCategoryFilter = 'all';
+    let currentSearch = '';
+
+    function applyFilters() {
+      const articles = document.querySelectorAll('.article');
+      articles.forEach(article => {
+        const month = article.getAttribute('data-month') || '';
+        const cats = (article.getAttribute('data-category') || '').toLowerCase();
+        const title = (article.getAttribute('data-title') || '').toLowerCase();
+
+        const matchDate = currentDateFilter === 'all' || month === currentDateFilter;
+        const matchCat = currentCategoryFilter === 'all' || cats.includes(currentCategoryFilter.toLowerCase());
+        const matchSearch = !currentSearch || title.includes(currentSearch);
+
+        article.style.display = (matchDate && matchCat && matchSearch) ? '' : 'none';
+      });
+    }
+
+    function filterByDate(e, month) {
+      currentDateFilter = month;
+      document.querySelectorAll('.date-filter').forEach(b => b.classList.remove('active'));
+      e.currentTarget.classList.add('active');
+      applyFilters();
+    }
+
+    function filterByCategory(e, cat) {
+      e.preventDefault();
+      currentCategoryFilter = cat;
+      document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+      e.currentTarget.classList.add('active');
+      applyFilters();
+    }
+
+    function searchArticles() {
+      currentSearch = document.getElementById('searchInput').value.toLowerCase();
+      applyFilters();
+    }
+  </script>
+
+
+<!-- Bottom ad slot -->
+<div class="ad-slot ad-slot-bottom">
+  <div class="ad-slot-label">Sponsored</div>
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-client="ca-pub-8815300775068949"
+       data-ad-slot="0000000000"
+       data-ad-format="auto"
+       data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+<!-- Footer -->
+  <footer style="background:#0f172a;padding:20px 0;color:rgba(255,255,255,0.7);">
+    <div style="max-width:1200px;margin:auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
+      <span style="color:rgba(255,255,255,0.7);font-style:italic;font-size:0.875rem;">Business IT Support Solutions</span>
+      <ul style="list-style:none;padding:0;margin:0;display:flex;gap:24px;flex-wrap:wrap;">
+        <li><a href="../index.html" style="color:rgba(255,255,255,0.7);text-decoration:none;font-size:0.875rem;">Home</a></li>
+        <li><a href="../services.html" style="color:rgba(255,255,255,0.7);text-decoration:none;font-size:0.875rem;">Services</a></li>
+        <li><a href="../about.html" style="color:rgba(255,255,255,0.7);text-decoration:none;font-size:0.875rem;">About</a></li>
+        <li><a href="index.html" style="color:rgba(255,255,255,0.7);text-decoration:none;font-size:0.875rem;">Blog</a></li>
+        <li><a href="../contact.html" style="color:rgba(255,255,255,0.7);text-decoration:none;font-size:0.875rem;">Contact</a></li>
+      </ul>
+      <span style="font-size:0.8rem;">&copy; 2026 MetroTec &nbsp;|&nbsp; <a href="../terms-of-service.html" style="color:rgba(255,255,255,0.7);text-decoration:none;">Terms</a> &nbsp;|&nbsp; <a href="../privacy-policy.html" style="color:rgba(255,255,255,0.7);text-decoration:none;">Privacy</a> &nbsp;|&nbsp; <a href="admin/" style="color:rgba(255,255,255,0.35);text-decoration:none;font-size:0.7rem;">Admin</a></span>
+    </div>
+  </footer>
+<style>
+.ft-footer{background:#0284c7;padding:12px 0;color:white;}
+.ft-container{max-width:1200px;margin:0 auto;padding:0 12px;}
+.ft-columns{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;}
+.ft-col a:hover{opacity:1;text-decoration:underline;}
+@media(max-width:768px){.ft-columns{grid-template-columns:1fr 1fr;gap:12px;}}
+@media(max-width:480px){.ft-columns{grid-template-columns:1fr;}}
+</style>
+</body>
+</html>

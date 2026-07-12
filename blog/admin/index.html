@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Blog Admin | MetroTec</title>
+  <style>
+    :root{--primary:#7c3aed;--primary-dark:#5b21b6;--dark:#1a1a1a;--gray:#6b7280;}
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{min-height:100vh;display:flex;align-items:center;justify-content:center;font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:#0f172a;position:relative;overflow:hidden;}
+    body::before{content:'';position:absolute;inset:0;background:
+      radial-gradient(ellipse at 30% 50%, rgba(124,58,237,.08) 0%, transparent 50%),
+      radial-gradient(ellipse at 70% 20%, rgba(15,23,42,.6) 0%, transparent 50%);pointer-events:none;}
+    .container{position:relative;z-index:1;width:100%;max-width:420px;padding:20px;}
+    .brand{text-align:center;margin-bottom:32px;}
+    .brand-icon{width:64px;height:64px;border-radius:14px;background:linear-gradient(135deg, var(--primary) 0%, #4f46e5 100%);display:flex;align-items:center;justify-content:center;margin:0 auto 14px;box-shadow:0 8px 32px rgba(124,58,237,.3);font-size:28px;color:white;}
+    .brand h1{font-size:18px;font-weight:700;color:#fff;letter-spacing:.5px;}
+    .brand p{font-size:12px;color:rgba(255,255,255,.5);}
+    .card{background:#fff;border-radius:12px;padding:36px 32px;box-shadow:0 20px 60px rgba(0,0,0,.4);}
+    .card h2{font-size:15px;font-weight:600;color:var(--dark);margin-bottom:4px;}
+    .card .sub{font-size:12px;color:var(--gray);margin-bottom:24px;}
+    .btn{display:block;width:100%;padding:14px;border:none;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;transition:transform .1s,box-shadow .2s;text-align:center;text-decoration:none;letter-spacing:.3px;}
+    .btn-primary{background:linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);color:#fff;margin-bottom:12px;}
+    .btn-primary:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(124,58,237,.4);}
+    .btn-secondary{background:#f3f4f6;color:var(--dark);border:1.5px solid #e5e7eb;}
+    .btn-secondary:hover{background:#ede9fe;border-color:#c4b5fd;color:var(--primary);}
+    .divider{height:1px;background:#e5e7eb;margin:20px 0;position:relative;}
+    .divider span{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:#fff;padding:0 12px;font-size:11px;color:#9ca3af;}
+    .footer{text-align:center;margin-top:20px;font-size:12px;color:rgba(255,255,255,.4);}
+    .footer a{color:#c4b5fd;text-decoration:none;}
+    .features{font-size:12px;color:var(--gray);margin-top:16px;padding-top:16px;border-top:1px solid #f3f4f6;}
+    .features li{margin-bottom:6px;list-style:none;padding-left:20px;position:relative;}
+    .features li::before{content:'✓';position:absolute;left:0;color:var(--primary);font-weight:700;}
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="brand">
+    <div class="brand-icon">✎</div>
+    <h1>METROTEC BLOG ADMIN</h1>
+    <p>Content Management System</p>
+  </div>
+
+  <div class="card">
+    <h2>Blog CMS</h2>
+    <p class="sub">Manage blog posts, SEO, and media for metrotec.biz</p>
+
+    <a href="cms/" class="btn btn-primary">Open Decap CMS →</a>
+    
+    <div class="divider"><span>OR</span></div>
+
+    <a href="../blog/blog-tool/" class="btn btn-secondary">CLI Blog Tool (Advanced)</a>
+
+    <ul class="features">
+      <li>Visual Markdown editor with live preview</li>
+      <li>SEO fields (meta description, canonical, OG tags)</li>
+      <li>Image upload with drag & drop</li>
+      <li>Editorial workflow (draft → review → publish)</li>
+      <li>Git-backed — every edit is a versioned commit</li>
+    </ul>
+  </div>
+
+  <div class="footer">
+    <a href="../index.html">← Back to site</a> &nbsp;•&nbsp;
+    <a href="https://mtecfix.github.io/johnson-legal-team/admin/">Johnson Legal Admin</a>
+  </div>
+</div>
+
+</body>
+</html>

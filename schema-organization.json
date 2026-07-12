@@ -1,0 +1,103 @@
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "@id": "https://metrotec.com/#organization",
+  "name": "MetroTec",
+  "alternateName": "Metro Detroit IT Support",
+  "description": "Leading Metro Detroit IT support company providing managed IT services, cybersecurity, and 24/7 business IT support for small and medium businesses.",
+  "url": "https://metrotec.com",
+  "telephone": "+1-313-242-7311",
+  "email": "info@metrotec.com",
+  "foundingDate": "2020",
+  "logo": {
+    "@type": "ImageObject",
+    "url": "https://metrotec.com/metrotec-logo.png",
+    "width": 400,
+    "height": 200
+  },
+  "image": [
+    "https://metrotec.com/images/metrotec-office.jpg",
+    "https://metrotec.com/images/team-photo.jpg"
+  ],
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Metro Detroit Area",
+    "addressLocality": "Detroit",
+    "addressRegion": "MI",
+    "postalCode": "48201",
+    "addressCountry": "US"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 42.3314,
+    "longitude": -83.0458
+  },
+  "areaServed": [
+    {
+      "@type": "City",
+      "name": "Detroit",
+      "sameAs": "https://en.wikipedia.org/wiki/Detroit"
+    },
+    {
+      "@type": "City", 
+      "name": "Troy",
+      "sameAs": "https://en.wikipedia.org/wiki/Troy,_Michigan"
+    },
+    {
+      "@type": "City",
+      "name": "Southfield", 
+      "sameAs": "https://en.wikipedia.org/wiki/Southfield,_Michigan"
+    },
+    {
+      "@type": "City",
+      "name": "Warren",
+      "sameAs": "https://en.wikipedia.org/wiki/Warren,_Michigan"
+    }
+  ],
+  "serviceArea": {
+    "@type": "GeoCircle",
+    "geoMidpoint": {
+      "@type": "GeoCoordinates",
+      "latitude": 42.3314,
+      "longitude": -83.0458
+    },
+    "geoRadius": "25 miles"
+  },
+  "priceRange": "$$",
+  "openingHours": "Mo-Fr 08:00-18:00",
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "IT Services",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Managed IT Services",
+          "description": "24/7 proactive IT monitoring and support"
+        }
+      },
+      {
+        "@type": "Offer", 
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Cybersecurity Services",
+          "description": "Advanced threat protection and security monitoring"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service", 
+          "name": "Cloud Services",
+          "description": "Cloud migration and management solutions"
+        }
+      }
+    ]
+  },
+  "sameAs": [
+    "https://www.linkedin.com/company/metrotec-it",
+    "https://www.facebook.com/metrotecit",
+    "https://twitter.com/metrotecit"
+  ]
+}

@@ -1,0 +1,122 @@
+# =============================================================================
+# Decap CMS configuration — MetroTec Blog
+# Open-source (MIT), git-based, serverless headless CMS.
+# Content stored as Markdown in this repo; media in images/blog/.
+#
+# Same approach as Johnson Legal Team (/johnson-legal-team/admin) — both use
+# the mtecfix GitHub org, Decap CMS, and GitHub Pages for the admin UI.
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# Backend — GitHub
+# Uses the same GitHub OAuth flow as Johnson Legal. Both share the mtecfix org.
+# For local dev: run `npx decap-server` and set local_backend: true
+# -----------------------------------------------------------------------------
+backend:
+  name: github
+  repo: mtecfix/metrotec-www
+  branch: main
+  # If using a custom OAuth proxy (shared with Johnson Legal):
+  # base_url: https://your-oauth-proxy.example.workers.dev
+  # auth_endpoint: auth
+
+local_backend: true
+
+# Media storage
+media_folder: "images/blog"
+public_folder: "/images/blog"
+
+# Editorial workflow: draft → in review → ready (PR-based)
+publish_mode: editorial_workflow
+
+site_url: https://metrotec-www.s3-website-us-east-1.amazonaws.com
+display_url: https://metrotec-www.s3-website-us-east-1.amazonaws.com
+logo_url: /metrotec-logo.png
+
+# -----------------------------------------------------------------------------
+# Collections
+# -----------------------------------------------------------------------------
+collections:
+
+  # ---------------------------------------------------------------------------
+  # 1. Blog Posts
+  # ---------------------------------------------------------------------------
+  - name: "blog"
+    label: "Blog Posts"
+    label_singular: "Blog Post"
+    folder: "blog/content"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    summary: "{{title}} — {{publish_date}}"
+    sortable_fields: ["publish_date", "title", "category"]
+    view_filters:
+      - { label: "Cybersecurity", field: "category", pattern: "Cybersecurity" }
+      - { label: "Cloud", field: "category", pattern: "Cloud" }
+      - { label: "Managed IT", field: "category", pattern: "Managed IT" }
+      - { label: "Manufacturing", field: "category", pattern: "Manufacturing" }
+      - { label: "Healthcare", field: "category", pattern: "Healthcare" }
+    fields:
+      - { name: "title", label: "Title", widget: "string", hint: "Keep under 60 chars for SEO" }
+      - { name: "publish_date", label: "Publish Date", widget: "datetime" }
+      - { name: "author", label: "Author", widget: "string", default: "MetroTec Team" }
+      - { name: "featured_image", label: "Featured Image", widget: "image", required: false }
+      - name: "category"
+        label: "Category"
+        widget: "select"
+        options:
+          - "Cybersecurity"
+          - "Cloud"
+          - "Data Protection"
+          - "Manufacturing"
+          - "Healthcare"
+          - "Managed IT"
+          - "Security"
+          - "Compliance"
+          - "Network"
+          - "VoIP"
+          - "AI & Automation"
+        default: "Managed IT"
+      - { name: "tags", label: "Tags", widget: "list", required: false, hint: "Comma-separated keywords for internal linking" }
+      - { name: "meta_description", label: "Meta Description (SEO)", widget: "text", hint: "120-160 chars. Appears in Google results.", required: false }
+      - { name: "excerpt", label: "Excerpt", widget: "text", hint: "Short summary for card previews", required: false }
+      - { name: "canonical_url", label: "Canonical URL", widget: "string", required: false, hint: "Leave blank to auto-generate" }
+      - { name: "body", label: "Body", widget: "markdown" }
+      - { name: "draft", label: "Draft", widget: "boolean", default: false }
+
+  # ---------------------------------------------------------------------------
+  # 2. Newsletter Campaigns (future)
+  # ---------------------------------------------------------------------------
+  - name: "newsletter"
+    label: "Newsletter"
+    label_singular: "Newsletter Issue"
+    folder: "blog/newsletter"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { name: "title", label: "Subject Line", widget: "string" }
+      - { name: "send_date", label: "Send Date", widget: "datetime" }
+      - { name: "preheader", label: "Preheader Text", widget: "text", required: false }
+      - { name: "body", label: "Body", widget: "markdown" }
+      - { name: "draft", label: "Draft", widget: "boolean", default: true }
+
+  # ---------------------------------------------------------------------------
+  # 3. Site Settings
+  # ---------------------------------------------------------------------------
+  - name: "settings"
+    label: "Site Settings"
+    files:
+      - name: "seo"
+        label: "SEO Defaults"
+        file: "blog/settings/seo.json"
+        fields:
+          - { name: "site_title", label: "Site Title", widget: "string", default: "MetroTec IT Solutions" }
+          - { name: "default_meta_description", label: "Default Meta Description", widget: "text" }
+          - { name: "google_analytics_id", label: "Google Analytics ID", widget: "string", default: "AW-17815464842" }
+          - { name: "adsense_pub_id", label: "AdSense Publisher ID", widget: "string", default: "ca-pub-8815300775068949" }
+      - name: "social"
+        label: "Social Links"
+        file: "blog/settings/social.json"
+        fields:
+          - { name: "linkedin", label: "LinkedIn URL", widget: "string", required: false }
+          - { name: "facebook", label: "Facebook URL", widget: "string", required: false }
+          - { name: "google_business", label: "Google Business URL", widget: "string", required: false }

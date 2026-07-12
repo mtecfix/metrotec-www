@@ -1,0 +1,53 @@
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "MetroTec IT Services",
+  "description": "Comprehensive IT services for Metro Detroit businesses",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "@type": "Service",
+        "@id": "https://metrotec.com/managed-it.html#service",
+        "name": "Managed IT Services",
+        "description": "24/7 proactive monitoring, maintenance, and support for your IT infrastructure",
+        "provider": {
+          "@id": "https://metrotec.com/#organization"
+        },
+        "areaServed": "Metro Detroit, Michigan",
+        "serviceType": "IT Support"
+      }
+    },
+    {
+      "@type": "ListItem", 
+      "position": 2,
+      "item": {
+        "@type": "Service",
+        "@id": "https://metrotec.com/cybersecurity.html#service",
+        "name": "Cybersecurity Services",
+        "description": "Advanced threat protection, security monitoring, and compliance solutions",
+        "provider": {
+          "@id": "https://metrotec.com/#organization"
+        },
+        "areaServed": "Metro Detroit, Michigan",
+        "serviceType": "Cybersecurity"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 3, 
+      "item": {
+        "@type": "Service",
+        "@id": "https://metrotec.com/cloud-services.html#service",
+        "name": "Cloud Services",
+        "description": "Cloud migration, management, and optimization for business growth",
+        "provider": {
+          "@id": "https://metrotec.com/#organization"
+        },
+        "areaServed": "Metro Detroit, Michigan", 
+        "serviceType": "Cloud Computing"
+      }
+    }
+  ]
+}
