@@ -1,0 +1,63 @@
+name: Deploy to S3
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'blog/**'
+      - 'index.html'
+      - 'services.html'
+      - 'about.html'
+      - 'contact.html'
+      - 'industries.html'
+      - '*.css'
+      - 'images/**'
+      - 'm/**'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+
+      - name: Sync blog to S3
+        run: |
+          aws s3 sync blog/ s3://metrotec-www/blog/ \
+            --exclude "blog-tool/*" \
+            --exclude "content/*" \
+            --exclude "newsletter/*" \
+            --exclude "settings/*" \
+            --exclude "admin/SETUP.md" \
+            --delete
+
+      - name: Sync root pages to S3
+        run: |
+          # Only sync HTML/CSS/JS that exist in the repo
+          for f in index.html services.html about.html contact.html industries.html \
+                   get-quote.html privacy-policy.html terms-of-service.html \
+                   universal-ui.css mobile-optimized.css blog-enhanced.css \
+                   robots.txt sitemap.xml sitemap-enhanced.xml \
+                   schema-organization.json schema-services.json metrotec-logo.png; do
+            if [ -f "$f" ]; then
+              aws s3 cp "$f" "s3://metrotec-www/$f"
+            fi
+          done
+
+      - name: Sync mobile site
+        run: |
+          if [ -d "m/" ]; then
+            aws s3 sync m/ s3://metrotec-www/m/ --delete
+          fi
+
+      - name: Invalidation summary
+        run: |
+          echo "✅ Deployed to s3://metrotec-www"
+          echo "   Blog posts synced"
+          echo "   Site: http://metrotec-www.s3-website-us-east-1.amazonaws.com"
