@@ -1,0 +1,665 @@
+/* Mobile-First Responsive Optimizations */
+
+/* Base Mobile Styles - Apply to all devices first */
+* {
+  box-sizing: border-box;
+}
+
+.container {
+  width: 100%;
+  padding: 0 1rem;
+  margin: 0 auto;
+}
+
+/* Fix grid layouts for mobile */
+.grid,
+[style*='display: grid'] {
+  display: block !important;
+}
+
+.grid > *,
+[style*='grid-template-columns'] > * {
+  margin-bottom: 1.5rem;
+}
+
+/* Hero section mobile fixes */
+.hero {
+  padding: 2rem 0;
+  text-align: center;
+}
+
+.hero-title {
+  font-size: 1.8rem !important;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+.hero-subtitle {
+  font-size: 1rem !important;
+  margin-bottom: 2rem;
+}
+
+.hero-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.hero-actions .btn {
+  width: 100%;
+  max-width: 280px;
+}
+
+/* Stats section mobile */
+.stats {
+  display: grid !important;
+  grid-template-columns: repeat(2, 1fr) !important;
+  gap: 1rem;
+}
+
+.stat-item {
+  text-align: center;
+  padding: 1rem;
+}
+
+/* Services section mobile */
+.section {
+  padding: 2rem 0 !important;
+}
+
+.section-title {
+  font-size: 1.8rem !important;
+  text-align: center;
+}
+
+.section-subtitle {
+  font-size: 1rem !important;
+  text-align: center;
+  margin-bottom: 2rem !important;
+}
+
+/* Force single column for service grids */
+[style*='grid-template-columns: repeat(2, 1fr)'],
+[style*='grid-template-columns: repeat(3, 1fr)'],
+[style*='grid-template-columns: repeat(4, 1fr)'] {
+  grid-template-columns: 1fr !important;
+  gap: 1.5rem !important;
+}
+
+/* Card optimizations */
+.card {
+  margin-bottom: 1rem;
+  padding: 1.5rem !important;
+}
+
+/* Button optimizations */
+.btn {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+/* Navigation mobile fixes */
+.nav {
+  padding: 0.75rem 0;
+}
+
+.nav-links {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+}
+
+.nav-links.active {
+  display: block;
+}
+
+.nav-links li {
+  display: block;
+  border-bottom: 1px solid #eee;
+}
+
+.nav-links a {
+  display: block;
+  padding: 1rem;
+  text-decoration: none;
+}
+
+.nav-menu-toggle {
+  display: block;
+  cursor: pointer;
+}
+
+/* Image optimizations */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Typography mobile */
+h1 {
+  font-size: 1.8rem;
+}
+h2 {
+  font-size: 1.5rem;
+}
+h3 {
+  font-size: 1.3rem;
+}
+h4 {
+  font-size: 1.1rem;
+}
+
+p {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* Tablet styles */
+@media (min-width: 768px) {
+  .container {
+    padding: 0 2rem;
+  }
+
+  .stats {
+    grid-template-columns: repeat(4, 1fr) !important;
+  }
+
+  .hero-actions {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .hero-actions .btn {
+    width: auto;
+  }
+}
+
+/* Desktop styles */
+@media (min-width: 1024px) {
+  .container {
+    max-width: 1200px;
+    padding: 0 2rem;
+  }
+
+  .grid,
+  [style*='display: grid'] {
+    display: grid !important;
+  }
+
+  [style*='grid-template-columns: repeat(2, 1fr)'] {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  [style*='grid-template-columns: repeat(3, 1fr)'] {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+
+  .nav-links {
+    display: flex !important;
+    position: static;
+    background: none;
+    box-shadow: none;
+  }
+
+  .nav-links li {
+    display: inline-block;
+    border: none;
+  }
+
+  .nav-menu-toggle {
+    display: none;
+  }
+
+  .hero {
+    padding: 4rem 0;
+  }
+
+  .hero-title {
+    font-size: 3rem !important;
+  }
+
+  .section {
+    padding: 4rem 0 !important;
+  }
+}
+/* Android Mobile Optimized Styles - Material Design */
+.android-mobile {
+  font-size: 16px;
+  font-family: 'Roboto', sans-serif;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* Material Design Navigation */
+.android-mobile .navbar {
+  padding: 0.75rem 1rem;
+  background: #1976d2;
+  color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.android-mobile .navbar-brand {
+  color: white !important;
+}
+
+.android-mobile .navbar-brand img {
+  height: 48px;
+}
+
+.android-mobile .navbar-toggler {
+  border: 2px solid white;
+  color: white;
+}
+
+.android-mobile .navbar-nav .nav-link {
+  color: white !important;
+  padding: 0.75rem 1rem;
+}
+
+/* Material Design Hero */
+.android-mobile .hero {
+  padding: 3rem 0;
+  background: linear-gradient(135deg, #1976d2, #42a5f5);
+  color: white;
+  text-align: center;
+}
+
+.android-mobile .hero h1 {
+  font-size: 2rem;
+  font-weight: 500;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+.android-mobile .hero p {
+  font-size: 1.1rem;
+  opacity: 0.9;
+  margin-bottom: 2rem;
+}
+
+/* Material Design Buttons */
+.android-mobile .btn {
+  padding: 0.75rem 2rem;
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  margin: 0.25rem;
+}
+
+.android-mobile .btn:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  transform: translateY(-1px);
+}
+
+.android-mobile .btn-primary {
+  background: #1976d2;
+  border: none;
+}
+
+.android-mobile .btn-success {
+  background: #4caf50;
+  border: none;
+}
+
+/* Material Design Cards */
+.android-mobile .card {
+  margin-bottom: 1rem;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+}
+
+.android-mobile .card:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  transform: translateY(-2px);
+}
+
+.android-mobile .card-body {
+  padding: 1.5rem;
+}
+
+.android-mobile .card-title {
+  font-weight: 500;
+  color: #1976d2;
+  margin-bottom: 1rem;
+}
+
+/* Services Grid */
+.android-mobile .services-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+/* Material Design Contact */
+.android-mobile .contact-info {
+  background: #f5f5f5;
+  padding: 2rem;
+  border-radius: 8px;
+  margin: 1rem 0;
+  border-left: 4px solid #1976d2;
+}
+
+.android-mobile .contact-info h3 {
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: #1976d2;
+  margin-bottom: 1.5rem;
+}
+
+.android-mobile .contact-info a {
+  display: flex;
+  align-items: center;
+  padding: 1rem 0;
+  font-size: 1.1rem;
+  text-decoration: none;
+  color: #333;
+  border-bottom: 1px solid #e0e0e0;
+  transition: all 0.2s ease;
+}
+
+.android-mobile .contact-info a:hover {
+  background: #e3f2fd;
+  padding-left: 0.5rem;
+}
+
+/* Material Design Footer */
+.android-mobile footer {
+  padding: 2rem 1rem;
+  background: #263238;
+  color: white;
+}
+
+.android-mobile footer h5 {
+  color: #42a5f5;
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+
+.android-mobile footer a {
+  color: #b0bec5;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.android-mobile footer a:hover {
+  color: #42a5f5;
+}
+
+/* Touch Targets - Android 48dp minimum */
+.android-mobile a,
+.android-mobile button {
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Material Typography */
+.android-mobile h1 {
+  font-weight: 400;
+  font-size: 2rem;
+}
+
+.android-mobile h2 {
+  font-size: 1.6rem;
+  font-weight: 500;
+  color: #1976d2;
+  margin-bottom: 1rem;
+}
+
+.android-mobile h3 {
+  font-size: 1.4rem;
+  font-weight: 500;
+  margin-bottom: 0.75rem;
+}
+
+.android-mobile p {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  color: #424242;
+}
+
+/* Material Design Spacing */
+.android-mobile .container {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.android-mobile section {
+  padding: 2rem 0;
+}
+
+/* Floating Action Button Style */
+.android-mobile .fab {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #1976d2;
+  color: white;
+  border: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+}
+
+/* Material Design Form Elements */
+.android-mobile .form-control {
+  border: none;
+  border-bottom: 2px solid #e0e0e0;
+  border-radius: 0;
+  padding: 0.75rem 0;
+  background: transparent;
+  transition: border-color 0.3s ease;
+}
+
+.android-mobile .form-control:focus {
+  border-bottom-color: #1976d2;
+  box-shadow: none;
+}
+
+/* Hide desktop elements */
+.android-mobile .desktop-only {
+  display: none !important;
+}
+
+/* Show mobile elements */
+.android-mobile .mobile-only {
+  display: block !important;
+}
+
+/* Material Design Ripple Effect */
+.android-mobile .btn,
+.android-mobile .card {
+  position: relative;
+  overflow: hidden;
+}
+
+.android-mobile .btn::before,
+.android-mobile .card::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transition:
+    width 0.6s,
+    height 0.6s;
+  transform: translate(-50%, -50%);
+  z-index: 0;
+}
+
+.android-mobile .btn:active::before {
+  width: 300px;
+  height: 300px;
+}
+/* iPhone Mobile Optimized Styles */
+.iphone-mobile {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* Mobile Navigation */
+.iphone-mobile .navbar {
+  padding: 0.5rem 1rem;
+  background: #fff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.iphone-mobile .navbar-brand img {
+  height: 40px;
+}
+
+.iphone-mobile .navbar-toggler {
+  border: none;
+  padding: 0.25rem 0.5rem;
+}
+
+/* Hero Section */
+.iphone-mobile .hero {
+  padding: 2rem 0;
+  text-align: center;
+}
+
+.iphone-mobile .hero h1 {
+  font-size: 1.8rem;
+  line-height: 1.3;
+  margin-bottom: 1rem;
+}
+
+.iphone-mobile .hero p {
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Buttons */
+.iphone-mobile .btn {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  width: 100%;
+  margin-bottom: 0.5rem;
+}
+
+/* Cards */
+.iphone-mobile .card {
+  margin-bottom: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.iphone-mobile .card-body {
+  padding: 1.5rem;
+}
+
+/* Services Grid */
+.iphone-mobile .services-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+/* Contact Info */
+.iphone-mobile .contact-info {
+  background: #f8f9fa;
+  padding: 1.5rem;
+  border-radius: 12px;
+  margin: 1rem 0;
+}
+
+.iphone-mobile .contact-info h3 {
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+}
+
+.iphone-mobile .contact-info a {
+  display: block;
+  padding: 0.75rem 0;
+  font-size: 1.1rem;
+  text-decoration: none;
+  border-bottom: 1px solid #dee2e6;
+}
+
+/* Footer */
+.iphone-mobile footer {
+  padding: 2rem 1rem;
+  background: #2c3e50;
+  color: white;
+}
+
+.iphone-mobile footer .row {
+  display: block;
+}
+
+.iphone-mobile footer .col-md-3 {
+  margin-bottom: 2rem;
+}
+
+/* Touch Targets */
+.iphone-mobile a,
+.iphone-mobile button {
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Typography */
+.iphone-mobile h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.iphone-mobile h3 {
+  font-size: 1.3rem;
+  margin-bottom: 0.75rem;
+}
+
+.iphone-mobile p {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+/* Spacing */
+.iphone-mobile .container {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.iphone-mobile section {
+  padding: 2rem 0;
+}
+
+/* Hide desktop elements */
+.iphone-mobile .desktop-only {
+  display: none !important;
+}
+
+/* Show mobile elements */
+.iphone-mobile .mobile-only {
+  display: block !important;
+}

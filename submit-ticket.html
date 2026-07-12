@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>
+  if (/Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent) && !sessionStorage.getItem('prefer_desktop')) {
+    window.location.replace('m/submit-ticket.html');
+  }
+</script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-17815464842"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'AW-17815464842');
+</script>
+  <script src="js/mobile-detect.js"></script>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport">
+  <link rel="canonical" href="http://metrotec.s3-website.us-east-2.amazonaws.com/submit-ticket.html">
+  <meta property="og:title" content="Submit a Support Ticket | MetroTec Metro Detroit IT Support">
+  <meta property="og:description" content="Submit a support ticket to MetroTec's Metro Detroit IT team. Fast response for managed IT, cybersecurity, and cloud support.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="http://metrotec.s3-website.us-east-2.amazonaws.com/submit-ticket.html">
+  <meta property="og:image" content="http://metrotec.s3-website.us-east-2.amazonaws.com/metrotec-logo.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <title>Submit a Support Ticket | MetroTec Metro Detroit IT Support</title>
+  <meta content="Submit a support ticket to MetroTec's Metro Detroit IT team. Fast response for managed IT, cybersecurity, and cloud support." name="description">
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap&family=Satoshi:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="universal-ui.css">
+  <link rel="stylesheet" href="mobile-optimized.css">
+  <style>
+    .ticket-form-wrap{max-width:720px;margin:0 auto;}
+    .ticket-form .field{margin-bottom:1.25rem;}
+    .ticket-form label{display:block;font-weight:600;margin-bottom:.4rem;color:var(--gray-700);}
+    .ticket-form input,.ticket-form select,.ticket-form textarea{width:100%;padding:.85rem 1rem;border:1px solid var(--gray-200);border-radius:.5rem;font-size:1rem;font-family:inherit;}
+    .ticket-form textarea{min-height:160px;resize:vertical;}
+    .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;}
+    .form-msg{padding:1rem 1.25rem;border-radius:.5rem;margin-bottom:1.25rem;display:none;}
+    .form-msg.ok{background:#dcfce7;color:#065f46;display:block;}
+    .form-msg.err{background:#fee2e2;color:#991b1b;display:block;}
+  </style>
+</head>
+
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <nav class="nav" role="navigation" aria-label="Main navigation">
+        <a href="index.html" class="nav-brand" aria-label="MetroTec Home">
+          <div style="display: inline-block;"><img class="responsive-img" src="metrotec-logo.png" alt="MetroTec"></div>
+        </a>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="services.html" class="nav-link">Services</a></li>
+          <li><a href="about.html" class="nav-link">About</a></li>
+          <li><a href="industries.html" class="nav-link">Industries</a></li>
+          <li><a href="blog/index.html" class="nav-link">Blog</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+        <div class="desktop-only">
+          <a href="get-quote.html" class="btn btn-primary" style="white-space: nowrap;">Get Quote</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero" style="padding:3rem 0;">
+    <div class="container">
+      <h1 class="hero-title">Submit a Support Ticket</h1>
+      <p class="hero-subtitle">Existing client or new issue? Tell us what's going on and our Metro Detroit team will respond fast. For urgent outages, call <a href="tel:+13132427311" style="color:inherit;text-decoration:underline;">(313) 242-7311</a>.</p>
+    </div>
+  </section>
+
+  <!-- Form -->
+  <section class="section" style="background:white;" id="main-content">
+    <div class="container">
+      <div class="ticket-form-wrap">
+        <div class="form-msg" id="formMsg" role="status" aria-live="polite"></div>
+        <form id="ticketForm" class="ticket-form" novalidate>
+          <div class="field">
+            <label for="name">Your Name</label>
+            <input type="text" id="name" name="name" required maxlength="120" autocomplete="name">
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required maxlength="200" autocomplete="email">
+          </div>
+          <div class="field">
+            <label for="priority">Priority</label>
+            <select id="priority" name="priority">
+              <option value="low">Low</option>
+              <option value="normal" selected>Normal</option>
+              <option value="high">High</option>
+              <option value="urgent">Urgent</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="subject">Subject</label>
+            <input type="text" id="subject" name="subject" required maxlength="200">
+          </div>
+          <div class="field">
+            <label for="message">Describe the issue</label>
+            <textarea id="message" name="message" required maxlength="5000"></textarea>
+          </div>
+          <!-- Honeypot -->
+          <div class="hp" aria-hidden="true">
+            <label for="company_website">Company Website</label>
+            <input type="text" id="company_website" name="company_website" tabindex="-1" autocomplete="off">
+          </div>
+          <button type="submit" class="btn btn-primary btn-lg" id="submitBtn"><i class="bi bi-send"></i> Submit Ticket</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer style="background:#0f172a;padding:20px 0;color:rgba(255,255,255,0.7);">
+    <div style="max-width:1200px;margin:auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
+      <span style="color:rgba(255,255,255,0.7);font-style:italic;font-size:0.875rem;">Business IT Support Solutions &nbsp;·&nbsp; 607 Shelby St, Detroit, MI 48226</span>
+      <ul style="list-style:none;padding:0;margin:0;display:flex;gap:24px;flex-wrap:wrap;">
+        <li><a href="index.html" style="color:rgba(255,255,255,0.7);text-decoration:none;font-size:0.875rem;">Home</a></li>
+        <li><a href="services.html" style="color:rgba(255,255,255,0.7);text-decoration:none;font-size:0.875rem;">Services</a></li>
+        <li><a href="about.html" style="color:rgba(255,255,255,0.7);text-decoration:none;font-size:0.875rem;">About</a></li>
+        <li><a href="contact.html" style="color:rgba(255,255,255,0.7);text-decoration:none;font-size:0.875rem;">Contact</a></li>
+      </ul>
+      <span style="font-size:0.8rem;">&copy; 2026 MetroTec &nbsp;|&nbsp; <a href="terms-of-service.html" style="color:rgba(255,255,255,0.7);text-decoration:none;">Terms</a> &nbsp;|&nbsp; <a href="privacy-policy.html" style="color:rgba(255,255,255,0.7);text-decoration:none;">Privacy</a></span>
+    </div>
+  </footer>
+
+  <script>
+    var API_URL = "https://sebm7k9d9c.execute-api.us-east-1.amazonaws.com/tickets";
+    document.getElementById("ticketForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      var msg = document.getElementById("formMsg");
+      var btn = document.getElementById("submitBtn");
+      var f = e.target;
+      var payload = {
+        name: f.name.value,
+        email: f.email.value,
+        subject: f.subject.value,
+        message: f.message.value,
+        priority: f.priority.value,
+        company_website: f.company_website.value
+      };
+      btn.disabled = true;
+      btn.innerHTML = '<i class="bi bi-hourglass-split"></i> Submitting...';
+      fetch(API_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      })
+        .then(function (r) { return r.json().then(function (d) { return { ok: r.ok, d: d }; }); })
+        .then(function (res) {
+          if (res.ok && res.d.ok) {
+            msg.className = "form-msg ok";
+            msg.innerHTML = '<strong>Ticket submitted.</strong> Your reference is <strong>' + res.d.ticketId + '</strong>. We\u2019ll be in touch shortly.';
+            f.reset();
+          } else {
+            msg.className = "form-msg err";
+            msg.textContent = (res.d && res.d.error) ? res.d.error : "Something went wrong. Please call (313) 242-7311.";
+          }
+        })
+        .catch(function () {
+          msg.className = "form-msg err";
+          msg.textContent = "Network error. Please try again or call (313) 242-7311.";
+        })
+        .finally(function () {
+          btn.disabled = false;
+          btn.innerHTML = '<i class="bi bi-send"></i> Submit Ticket';
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+    });
+  </script>
+</body>
+</html>

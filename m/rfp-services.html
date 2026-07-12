@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>RFP & Strategic IT Planning | MetroTec</title>
+  <meta name="description" content="Strategic IT planning and RFP services for Metro Detroit businesses. Maximize ROI, reduce risk.">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17815464842"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","AW-17815464842");</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
+  <style>
+    :root{--primary:#0284c7;--primary-dark:#0369a1;--primary-light:#e0f2fe;--primary-50:#f0f9ff;--success:#059669;--success-light:#dcfce7;--gray-900:#0f172a;--gray-700:#334155;--gray-600:#475569;--gray-200:#e2e8f0;--gray-100:#f1f5f9;--radius:12px;}
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{font-family:"Inter",-apple-system,sans-serif;font-size:18px;line-height:1.7;color:var(--gray-900);background:#fff;padding-bottom:72px;}
+    a{color:var(--primary);text-decoration:none;}
+    .header{background:rgba(255,255,255,0.95);border-bottom:1px solid var(--gray-200);padding:.75rem 1rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;backdrop-filter:blur(10px);}
+    .header img{height:36px;width:auto;}
+    .header-call{color:var(--primary);font-weight:700;font-size:.9rem;display:flex;align-items:center;gap:.4rem;}
+    .header-menu-btn{background:none;border:none;color:var(--gray-700);font-size:1.5rem;cursor:pointer;}
+    .hero{background:linear-gradient(135deg,var(--primary-50) 0%,var(--gray-100) 100%);padding:2.5rem 1rem;text-align:center;border-bottom:1px solid var(--gray-200);}
+    .hero h1{font-size:2rem;font-weight:700;line-height:1.25;margin-bottom:.75rem;}
+    .hero p{font-size:1.05rem;color:var(--gray-600);margin-bottom:1.5rem;}
+    .btn{display:flex;align-items:center;justify-content:center;gap:.5rem;padding:.875rem 1.5rem;border-radius:var(--radius);font-weight:600;font-size:1rem;min-height:48px;cursor:pointer;border:none;}
+    .btn-primary{background:var(--primary);color:white;}
+    .section{padding:2rem 1rem;}
+    .section-title{font-size:1.6rem;font-weight:700;margin-bottom:.5rem;}
+    .section-sub{font-size:1.05rem;color:var(--gray-600);margin-bottom:1.5rem;}
+    .feature-item{display:flex;align-items:flex-start;gap:1rem;padding:1rem 0;border-bottom:1px solid var(--gray-100);}
+    .feature-item:last-child{border-bottom:none;}
+    .fi{background:var(--primary-light);padding:.6rem;border-radius:8px;flex-shrink:0;color:var(--primary);font-size:1.25rem;}
+    .fi.g{background:var(--success-light);color:var(--success);}
+    .feature-item h4{font-size:1.05rem;font-weight:600;margin-bottom:.25rem;}
+    .feature-item p{font-size:.95rem;color:var(--gray-600);}
+    .industry-card{background:var(--gray-100);border-radius:var(--radius);padding:1.25rem;margin-bottom:.75rem;display:flex;align-items:flex-start;gap:1rem;}
+    .industry-card i{font-size:1.5rem;color:var(--primary);flex-shrink:0;}
+    .industry-card h3{font-size:1.05rem;font-weight:600;margin-bottom:.25rem;}
+    .industry-card p{font-size:.9rem;color:var(--gray-600);}
+    .industry-card a{font-size:.9rem;font-weight:600;}
+    .value-item{padding:1rem 0;border-bottom:1px solid var(--gray-100);}
+    .value-item:last-child{border-bottom:none;}
+    .value-item h4{font-size:1.05rem;font-weight:600;margin-bottom:.25rem;color:var(--primary);}
+    .value-item p{font-size:.95rem;color:var(--gray-600);}
+    .legal-section{padding:1.5rem 1rem;border-bottom:1px solid var(--gray-200);}
+    .legal-section h2{font-size:1.2rem;font-weight:700;margin-bottom:.75rem;}
+    .legal-section p,.legal-section li{font-size:.95rem;color:var(--gray-600);margin-bottom:.5rem;}
+    .legal-section ul{padding-left:1.25rem;}
+    .cta-banner{background:linear-gradient(135deg,var(--primary) 0%,var(--primary-dark) 100%);color:white;padding:2rem 1rem;text-align:center;margin-bottom:2rem;}
+    .cta-banner h3{font-size:1.5rem;font-weight:700;margin-bottom:.5rem;}
+    .cta-banner p{font-size:1rem;opacity:.9;margin-bottom:1.25rem;}
+    .cta-btn{display:flex;align-items:center;justify-content:center;gap:.5rem;padding:.875rem 1.5rem;border-radius:var(--radius);font-weight:700;font-size:1rem;min-height:48px;background:white;color:var(--primary);text-decoration:none;margin:0 auto;max-width:300px;}
+    footer{background:var(--gray-900);color:#9ca3af;padding:1.5rem 1rem;font-size:.9rem;text-align:center;}
+    footer a{color:#d1d5db;}
+    .footer-links{display:flex;flex-wrap:wrap;justify-content:center;gap:1rem;margin-bottom:1rem;}
+    .sticky-cta{position:fixed;bottom:0;left:0;right:0;background:var(--primary);display:flex;z-index:999;box-shadow:0 -2px 12px rgba(0,0,0,.15);}
+    .sticky-cta a{flex:1;color:white;font-weight:600;font-size:.95rem;padding:1rem .5rem;display:flex;align-items:center;justify-content:center;gap:.4rem;min-height:56px;}
+    .sticky-cta a:first-child{background:white;color:var(--primary);border-right:1px solid var(--gray-200);}
+    .nav-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.5);z-index:200;}
+    .nav-menu.open{display:block;}
+    .nav-drawer{background:white;width:80%;max-width:300px;height:100%;padding:1.5rem 1rem;overflow-y:auto;}
+    .nav-drawer a{display:flex;align-items:center;gap:.75rem;padding:.875rem 0;border-bottom:1px solid var(--gray-100);font-weight:500;color:var(--gray-900);font-size:1rem;}
+    .nav-close{background:none;border:none;font-size:1.5rem;cursor:pointer;margin-bottom:1rem;color:var(--gray-600);}
+  </style>
+</head>
+<body>
+  <header class="header">
+    <a href="index.html"><img src="../metrotec-logo.png" alt="MetroTec"></a>
+    <div style="display:flex;gap:1rem;align-items:center;">
+      <a href="tel:+13132427311" class="header-call"><i class="bi bi-telephone-fill"></i> Call</a>
+      <button onclick="document.getElementById('navMenu').classList.toggle('open')" class="header-menu-btn"><i class="bi bi-list"></i></button>
+    </div>
+  </header>
+  <div class="nav-menu" id="navMenu" onclick="if(event.target===this)this.classList.remove('open')">
+    <div class="nav-drawer">
+      <button class="nav-close" onclick="document.getElementById('navMenu').classList.remove('open')"><i class="bi bi-x-lg"></i></button>
+      <a href="index.html"><i class="bi bi-house"></i> Home</a>
+      <a href="services.html"><i class="bi bi-grid"></i> Services</a>
+      <a href="managed-it.html"><i class="bi bi-gear"></i> Managed IT</a>
+      <a href="cybersecurity.html"><i class="bi bi-shield-check"></i> Cybersecurity</a>
+      <a href="industries.html"><i class="bi bi-building"></i> Industries</a>
+      <a href="about.html"><i class="bi bi-people"></i> About</a>
+      <a href="contact.html"><i class="bi bi-envelope"></i> Contact</a>
+      <a href="../blog/index.html"><i class="bi bi-newspaper"></i> Blog</a>
+      <a href="portal.html"><i class="bi bi-box-arrow-in-right"></i> Client Portal</a><a href="submit-ticket.html"><i class="bi bi-life-preserver"></i> Submit a Ticket</a><a href="get-quote.html" style="color:var(--primary);font-weight:700;"><i class="bi bi-file-text"></i> Get Free Quote</a>
+    </div>
+  </div>
+  <section class="hero"><h1>RFP & Strategic IT Planning</h1><p>Expert guidance to help you make the right technology investments.</p><a href="get-quote.html" class="btn btn-primary" style="margin:0 auto;max-width:280px;"><i class="bi bi-file-earmark-text"></i> Start Planning</a></section>
+  <section class="section">
+    <h2 class="section-title">Why Strategic IT Planning Matters</h2>
+    <p class="section-sub">The right technology decisions today prevent costly mistakes tomorrow.</p>
+    <div class="feature-item"><div class="fi"><i class="bi bi-graph-up-arrow"></i></div><div><h4>Maximize ROI</h4><p>Ensure every technology dollar delivers measurable business value.</p></div></div>
+    <div class="feature-item"><div class="fi g"><i class="bi bi-shield-check"></i></div><div><h4>Reduce Risk</h4><p>Identify and mitigate technology risks before they become problems.</p></div></div>
+    <div class="feature-item"><div class="fi"><i class="bi bi-arrow-up-right-circle"></i></div><div><h4>Enable Growth</h4><p>Build a technology foundation that scales with your business.</p></div></div>
+  </section>
+  <section class="section" style="background:var(--gray-100);">
+    <h2 class="section-title">How It Works</h2>
+    <div class="feature-item"><div class="fi"><i class="bi bi-1-circle"></i></div><div><h4>Discovery</h4><p>We assess your current technology, business goals, and budget.</p></div></div>
+    <div class="feature-item"><div class="fi g"><i class="bi bi-2-circle"></i></div><div><h4>Strategy</h4><p>We develop a multi-year IT roadmap aligned with your objectives.</p></div></div>
+    <div class="feature-item"><div class="fi"><i class="bi bi-3-circle"></i></div><div><h4>RFP Development</h4><p>We create detailed RFPs to get competitive bids from qualified vendors.</p></div></div>
+    <div class="feature-item"><div class="fi g"><i class="bi bi-4-circle"></i></div><div><h4>Vendor Selection</h4><p>We evaluate responses and recommend the best fit for your needs.</p></div></div>
+  </section>
+    <div class="cta-banner">
+    <h3>Ready to Plan Your IT Future?</h3>
+    <p>Get a free strategic IT consultation for your business.</p>
+    <a href="get-quote.html" class="cta-btn"><i class="bi bi-calendar-check"></i> Get Free Assessment</a>
+  </div>
+  
+  <!-- Newsletter -->
+  <section class="section" style="background:var(--gray-900);color:white;text-align:center;">
+    <h2 class="section-title" style="color:white;">Stay in the Loop</h2>
+    <p class="section-sub" style="color:rgba(255,255,255,0.8);">Get IT tips, security alerts, and Metro Detroit business insights in your inbox.</p>
+    <form   style="display:flex;flex-direction:column;gap:0.75rem;max-width:360px;margin:0 auto;" class="nl-form">
+      <input type="email" name="email" placeholder="Your email address" required aria-label="Email address" style="padding:0.875rem 1rem;border-radius:var(--radius);border:none;font-size:1rem;min-height:48px;width:100%;">
+      <button type="submit" class="btn" style="background:white;color:var(--primary);font-weight:700;width:100%;"><i class="bi bi-envelope-paper"></i> Subscribe</button>
+    <input type="text" name="company_website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;"></form>
+    <p style="font-size:0.75rem;opacity:0.6;margin-top:0.75rem;">We respect your privacy. Unsubscribe anytime.</p>
+  </section>
+<footer>
+    <div class="footer-links"><a href="services.html">Services</a><a href="about.html">About</a><a href="contact.html">Contact</a><a href="privacy-policy.html">Privacy</a><a href="terms-of-service.html">Terms</a></div>
+    <p>© 2026 MetroTec · Metro Detroit IT Support</p><p style="margin-top:.5rem;font-style:normal;"><i class="bi bi-geo-alt-fill"></i> 607 Shelby St, Detroit, MI 48226</p>
+    <p style="margin-top:.75rem;font-size:.8rem;"><a href="../rfp-services.html" onclick="sessionStorage.setItem('prefer_desktop','1')">View full site →</a></p>
+  </footer>
+  <div class="sticky-cta">
+    <a href="tel:+13132427311"><i class="bi bi-telephone-fill"></i> Call Now</a>
+    <a href="get-quote.html"><i class="bi bi-file-earmark-text"></i> Get Quote</a>
+  </div>
+
+<script id="nl-subscribe-script">
+(function(){
+  var API_URL="https://sebm7k9d9c.execute-api.us-east-1.amazonaws.com/subscribe";
+  function wire(form){
+    form.addEventListener("submit",function(e){
+      e.preventDefault();
+      var hp=form.querySelector('input[name="company_website"]');
+      var emailInput=form.querySelector('input[type="email"]');
+      var btn=form.querySelector('button[type="submit"]');
+      var email=emailInput?emailInput.value.trim():"";
+      var msg=form.querySelector(".nl-msg");
+      if(!msg){msg=document.createElement("p");msg.className="nl-msg";msg.style.fontSize="0.8rem";msg.style.marginTop="0.5rem";form.appendChild(msg);}
+      if(btn){btn.disabled=true;}
+      fetch(API_URL,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({email:email,source:location.pathname,company_website:hp?hp.value:""})})
+      .then(function(r){return r.json();})
+      .then(function(d){
+        if(d.ok){msg.style.color="#a7f3d0";msg.textContent="Thanks — you're subscribed!";form.reset();}
+        else{msg.style.color="#fecaca";msg.textContent=(d.error||"Something went wrong. Please try again.");}
+      })
+      .catch(function(){msg.style.color="#fecaca";msg.textContent="Network error. Please try again.";})
+      .finally(function(){if(btn){btn.disabled=false;}});
+    });
+  }
+  var forms=document.querySelectorAll("form.nl-form");
+  Array.prototype.forEach.call(forms,wire);
+})();
+</script>
+
+</body>
+</html>

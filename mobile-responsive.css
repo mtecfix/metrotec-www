@@ -1,0 +1,235 @@
+/* Mobile-First Responsive Optimizations */
+
+/* Base Mobile Styles - Apply to all devices first */
+* {
+  box-sizing: border-box;
+}
+
+.container {
+  width: 100%;
+  padding: 0 1rem;
+  margin: 0 auto;
+}
+
+/* Fix grid layouts for mobile */
+.grid,
+[style*='display: grid'] {
+  display: block !important;
+}
+
+.grid > *,
+[style*='grid-template-columns'] > * {
+  margin-bottom: 1.5rem;
+}
+
+/* Hero section mobile fixes */
+.hero {
+  padding: 2rem 0;
+  text-align: center;
+}
+
+.hero-title {
+  font-size: 1.8rem !important;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+.hero-subtitle {
+  font-size: 1rem !important;
+  margin-bottom: 2rem;
+}
+
+.hero-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.hero-actions .btn {
+  width: 100%;
+  max-width: 280px;
+}
+
+/* Stats section mobile */
+.stats {
+  display: grid !important;
+  grid-template-columns: repeat(2, 1fr) !important;
+  gap: 1rem;
+}
+
+.stat-item {
+  text-align: center;
+  padding: 1rem;
+}
+
+/* Services section mobile */
+.section {
+  padding: 2rem 0 !important;
+}
+
+.section-title {
+  font-size: 1.8rem !important;
+  text-align: center;
+}
+
+.section-subtitle {
+  font-size: 1rem !important;
+  text-align: center;
+  margin-bottom: 2rem !important;
+}
+
+/* Force single column for service grids */
+[style*='grid-template-columns: repeat(2, 1fr)'],
+[style*='grid-template-columns: repeat(3, 1fr)'],
+[style*='grid-template-columns: repeat(4, 1fr)'] {
+  grid-template-columns: 1fr !important;
+  gap: 1.5rem !important;
+}
+
+/* Card optimizations */
+.card {
+  margin-bottom: 1rem;
+  padding: 1.5rem !important;
+}
+
+/* Button optimizations */
+.btn {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+/* Navigation mobile fixes */
+.nav {
+  padding: 0.75rem 0;
+}
+
+.nav-links {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+}
+
+.nav-links.active {
+  display: block;
+}
+
+.nav-links li {
+  display: block;
+  border-bottom: 1px solid #eee;
+}
+
+.nav-links a {
+  display: block;
+  padding: 1rem;
+  text-decoration: none;
+}
+
+.nav-menu-toggle {
+  display: block;
+  cursor: pointer;
+}
+
+/* Image optimizations */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Typography mobile */
+h1 {
+  font-size: 1.8rem;
+}
+h2 {
+  font-size: 1.5rem;
+}
+h3 {
+  font-size: 1.3rem;
+}
+h4 {
+  font-size: 1.1rem;
+}
+
+p {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* Tablet styles */
+@media (min-width: 768px) {
+  .container {
+    padding: 0 2rem;
+  }
+
+  .stats {
+    grid-template-columns: repeat(4, 1fr) !important;
+  }
+
+  .hero-actions {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .hero-actions .btn {
+    width: auto;
+  }
+}
+
+/* Desktop styles */
+@media (min-width: 1024px) {
+  .container {
+    max-width: 1200px;
+    padding: 0 2rem;
+  }
+
+  .grid,
+  [style*='display: grid'] {
+    display: grid !important;
+  }
+
+  [style*='grid-template-columns: repeat(2, 1fr)'] {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  [style*='grid-template-columns: repeat(3, 1fr)'] {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+
+  .nav-links {
+    display: flex !important;
+    position: static;
+    background: none;
+    box-shadow: none;
+  }
+
+  .nav-links li {
+    display: inline-block;
+    border: none;
+  }
+
+  .nav-menu-toggle {
+    display: none;
+  }
+
+  .hero {
+    padding: 4rem 0;
+  }
+
+  .hero-title {
+    font-size: 3rem !important;
+  }
+
+  .section {
+    padding: 4rem 0 !important;
+  }
+}

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>
+  if (/Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent) && !sessionStorage.getItem('prefer_desktop')) {
+    window.location.replace('m/portal.html');
+  }
+</script>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Client Portal | MetroTec</title>
+  <meta content="MetroTec client portal — view and comment on your support tickets." name="description">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap&family=Satoshi:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="universal-ui.css">
+  <link rel="stylesheet" href="mobile-optimized.css">
+  <style>
+    .portal-wrap{max-width:900px;margin:0 auto;}
+    .login-box{max-width:380px;margin:2rem auto;}
+    .field{margin-bottom:1rem;}
+    .field label{display:block;font-weight:600;margin-bottom:.35rem;color:var(--gray-700);}
+    .field input{width:100%;padding:.8rem 1rem;border:1px solid var(--gray-200);border-radius:.5rem;font-size:1rem;}
+    .msg{padding:.85rem 1.1rem;border-radius:.5rem;margin-bottom:1rem;display:none;}
+    .msg.ok{background:#dcfce7;color:#065f46;display:block;}
+    .msg.err{background:#fee2e2;color:#991b1b;display:block;}
+    .hidden{display:none;}
+    .ticket{border:1px solid var(--gray-200);border-radius:.75rem;padding:1.25rem;margin-bottom:1rem;}
+    .ticket h3{font-size:1.05rem;margin-bottom:.25rem;}
+    .badge{display:inline-block;padding:.15rem .6rem;border-radius:1rem;font-size:.72rem;font-weight:700;text-transform:uppercase;margin-right:.4rem;}
+    .b-new{background:#dbeafe;color:#1e40af;}.b-open{background:#e0f2fe;color:#075985;}
+    .b-pending{background:#fef9c3;color:#854d0e;}.b-resolved{background:#dcfce7;color:#065f46;}.b-closed{background:#f1f5f9;color:#475569;}
+    .comments{margin-top:.75rem;border-top:1px solid var(--gray-100);padding-top:.75rem;}
+    .comment{font-size:.9rem;margin-bottom:.5rem;}
+    .comment .who{font-weight:600;}
+    .comment .when{color:var(--gray-600);font-size:.75rem;}
+    .reply{display:flex;gap:.5rem;margin-top:.5rem;}
+    .reply input{flex:1;padding:.55rem .8rem;border:1px solid var(--gray-200);border-radius:.5rem;}
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <nav class="nav" role="navigation" aria-label="Main navigation">
+        <a href="index.html" class="nav-brand" aria-label="MetroTec Home">
+          <div style="display:inline-block;"><img class="responsive-img" src="metrotec-logo.png" alt="MetroTec"></div>
+        </a>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="services.html" class="nav-link">Services</a></li>
+          <li><a href="about.html" class="nav-link">About</a></li>
+          <li><a href="submit-ticket.html" class="nav-link">Submit Ticket</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+        <div class="desktop-only">
+          <a href="get-quote.html" class="btn btn-primary" style="white-space:nowrap;">Get Quote</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <section class="section" style="background:white;" id="main-content">
+    <div class="container portal-wrap">
+      <div class="section-header">
+        <h1 class="section-title"><i class="bi bi-box-arrow-in-right"></i> Client Portal</h1>
+      </div>
+
+      <!-- Login -->
+      <div id="loginView" class="login-box">
+        <div class="msg" id="loginMsg"></div>
+        <form id="loginForm">
+          <div class="field"><label for="email">Email</label><input type="email" id="email" required autocomplete="username"></div>
+          <div class="field"><label for="pass">Password</label><input type="password" id="pass" required autocomplete="current-password"></div>
+          <button type="submit" class="btn btn-primary btn-lg" id="loginBtn" style="width:100%;">Sign In</button>
+        </form>
+        <div id="newPassBlock" class="hidden" style="margin-top:1rem;">
+          <p style="color:var(--gray-600);font-size:.9rem;margin-bottom:.75rem;">First login — set a new password (min 12 chars, upper/lower/number/symbol).</p>
+          <div class="field"><label for="newPass">New Password</label><input type="password" id="newPass"></div>
+          <button type="button" class="btn btn-primary" id="newPassBtn" style="width:100%;">Set Password & Sign In</button>
+        </div>
+        <p style="text-align:center;margin-top:1rem;font-size:.85rem;color:var(--gray-600);">
+          Need an account? <a href="contact.html">Contact us</a> to get set up.
+        </p>
+      </div>
+
+      <!-- Tickets -->
+      <div id="ticketView" class="hidden">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;">
+          <p style="color:var(--gray-600);" id="welcome"></p>
+          <button class="btn" id="logoutBtn" style="background:var(--gray-100);color:var(--gray-700);">Sign Out</button>
+        </div>
+        <div class="msg" id="portalMsg"></div>
+        <div id="ticketList"></div>
+      </div>
+    </div>
+  </section>
+
+  <footer style="background:#0f172a;padding:20px 0;color:rgba(255,255,255,0.7);">
+    <div style="max-width:1200px;margin:auto;padding:0 24px;text-align:center;">
+      <span style="font-size:0.8rem;">&copy; 2026 MetroTec &nbsp;|&nbsp; 607 Shelby St, Detroit, MI 48226 &nbsp;|&nbsp; (313) 242-7311</span>
+    </div>
+  </footer>
+
+  <script>
+    var REGION="us-east-1";
+    var CLIENT_ID="20ep457rhr550rvn9bhskqqiec";
+    var API_URL="https://sebm7k9d9c.execute-api.us-east-1.amazonaws.com";
+    var COGNITO="https://cognito-idp."+REGION+".amazonaws.com/";
+    var idToken=sessionStorage.getItem("mt_cust_token")||null;
+    var session=null,pendingEmail=null,userEmail=null;
+
+    function show(el){el.classList.remove("hidden");}
+    function hide(el){el.classList.add("hidden");}
+    function setMsg(el,t,k){el.className="msg "+k;el.textContent=t;}
+    function esc(s){return (s||"").replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c];});}
+    function cognito(target,body){
+      return fetch(COGNITO,{method:"POST",headers:{"Content-Type":"application/x-amz-json-1.1","X-Amz-Target":"AWSCognitoIdentityProviderService."+target},body:JSON.stringify(body)}).then(function(r){return r.json().then(function(d){return{ok:r.ok,d:d};});});
+    }
+    function parseEmail(tok){try{return JSON.parse(atob(tok.split(".")[1])).email||"";}catch(e){return "";}}
+
+    document.getElementById("loginForm").addEventListener("submit",function(e){
+      e.preventDefault();
+      var email=document.getElementById("email").value.trim();
+      var pass=document.getElementById("pass").value;
+      var btn=document.getElementById("loginBtn");var msg=document.getElementById("loginMsg");
+      btn.disabled=true;btn.textContent="Signing in…";
+      cognito("InitiateAuth",{AuthFlow:"USER_PASSWORD_AUTH",ClientId:CLIENT_ID,AuthParameters:{USERNAME:email,PASSWORD:pass}})
+      .then(function(res){
+        if(res.ok&&res.d.AuthenticationResult){idToken=res.d.AuthenticationResult.IdToken;sessionStorage.setItem("mt_cust_token",idToken);enter();}
+        else if(res.d.ChallengeName==="NEW_PASSWORD_REQUIRED"){session=res.d.Session;pendingEmail=email;show(document.getElementById("newPassBlock"));setMsg(msg,"Please set a new password.","ok");}
+        else{setMsg(msg,(res.d.message||"Login failed."),"err");}
+      }).catch(function(){setMsg(msg,"Network error.","err");})
+      .finally(function(){btn.disabled=false;btn.textContent="Sign In";});
+    });
+
+    document.getElementById("newPassBtn").addEventListener("click",function(){
+      var np=document.getElementById("newPass").value;var msg=document.getElementById("loginMsg");
+      cognito("RespondToAuthChallenge",{ChallengeName:"NEW_PASSWORD_REQUIRED",ClientId:CLIENT_ID,Session:session,ChallengeResponses:{USERNAME:pendingEmail,NEW_PASSWORD:np}})
+      .then(function(res){if(res.ok&&res.d.AuthenticationResult){idToken=res.d.AuthenticationResult.IdToken;sessionStorage.setItem("mt_cust_token",idToken);enter();}else{setMsg(msg,(res.d.message||"Could not set password."),"err");}});
+    });
+
+    function enter(){
+      userEmail=parseEmail(idToken);
+      hide(document.getElementById("loginView"));show(document.getElementById("ticketView"));
+      document.getElementById("welcome").textContent="Signed in as "+userEmail;
+      loadMine();
+    }
+
+    function loadMine(){
+      var list=document.getElementById("ticketList");var msg=document.getElementById("portalMsg");
+      list.innerHTML='<p style="color:var(--gray-600);">Loading…</p>';
+      fetch(API_URL+"/my-tickets",{headers:{Authorization:idToken}})
+      .then(function(r){if(r.status===401){throw new Error("Session expired. Please sign in again.");}return r.json();})
+      .then(function(d){
+        var t=d.tickets||[];
+        if(!t.length){list.innerHTML='<p style="color:var(--gray-600);">You have no tickets yet. <a href="submit-ticket.html">Submit one</a>.</p>';return;}
+        list.innerHTML=t.map(function(x){
+          var st=x.status||"new";
+          var comments=(x.comments||[]).map(function(c){return '<div class="comment"><span class="who">'+esc(c.role==="customer"?"You":"MetroTec")+'</span> <span class="when">'+esc((c.at||"").slice(0,16).replace("T"," "))+'</span><br>'+esc(c.text)+'</div>';}).join("");
+          return '<div class="ticket">'+
+            '<h3>'+esc(x.subject)+'</h3>'+
+            '<div><span class="badge b-'+st+'">'+st+'</span><span style="color:var(--gray-600);font-size:.8rem;">'+esc(x.ticketId)+' · '+esc((x.createdAt||"").slice(0,10))+'</span></div>'+
+            '<p style="margin:.6rem 0;color:var(--gray-700);">'+esc(x.message)+'</p>'+
+            '<div class="comments">'+(comments||'<span style="color:var(--gray-600);font-size:.85rem;">No replies yet.</span>')+
+              '<div class="reply"><input type="text" placeholder="Add a reply…" data-id="'+esc(x.ticketId)+'" class="replyInput"><button class="btn btn-primary replyBtn" data-id="'+esc(x.ticketId)+'">Send</button></div>'+
+            '</div>'+
+          '</div>';
+        }).join("");
+        Array.prototype.forEach.call(document.querySelectorAll(".replyBtn"),function(b){
+          b.addEventListener("click",function(){
+            var id=b.getAttribute("data-id");
+            var inp=document.querySelector('.replyInput[data-id="'+id.replace(/"/g,'')+'"]');
+            var text=inp?inp.value.trim():"";
+            if(!text)return;
+            b.disabled=true;
+            fetch(API_URL+"/my-tickets/"+encodeURIComponent(id)+"/comment",{method:"POST",headers:{Authorization:idToken,"Content-Type":"application/json"},body:JSON.stringify({comment:text})})
+            .then(function(r){return r.json();})
+            .then(function(d){if(d.ok){setMsg(msg,"Reply added.","ok");loadMine();}else{setMsg(msg,(d.error||"Could not add reply"),"err");b.disabled=false;}})
+            .catch(function(){setMsg(msg,"Network error.","err");b.disabled=false;});
+          });
+        });
+      })
+      .catch(function(err){setMsg(msg,err.message,"err");});
+    }
+
+    document.getElementById("logoutBtn").addEventListener("click",function(){sessionStorage.removeItem("mt_cust_token");location.reload();});
+    if(idToken){enter();}
+  </script>
+</body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8815300775068949" crossorigin="anonymous"></script>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport">
+  <title>Shopping Cart | MetroTec Store</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="../universal-ui.css">
+  <link rel="stylesheet" href="../mobile-optimized.css">
+</head>
+
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <nav class="nav">
+        <a href="../index.html" class="nav-brand">
+          <img src="../metrotec-logo.png" alt="MetroTec">
+        </a>
+        <ul class="nav-links">
+          <li><a href="../services.html" class="nav-link">Services</a></li>
+          <li><a href="../industries.html" class="nav-link">Industries</a></li>
+          <li><a href="index.html" class="nav-link">Store</a></li>
+          <li><a href="../contact.html" class="nav-link">Contact</a></li>
+        </ul>
+        <div class="desktop-only">
+          <a href="cart.html" class="btn btn-secondary" style="position: relative;">
+            <i class="bi bi-cart3"></i> Cart <span id="cartCount" style="position: absolute; top: -8px; right: -8px; background: var(--primary-600); color: white; border-radius: 50%; width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; font-size: 0.75rem;">0</span>
+          </a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Cart Section -->
+  <section class="section" style="min-height: 60vh;">
+    <div class="container">
+      <h1 style="font-size: 2.5rem; font-weight: 700; margin-bottom: 2rem;">Shopping Cart</h1>
+      
+      <div id="emptyCart" style="display: none; text-align: center; padding: 4rem 0;">
+        <i class="bi bi-cart-x" style="font-size: 4rem; color: var(--gray-400);"></i>
+        <h2 style="color: var(--gray-600); margin: 1rem 0;">Your cart is empty</h2>
+        <a href="index.html" class="btn btn-primary" style="margin-top: 1rem;">Continue Shopping</a>
+      </div>
+
+      <div id="cartContent" class="mobile-grid" style="display: grid; grid-template-columns: 2fr 1fr; gap: 2rem; align-items: start;">
+        <!-- Cart Items -->
+        <div>
+          <div id="cartItems"></div>
+        </div>
+
+        <!-- Order Summary -->
+        <div class="card" style="position: sticky; top: 140px;">
+          <h3 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 1.5rem;">Order Summary</h3>
+          
+          <div style="display: flex; justify-content: space-between; margin-bottom: 0.75rem; color: var(--gray-700);">
+            <span>Subtotal</span>
+            <span id="subtotal">$0.00</span>
+          </div>
+          
+          <div style="display: flex; justify-content: space-between; margin-bottom: 0.75rem; color: var(--gray-700);">
+            <span>Tax (6%)</span>
+            <span id="tax">$0.00</span>
+          </div>
+          
+          <div style="display: flex; justify-content: space-between; margin-bottom: 0.75rem; color: var(--gray-700);">
+            <span>Shipping</span>
+            <span id="shipping">FREE</span>
+          </div>
+          
+          <hr style="margin: 1rem 0; border: none; border-top: 2px solid var(--gray-200);">
+          
+          <div style="display: flex; justify-content: space-between; margin-bottom: 1.5rem; font-size: 1.25rem; font-weight: 700;">
+            <span>Total</span>
+            <span id="total" style="color: var(--primary-600);">$0.00</span>
+          </div>
+          
+          <a href="checkout.html" class="btn btn-primary" style="width: 100%; margin-bottom: 0.75rem;">
+            <i class="bi bi-lock"></i> Proceed to Checkout
+          </a>
+          
+          <a href="index.html" class="btn btn-secondary" style="width: 100%;">
+            <i class="bi bi-arrow-left"></i> Continue Shopping
+          </a>
+          
+          <div style="margin-top: 1.5rem; padding: 1rem; background: var(--gray-50); border-radius: 0.5rem; font-size: 0.85rem; color: var(--gray-600);">
+            <i class="bi bi-shield-check" style="color: var(--success-600);"></i> Secure checkout with SSL encryption
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <p style="line-height: 1.7; margin-bottom: 1.25rem;">Metro Detroit's trusted IT partner since 2020. Serving businesses within 25 miles.</p>
+          <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+            <p style="margin: 0;"><i class="bi bi-telephone" style="margin-right: 0.4rem;"></i><a href="tel:313-242-7311">(313) 242-7311</a></p>
+            <p style="margin: 0;"><i class="bi bi-envelope" style="margin-right: 0.4rem;"></i><a href="mailto:info@mrtechfixes.com">info@mrtechfixes.com</a></p>
+            <p style="margin: 0;"><i class="bi bi-geo-alt" style="margin-right: 0.4rem;"></i>Metro Detroit Area, MI</p>
+            <p style="margin: 0;"><i class="bi bi-clock" style="margin-right: 0.4rem;"></i>Mon–Fri: 8AM–6PM EST</p>
+          </div>
+        </div>
+        <div class="footer-section">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../services.html">Services</a></li>
+            <li><a href="../contact.html">Contact</a></li>
+            <li><a href="index.html">Store</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Follow Us</h4>
+          <div style="display: flex; gap: 1rem; margin-bottom: 1.25rem;">
+            <a href="https://www.linkedin.com/company/metrotec-it" target="_blank" class="footer-social-icon"><i class="bi bi-linkedin"></i></a>
+            <a href="https://www.facebook.com/metrotecit" target="_blank" class="footer-social-icon"><i class="bi bi-facebook"></i></a>
+            <a href="https://twitter.com/metrotecit" target="_blank" class="footer-social-icon"><i class="bi bi-twitter-x"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 MetroTec. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="cart.js"></script>
+</body>
+</html>

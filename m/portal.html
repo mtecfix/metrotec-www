@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Client Portal | MetroTec</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
+  <style>
+    :root{--primary:#0284c7;--primary-dark:#0369a1;--primary-light:#e0f2fe;--primary-50:#f0f9ff;--gray-900:#0f172a;--gray-700:#334155;--gray-600:#475569;--gray-200:#e2e8f0;--gray-100:#f1f5f9;--radius:12px;}
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{font-family:"Inter",-apple-system,sans-serif;font-size:16px;line-height:1.6;color:var(--gray-900);background:#fff;}
+    a{color:var(--primary);text-decoration:none;}
+    .header{background:#fff;border-bottom:1px solid var(--gray-200);padding:.75rem 1rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;}
+    .header img{height:34px;}
+    .header a.call{color:var(--primary);font-weight:700;font-size:.9rem;}
+    .hero{background:linear-gradient(135deg,var(--primary-50) 0%,var(--gray-100) 100%);padding:1.5rem 1rem;text-align:center;}
+    .hero h1{font-size:1.5rem;font-weight:700;}
+    .section{padding:1.25rem 1rem;max-width:640px;margin:0 auto;}
+    .field{margin-bottom:1rem;}
+    .field label{display:block;font-weight:600;font-size:.9rem;margin-bottom:.35rem;color:var(--gray-700);}
+    .field input{width:100%;padding:.85rem 1rem;border:1px solid var(--gray-200);border-radius:var(--radius);font-size:1rem;}
+    .btn{display:block;width:100%;text-align:center;padding:.9rem 1rem;border:none;border-radius:var(--radius);background:var(--primary);color:#fff;font-weight:700;font-size:1rem;cursor:pointer;}
+    .btn.secondary{background:var(--gray-100);color:var(--gray-700);}
+    .msg{padding:.8rem 1rem;border-radius:var(--radius);margin-bottom:1rem;display:none;font-size:.9rem;}
+    .msg.ok{background:#dcfce7;color:#065f46;display:block;}
+    .msg.err{background:#fee2e2;color:#991b1b;display:block;}
+    .hidden{display:none;}
+    .ticket{border:1px solid var(--gray-200);border-radius:var(--radius);padding:1rem;margin-bottom:1rem;}
+    .ticket h3{font-size:1rem;margin-bottom:.35rem;}
+    .badge{display:inline-block;padding:.15rem .55rem;border-radius:1rem;font-size:.7rem;font-weight:700;text-transform:uppercase;}
+    .b-new{background:#dbeafe;color:#1e40af;}.b-open{background:#e0f2fe;color:#075985;}
+    .b-pending{background:#fef9c3;color:#854d0e;}.b-resolved{background:#dcfce7;color:#065f46;}.b-closed{background:#f1f5f9;color:#475569;}
+    .comment{font-size:.88rem;margin:.4rem 0;padding:.5rem;background:var(--gray-100);border-radius:8px;}
+    .comment .who{font-weight:600;}.comment .when{color:var(--gray-600);font-size:.72rem;}
+    .reply{display:flex;gap:.5rem;margin-top:.5rem;}
+    .reply input{flex:1;padding:.6rem .8rem;border:1px solid var(--gray-200);border-radius:8px;}
+    .reply button{padding:.6rem 1rem;border:none;background:var(--primary);color:#fff;border-radius:8px;font-weight:600;}
+    footer{background:var(--gray-900);color:#9ca3af;padding:1.25rem 1rem;text-align:center;font-size:.85rem;}
+  </style>
+</head>
+<body>
+  <header class="header">
+    <a href="index.html"><img src="../metrotec-logo.png" alt="MetroTec"></a>
+    <a href="tel:+13132427311" class="call"><i class="bi bi-telephone-fill"></i> Call</a>
+  </header>
+
+  <section class="hero"><h1><i class="bi bi-box-arrow-in-right"></i> Client Portal</h1></section>
+
+  <div class="section">
+    <!-- Login -->
+    <div id="loginView">
+      <div class="msg" id="loginMsg"></div>
+      <form id="loginForm">
+        <div class="field"><label for="email">Email</label><input type="email" id="email" required autocomplete="username"></div>
+        <div class="field"><label for="pass">Password</label><input type="password" id="pass" required autocomplete="current-password"></div>
+        <button type="submit" class="btn" id="loginBtn">Sign In</button>
+      </form>
+      <div id="newPassBlock" class="hidden" style="margin-top:1rem;">
+        <p style="color:var(--gray-600);font-size:.88rem;margin-bottom:.6rem;">First login — set a new password (min 12 chars, upper/lower/number/symbol).</p>
+        <div class="field"><label for="newPass">New Password</label><input type="password" id="newPass"></div>
+        <button type="button" class="btn" id="newPassBtn">Set Password & Sign In</button>
+      </div>
+      <p style="text-align:center;margin-top:1rem;font-size:.85rem;color:var(--gray-600);">Need an account? <a href="contact.html">Contact us</a>.</p>
+    </div>
+
+    <!-- Tickets -->
+    <div id="ticketView" class="hidden">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;">
+        <span style="color:var(--gray-600);font-size:.85rem;" id="welcome"></span>
+        <button class="btn secondary" id="logoutBtn" style="width:auto;padding:.5rem 1rem;font-size:.85rem;">Sign Out</button>
+      </div>
+      <div class="msg" id="portalMsg"></div>
+      <div id="ticketList"></div>
+    </div>
+  </div>
+
+  <footer>© 2026 MetroTec · 607 Shelby St, Detroit, MI 48226 · (313) 242-7311</footer>
+
+  <script>
+    var REGION="us-east-1";
+    var CLIENT_ID="20ep457rhr550rvn9bhskqqiec";
+    var API_URL="https://sebm7k9d9c.execute-api.us-east-1.amazonaws.com";
+    var COGNITO="https://cognito-idp."+REGION+".amazonaws.com/";
+    var idToken=sessionStorage.getItem("mt_cust_token")||null;
+    var session=null,pendingEmail=null,userEmail=null;
+    function show(el){el.classList.remove("hidden");}function hide(el){el.classList.add("hidden");}
+    function setMsg(el,t,k){el.className="msg "+k;el.textContent=t;}
+    function esc(s){return (s||"").replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c];});}
+    function cognito(target,body){return fetch(COGNITO,{method:"POST",headers:{"Content-Type":"application/x-amz-json-1.1","X-Amz-Target":"AWSCognitoIdentityProviderService."+target},body:JSON.stringify(body)}).then(function(r){return r.json().then(function(d){return{ok:r.ok,d:d};});});}
+    function parseEmail(tok){try{return JSON.parse(atob(tok.split(".")[1])).email||"";}catch(e){return "";}}
+
+    document.getElementById("loginForm").addEventListener("submit",function(e){
+      e.preventDefault();
+      var email=document.getElementById("email").value.trim();var pass=document.getElementById("pass").value;
+      var btn=document.getElementById("loginBtn");var msg=document.getElementById("loginMsg");
+      btn.disabled=true;btn.textContent="Signing in…";
+      cognito("InitiateAuth",{AuthFlow:"USER_PASSWORD_AUTH",ClientId:CLIENT_ID,AuthParameters:{USERNAME:email,PASSWORD:pass}})
+      .then(function(res){
+        if(res.ok&&res.d.AuthenticationResult){idToken=res.d.AuthenticationResult.IdToken;sessionStorage.setItem("mt_cust_token",idToken);enter();}
+        else if(res.d.ChallengeName==="NEW_PASSWORD_REQUIRED"){session=res.d.Session;pendingEmail=email;show(document.getElementById("newPassBlock"));setMsg(msg,"Please set a new password.","ok");}
+        else{setMsg(msg,(res.d.message||"Login failed."),"err");}
+      }).catch(function(){setMsg(msg,"Network error.","err");}).finally(function(){btn.disabled=false;btn.textContent="Sign In";});
+    });
+    document.getElementById("newPassBtn").addEventListener("click",function(){
+      var np=document.getElementById("newPass").value;var msg=document.getElementById("loginMsg");
+      cognito("RespondToAuthChallenge",{ChallengeName:"NEW_PASSWORD_REQUIRED",ClientId:CLIENT_ID,Session:session,ChallengeResponses:{USERNAME:pendingEmail,NEW_PASSWORD:np}})
+      .then(function(res){if(res.ok&&res.d.AuthenticationResult){idToken=res.d.AuthenticationResult.IdToken;sessionStorage.setItem("mt_cust_token",idToken);enter();}else{setMsg(msg,(res.d.message||"Could not set password."),"err");}});
+    });
+    function enter(){userEmail=parseEmail(idToken);hide(document.getElementById("loginView"));show(document.getElementById("ticketView"));document.getElementById("welcome").textContent=userEmail;loadMine();}
+    function loadMine(){
+      var list=document.getElementById("ticketList");var msg=document.getElementById("portalMsg");
+      list.innerHTML='<p style="color:var(--gray-600);">Loading…</p>';
+      fetch(API_URL+"/my-tickets",{headers:{Authorization:idToken}})
+      .then(function(r){if(r.status===401){throw new Error("Session expired. Sign in again.");}return r.json();})
+      .then(function(d){
+        var t=d.tickets||[];
+        if(!t.length){list.innerHTML='<p style="color:var(--gray-600);">No tickets yet. <a href="submit-ticket.html">Submit one</a>.</p>';return;}
+        list.innerHTML=t.map(function(x){
+          var st=x.status||"new";
+          var comments=(x.comments||[]).map(function(c){return '<div class="comment"><span class="who">'+esc(c.role==="customer"?"You":"MetroTec")+'</span> <span class="when">'+esc((c.at||"").slice(0,16).replace("T"," "))+'</span><br>'+esc(c.text)+'</div>';}).join("");
+          return '<div class="ticket"><h3>'+esc(x.subject)+'</h3>'+
+            '<div><span class="badge b-'+st+'">'+st+'</span> <span style="color:var(--gray-600);font-size:.78rem;">'+esc(x.ticketId)+'</span></div>'+
+            '<p style="margin:.5rem 0;color:var(--gray-700);font-size:.92rem;">'+esc(x.message)+'</p>'+
+            '<div>'+(comments||'<span style="color:var(--gray-600);font-size:.82rem;">No replies yet.</span>')+
+            '<div class="reply"><input type="text" placeholder="Reply…" class="replyInput" data-id="'+esc(x.ticketId)+'"><button class="replyBtn" data-id="'+esc(x.ticketId)+'">Send</button></div></div></div>';
+        }).join("");
+        Array.prototype.forEach.call(document.querySelectorAll(".replyBtn"),function(b){
+          b.addEventListener("click",function(){
+            var id=b.getAttribute("data-id");
+            var inp=document.querySelector('.replyInput[data-id="'+id.replace(/"/g,'')+'"]');
+            var text=inp?inp.value.trim():"";if(!text)return;b.disabled=true;
+            fetch(API_URL+"/my-tickets/"+encodeURIComponent(id)+"/comment",{method:"POST",headers:{Authorization:idToken,"Content-Type":"application/json"},body:JSON.stringify({comment:text})})
+            .then(function(r){return r.json();}).then(function(d){if(d.ok){setMsg(msg,"Reply added.","ok");loadMine();}else{setMsg(msg,(d.error||"Failed"),"err");b.disabled=false;}})
+            .catch(function(){setMsg(msg,"Network error.","err");b.disabled=false;});
+          });
+        });
+      }).catch(function(err){setMsg(msg,err.message,"err");});
+    }
+    document.getElementById("logoutBtn").addEventListener("click",function(){sessionStorage.removeItem("mt_cust_token");location.reload();});
+    if(idToken){enter();}
+  </script>
+</body>
+</html>

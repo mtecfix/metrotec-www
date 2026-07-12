@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Submit a Support Ticket | MetroTec</title>
+  <meta name="description" content="Submit a support ticket to MetroTec's Metro Detroit IT team. Fast response for managed IT, cybersecurity, and cloud support.">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
+  <style>
+    :root{--primary:#0284c7;--primary-dark:#0369a1;--primary-light:#e0f2fe;--primary-50:#f0f9ff;--gray-900:#0f172a;--gray-700:#334155;--gray-600:#475569;--gray-200:#e2e8f0;--gray-100:#f1f5f9;--radius:12px;}
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{font-family:"Inter",-apple-system,sans-serif;font-size:18px;line-height:1.7;color:var(--gray-900);background:#fff;padding-bottom:72px;}
+    a{color:var(--primary);text-decoration:none;}
+    .header{background:rgba(255,255,255,0.95);border-bottom:1px solid var(--gray-200);padding:.75rem 1rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;backdrop-filter:blur(10px);}
+    .header img{height:36px;width:auto;}
+    .header-call{color:var(--primary);font-weight:700;font-size:.9rem;display:flex;align-items:center;gap:.4rem;}
+    .header-menu-btn{background:none;border:none;color:var(--gray-700);font-size:1.5rem;cursor:pointer;}
+    .hero{background:linear-gradient(135deg,var(--primary-50) 0%,var(--gray-100) 100%);padding:2rem 1rem;text-align:center;border-bottom:1px solid var(--gray-200);}
+    .hero h1{font-size:1.8rem;font-weight:700;line-height:1.25;margin-bottom:.5rem;}
+    .hero p{font-size:1.05rem;color:var(--gray-600);}
+    .section{padding:1.5rem 1rem;}
+    .field{margin-bottom:1rem;}
+    .field label{display:block;font-size:.9rem;font-weight:600;margin-bottom:.35rem;color:var(--gray-700);}
+    .field input,.field select,.field textarea{width:100%;padding:.875rem 1rem;border:1px solid var(--gray-200);border-radius:var(--radius);font-size:1rem;font-family:inherit;background:#fff;}
+    .field textarea{min-height:140px;resize:vertical;}
+    .btn{display:flex;align-items:center;justify-content:center;gap:.5rem;width:100%;padding:.95rem 1.5rem;border-radius:var(--radius);font-weight:700;font-size:1rem;min-height:50px;cursor:pointer;border:none;background:var(--primary);color:#fff;}
+    .btn:disabled{opacity:.6;cursor:not-allowed;}
+    .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;}
+    .msg{padding:1rem;border-radius:var(--radius);margin-bottom:1rem;font-size:.95rem;display:none;}
+    .msg.ok{background:#dcfce7;color:#065f46;display:block;}
+    .msg.err{background:#fee2e2;color:#991b1b;display:block;}
+    footer{background:var(--gray-900);color:#9ca3af;padding:1.5rem 1rem;font-size:.9rem;text-align:center;}
+    footer a{color:#d1d5db;}
+    .footer-links{display:flex;flex-wrap:wrap;justify-content:center;gap:1rem;margin-bottom:1rem;}
+    .sticky-cta{position:fixed;bottom:0;left:0;right:0;background:var(--primary);display:flex;z-index:999;box-shadow:0 -2px 12px rgba(0,0,0,.15);}
+    .sticky-cta a{flex:1;color:#fff;font-weight:600;font-size:.95rem;padding:1rem .5rem;display:flex;align-items:center;justify-content:center;gap:.4rem;min-height:56px;}
+    .sticky-cta a:first-child{background:#fff;color:var(--primary);border-right:1px solid var(--gray-200);}
+    .nav-menu{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:200;}
+    .nav-menu.open{display:block;}
+    .nav-drawer{background:#fff;width:80%;max-width:300px;height:100%;padding:1.5rem 1rem;overflow-y:auto;}
+    .nav-drawer a{display:flex;align-items:center;gap:.75rem;padding:.875rem 0;border-bottom:1px solid var(--gray-100);font-weight:500;color:var(--gray-900);font-size:1rem;}
+    .nav-close{background:none;border:none;font-size:1.5rem;cursor:pointer;margin-bottom:1rem;color:var(--gray-600);}
+  </style>
+</head>
+<body>
+  <header class="header">
+    <a href="index.html"><img src="../metrotec-logo.png" alt="MetroTec"></a>
+    <div style="display:flex;gap:1rem;align-items:center;">
+      <a href="tel:+13132427311" class="header-call"><i class="bi bi-telephone-fill"></i> Call</a>
+      <button onclick="document.getElementById('navMenu').classList.toggle('open')" class="header-menu-btn" aria-label="Menu"><i class="bi bi-list"></i></button>
+    </div>
+  </header>
+  <div class="nav-menu" id="navMenu" onclick="if(event.target===this)this.classList.remove('open')">
+    <div class="nav-drawer">
+      <button class="nav-close" onclick="document.getElementById('navMenu').classList.remove('open')"><i class="bi bi-x-lg"></i></button>
+      <a href="index.html"><i class="bi bi-house"></i> Home</a>
+      <a href="services.html"><i class="bi bi-grid"></i> Services</a>
+      <a href="managed-it.html"><i class="bi bi-gear"></i> Managed IT</a>
+      <a href="cybersecurity.html"><i class="bi bi-shield-check"></i> Cybersecurity</a>
+      <a href="about.html"><i class="bi bi-people"></i> About</a>
+      <a href="contact.html"><i class="bi bi-envelope"></i> Contact</a>
+      <a href="portal.html"><i class="bi bi-box-arrow-in-right"></i> Client Portal</a>
+      <a href="submit-ticket.html"><i class="bi bi-life-preserver"></i> Submit a Ticket</a>
+      <a href="get-quote.html" style="color:var(--primary);font-weight:700;"><i class="bi bi-file-text"></i> Get Free Quote</a>
+    </div>
+  </div>
+
+  <section class="hero">
+    <h1>Submit a Support Ticket</h1>
+    <p>Tell us what's going on and our Metro Detroit team will respond fast.</p>
+  </section>
+
+  <section class="section">
+    <div class="msg" id="formMsg" role="status" aria-live="polite"></div>
+    <form id="ticketForm" novalidate>
+      <div class="field">
+        <label for="name">Your Name</label>
+        <input type="text" id="name" name="name" required maxlength="120" autocomplete="name">
+      </div>
+      <div class="field">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required maxlength="200" autocomplete="email">
+      </div>
+      <div class="field">
+        <label for="priority">Priority</label>
+        <select id="priority" name="priority">
+          <option value="low">Low</option>
+          <option value="normal" selected>Normal</option>
+          <option value="high">High</option>
+          <option value="urgent">Urgent</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="subject">Subject</label>
+        <input type="text" id="subject" name="subject" required maxlength="200">
+      </div>
+      <div class="field">
+        <label for="message">Describe the issue</label>
+        <textarea id="message" name="message" required maxlength="5000"></textarea>
+      </div>
+      <!-- Honeypot: hidden from users; bots tend to fill it -->
+      <div class="hp" aria-hidden="true">
+        <label for="company_website">Company Website</label>
+        <input type="text" id="company_website" name="company_website" tabindex="-1" autocomplete="off">
+      </div>
+      <button type="submit" class="btn" id="submitBtn"><i class="bi bi-send"></i> Submit Ticket</button>
+    </form>
+  </section>
+
+  <footer>
+    <div class="footer-links"><a href="about.html">About</a><a href="contact.html">Contact</a><a href="privacy-policy.html">Privacy</a><a href="terms-of-service.html">Terms</a></div>
+    <p>© 2026 MetroTec · Metro Detroit IT Support</p>
+    <p style="margin-top:.5rem;font-style:normal;"><i class="bi bi-geo-alt-fill"></i> 607 Shelby St, Detroit, MI 48226</p>
+  </footer>
+
+  <div class="sticky-cta">
+    <a href="tel:+13132427311"><i class="bi bi-telephone-fill"></i> Call Now</a>
+    <a href="get-quote.html"><i class="bi bi-file-earmark-text"></i> Get Quote</a>
+  </div>
+
+  <script>
+    var API_URL = "https://sebm7k9d9c.execute-api.us-east-1.amazonaws.com/tickets";
+    document.getElementById("ticketForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      var msg = document.getElementById("formMsg");
+      var btn = document.getElementById("submitBtn");
+      var f = e.target;
+      var payload = {
+        name: f.name.value,
+        email: f.email.value,
+        subject: f.subject.value,
+        message: f.message.value,
+        priority: f.priority.value,
+        company_website: f.company_website.value
+      };
+      btn.disabled = true;
+      btn.innerHTML = '<i class="bi bi-hourglass-split"></i> Submitting...';
+      fetch(API_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      })
+        .then(function (r) { return r.json().then(function (d) { return { ok: r.ok, d: d }; }); })
+        .then(function (res) {
+          if (res.ok && res.d.ok) {
+            msg.className = "msg ok";
+            msg.innerHTML = '<strong>Ticket submitted.</strong> Your reference is <strong>' + res.d.ticketId + '</strong>. We\u2019ll be in touch shortly.';
+            f.reset();
+          } else {
+            msg.className = "msg err";
+            msg.textContent = (res.d && res.d.error) ? res.d.error : "Something went wrong. Please call (313) 242-7311.";
+          }
+        })
+        .catch(function () {
+          msg.className = "msg err";
+          msg.textContent = "Network error. Please try again or call (313) 242-7311.";
+        })
+        .finally(function () {
+          btn.disabled = false;
+          btn.innerHTML = '<i class="bi bi-send"></i> Submit Ticket';
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+    });
+  </script>
+</body>
+</html>
