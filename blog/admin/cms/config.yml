@@ -16,9 +16,6 @@ backend:
   name: github
   repo: mtecfix/metrotec-www
   branch: main
-  # If using a custom OAuth proxy (shared with Johnson Legal):
-  # base_url: https://your-oauth-proxy.example.workers.dev
-  # auth_endpoint: auth
 
 local_backend: true
 
