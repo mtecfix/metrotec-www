@@ -1,0 +1,70 @@
+name: Optimize Images
+
+on:
+  pull_request:
+    paths:
+      - '**.jpg'
+      - '**.jpeg'
+      - '**.png'
+      - '**.webp'
+      - '**.gif'
+      - 'images/**'
+      - 'blog/**/*.png'
+      - 'blog/**/*.jpg'
+
+jobs:
+  optimize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install sharp-cli
+        run: npm install -g sharp-cli
+
+      - name: Optimize PNG images
+        run: |
+          find . -name "*.png" -not -path "./node_modules/*" -not -path "./_archive/*" | while read img; do
+            size=$(stat -f%z "$img" 2>/dev/null || stat -c%s "$img")
+            if [ "$size" -gt 100000 ]; then
+              echo "Optimizing: $img ($size bytes)"
+              sharp -i "$img" -o "$img" --optimise
+            fi
+          done
+
+      - name: Optimize JPG images
+        run: |
+          find . -name "*.jpg" -o -name "*.jpeg" | grep -v node_modules | grep -v _archive | while read img; do
+            size=$(stat -f%z "$img" 2>/dev/null || stat -c%s "$img")
+            if [ "$size" -gt 100000 ]; then
+              echo "Optimizing: $img ($size bytes)"
+              sharp -i "$img" -o "$img" --quality 80
+            fi
+          done
+
+      - name: Generate WebP variants
+        run: |
+          find . \( -name "*.png" -o -name "*.jpg" -o -name "*.jpeg" \) \
+            -not -path "./node_modules/*" -not -path "./_archive/*" | while read img; do
+            webp="${img%.*}.webp"
+            if [ ! -f "$webp" ]; then
+              echo "Creating WebP: $webp"
+              sharp -i "$img" -o "$webp" --format webp --quality 80
+            fi
+          done
+
+      - name: Commit optimized images
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --staged --quiet; then
+            echo "No image changes to commit"
+          else
+            git commit -m "🖼️ Auto-optimize images [skip ci]"
+            git push
+          fi

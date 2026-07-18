@@ -1,0 +1,55 @@
+name: Build Pagefind Search Index
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '*.html'
+      - 'blog/**/*.html'
+      - 'm/**/*.html'
+
+jobs:
+  search-index:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install Pagefind
+        run: npx pagefind@latest --version
+
+      - name: Build search index
+        run: |
+          npx pagefind@latest \
+            --site . \
+            --glob "**/*.html" \
+            --exclude-selectors "nav, footer, .header, .newsletter-form" \
+            --output-path _pagefind
+
+      - name: Show index stats
+        run: |
+          echo "📑 Pagefind Index Built"
+          echo "======================"
+          ls -la _pagefind/
+          echo ""
+          echo "Fragment count:"
+          ls _pagefind/fragment/ 2>/dev/null | wc -l || echo "0"
+          echo "Index size:"
+          du -sh _pagefind/
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+
+      - name: Deploy search index to S3
+        run: |
+          aws s3 sync _pagefind/ s3://metrotec-www/_pagefind/ \
+            --cache-control "public, max-age=3600"
+          echo "✅ Search index deployed to s3://metrotec-www/_pagefind/"

@@ -1,0 +1,105 @@
+<!--
+  FORMSPREE INTEGRATION GUIDE FOR METROTEC
+  ==========================================
+  
+  Replace your existing form actions with Formspree endpoints.
+  
+  1. Go to https://formspree.io and sign up (free tier: 50 submissions/month)
+  2. Create a form → get your form ID (e.g., "xwkgjbyz")
+  3. Replace form actions as shown below
+  
+  FREE TIER INCLUDES:
+  - 50 submissions/month
+  - Email notifications
+  - Spam filtering (reCAPTCHA, honeypot)
+  - File uploads
+  - Custom thank-you redirects
+-->
+
+<!-- ===== CONTACT FORM ===== -->
+<!-- Replace in: contact.html, get-quote.html -->
+<form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+  <!-- Honeypot (spam prevention) -->
+  <input type="text" name="_gotcha" style="display:none">
+  
+  <!-- Redirect after submission -->
+  <input type="hidden" name="_next" value="http://metrotec-www.s3-website-us-east-1.amazonaws.com/thank-you.html">
+  
+  <!-- Subject line for notification email -->
+  <input type="hidden" name="_subject" value="New MetroTec Contact Form Submission">
+  
+  <label for="name">Name</label>
+  <input type="text" id="name" name="name" required>
+  
+  <label for="email">Email</label>
+  <input type="email" id="email" name="email" required>
+  
+  <label for="phone">Phone</label>
+  <input type="tel" id="phone" name="phone">
+  
+  <label for="company">Company</label>
+  <input type="text" id="company" name="company">
+  
+  <label for="message">Message</label>
+  <textarea id="message" name="message" rows="5" required></textarea>
+  
+  <button type="submit">Send Message</button>
+</form>
+
+
+<!-- ===== QUOTE REQUEST FORM ===== -->
+<!-- Replace in: get-quote.html -->
+<form action="https://formspree.io/f/YOUR_QUOTE_FORM_ID" method="POST">
+  <input type="text" name="_gotcha" style="display:none">
+  <input type="hidden" name="_next" value="http://metrotec-www.s3-website-us-east-1.amazonaws.com/thank-you.html">
+  <input type="hidden" name="_subject" value="New Quote Request - MetroTec">
+  
+  <label for="name">Name</label>
+  <input type="text" id="name" name="name" required>
+  
+  <label for="email">Email</label>
+  <input type="email" id="email" name="email" required>
+  
+  <label for="phone">Phone</label>
+  <input type="tel" id="phone" name="phone" required>
+  
+  <label for="company">Company</label>
+  <input type="text" id="company" name="company" required>
+  
+  <label for="employees">Number of Employees</label>
+  <select id="employees" name="employees">
+    <option value="1-10">1-10</option>
+    <option value="11-50">11-50</option>
+    <option value="51-100">51-100</option>
+    <option value="100+">100+</option>
+  </select>
+  
+  <label for="services">Services Needed</label>
+  <select id="services" name="services">
+    <option value="managed-it">Managed IT</option>
+    <option value="cybersecurity">Cybersecurity</option>
+    <option value="cloud">Cloud Services</option>
+    <option value="voip">VoIP Phone</option>
+    <option value="backup">Backup & Recovery</option>
+    <option value="consulting">IT Consulting</option>
+    <option value="other">Other</option>
+  </select>
+  
+  <label for="message">Tell us about your needs</label>
+  <textarea id="message" name="message" rows="4"></textarea>
+  
+  <button type="submit">Get My Free Quote</button>
+</form>
+
+
+<!-- ===== NEWSLETTER FORM ===== -->
+<!-- Replace in: blog pages, footer -->
+<form action="https://formspree.io/f/YOUR_NEWSLETTER_FORM_ID" method="POST">
+  <input type="text" name="_gotcha" style="display:none">
+  <input type="hidden" name="_next" value="http://metrotec-www.s3-website-us-east-1.amazonaws.com/subscribed.html">
+  <input type="hidden" name="_subject" value="New Newsletter Subscriber">
+  
+  <label for="email">Get IT tips in your inbox:</label>
+  <input type="email" id="email" name="email" placeholder="your@email.com" required>
+  <button type="submit">Subscribe</button>
+</form>

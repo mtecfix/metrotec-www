@@ -1,0 +1,29 @@
+<!-- Pagefind Search Widget - Add to any page -->
+<!-- Include in header or where you want search to appear -->
+
+<!-- CSS -->
+<link href="/_pagefind/pagefind-ui.css" rel="stylesheet">
+
+<!-- Search container -->
+<div id="search" class="pagefind-search-wrapper" style="max-width: 600px; margin: 1rem auto;"></div>
+
+<!-- JS -->
+<script src="/_pagefind/pagefind-ui.js"></script>
+<script>
+  window.addEventListener('DOMContentLoaded', () => {
+    new PagefindUI({
+      element: "#search",
+      showSubResults: true,
+      showImages: true,
+      excerptLength: 20
+    });
+  });
+</script>
+
+<!--
+  USAGE:
+  1. Copy the <link>, <div id="search">, and <script> tags into any page
+  2. The search index is auto-built by GitHub Actions on push
+  3. Works entirely client-side — no server needed
+  4. Searches all HTML content across blog, services, and main pages
+-->

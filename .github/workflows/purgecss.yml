@@ -1,0 +1,80 @@
+name: PurgeCSS Optimization
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '*.css'
+      - '*.html'
+      - 'blog/**/*.html'
+      - 'm/**/*.html'
+
+jobs:
+  purge:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install PurgeCSS
+        run: npm install -g purgecss
+
+      - name: Analyze CSS usage
+        run: |
+          echo "📊 CSS Analysis Report"
+          echo "======================"
+          
+          ORIGINAL_SIZE=$(wc -c < universal-ui.css)
+          echo "Original universal-ui.css: ${ORIGINAL_SIZE} bytes"
+          
+          # Generate purged CSS for production
+          purgecss \
+            --css universal-ui.css \
+            --content "*.html" "blog/**/*.html" "m/**/*.html" \
+            --output purged-css/
+          
+          if [ -f purged-css/universal-ui.css ]; then
+            PURGED_SIZE=$(wc -c < purged-css/universal-ui.css)
+            echo "Purged universal-ui.css: ${PURGED_SIZE} bytes"
+            SAVED=$((ORIGINAL_SIZE - PURGED_SIZE))
+            echo "Savings: ${SAVED} bytes"
+            
+            # Deploy purged version
+            cp purged-css/universal-ui.css universal-ui.min.css
+          fi
+
+      - name: Purge mobile CSS
+        run: |
+          if [ -f mobile-optimized.css ]; then
+            purgecss \
+              --css mobile-optimized.css \
+              --content "m/**/*.html" \
+              --output purged-css/
+            
+            if [ -f purged-css/mobile-optimized.css ]; then
+              cp purged-css/mobile-optimized.css mobile-optimized.min.css
+            fi
+          fi
+
+      - name: Commit purged CSS
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A "*.min.css"
+          if git diff --staged --quiet; then
+            echo "No CSS changes"
+          else
+            git commit -m "🎨 Auto-purge unused CSS [skip ci]"
+            git push
+          fi
+
+      - name: Upload CSS report
+        uses: actions/upload-artifact@v4
+        with:
+          name: css-purge-report
+          path: purged-css/
+          retention-days: 7

@@ -1,5 +1,21 @@
 {
+  "name": "metrotec-www",
+  "version": "2.0.0",
+  "description": "MetroTec IT Solutions - Website with Eleventy blog",
+  "scripts": {
+    "build": "npx @11ty/eleventy",
+    "serve": "npx @11ty/eleventy --serve",
+    "build:blog": "npx @11ty/eleventy --input=blog-src --output=blog",
+    "search": "npx pagefind --site . --output-path _pagefind",
+    "purge": "purgecss --css universal-ui.css --content '*.html' 'blog/**/*.html' --output purged/",
+    "optimize": "node scripts/optimize-images.js",
+    "format": "prettier --write '**/*.{html,css,js,json}'"
+  },
   "devDependencies": {
-    "prettier": "^3.8.1"
+    "@11ty/eleventy": "^3.0.0",
+    "pagefind": "^1.3.0",
+    "purgecss": "^6.0.0",
+    "prettier": "^3.8.1",
+    "sharp": "^0.33.0"
   }
 }
