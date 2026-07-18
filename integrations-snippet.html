@@ -1,0 +1,59 @@
+<!--
+  ============================================
+  METROTEC - THIRD-PARTY INTEGRATIONS SNIPPET
+  ============================================
+  
+  Add these to ALL pages:
+  1. Tailwind CDN + Umami → inside <head> before </head>
+  2. Tawk.to → before </body>
+  
+  SETUP STEPS:
+  
+  1. UMAMI (Free analytics):
+     - Go to https://cloud.umami.is → Sign up free
+     - Add website → Get your data-website-id
+     - Replace REPLACE_WITH_UMAMI_ID below
+  
+  2. TAWK.TO (Free live chat):
+     - Go to https://tawk.to → Sign up free  
+     - Create property "MetroTec"
+     - Get your property ID from Administration → Chat Widget
+     - Replace REPLACE_WITH_TAWK_PROPERTY_ID below
+  
+  3. TAILWIND (CSS utility framework):
+     - Already works via CDN, no setup needed
+     - Uses 'tw-' prefix to avoid conflicts with existing CSS
+     - Use classes like: tw-flex, tw-grid, tw-p-4, tw-text-center
+-->
+
+
+<!-- ====== ADD TO <head> ====== -->
+
+<!-- Tailwind CSS CDN (interim — use tw- prefix to avoid CSS conflicts) -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    prefix: 'tw-',
+    corePlugins: { preflight: false }
+  }
+</script>
+
+<!-- Umami Analytics (privacy-friendly, no cookies, GDPR compliant) -->
+<script defer src="https://cloud.umami.is/script.js" data-website-id="REPLACE_WITH_UMAMI_ID"></script>
+
+
+<!-- ====== ADD BEFORE </body> ====== -->
+
+<!--Start of Tawk.to Live Chat-->
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/REPLACE_WITH_TAWK_PROPERTY_ID/default';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+</script>
+<!--End of Tawk.to Live Chat-->
