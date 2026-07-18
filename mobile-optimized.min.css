@@ -1,0 +1,228 @@
+/* Mobile-First Optimized CSS - Consolidated */
+
+/* Touch-friendly minimum sizes */
+:root {
+  --touch-target: 48px;
+  --mobile-padding: 1rem;
+  --tablet-padding: 2rem;
+  --desktop-padding: 3rem;
+}
+
+/* Base mobile styles */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-size: 16px;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+}
+
+/* Container system */
+.container {
+  width: 100%;
+  max-width: 100%;
+  padding: 0 var(--mobile-padding);
+  margin: 0 auto;
+}
+
+/* Touch-friendly buttons */
+.btn,
+button,
+[role='button'] {
+  min-height: var(--touch-target);
+  min-width: var(--touch-target);
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Touch-friendly links */
+a {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  -webkit-tap-highlight-color: transparent;
+}
+
+nav a {
+  padding: 0.75rem 1rem;
+  min-height: var(--touch-target);
+}
+
+/* Mobile navigation */
+.nav {
+  position: relative;
+  padding: 1rem 0;
+}
+
+.nav-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+}
+
+.nav-menu.active {
+  display: block;
+}
+
+.nav-menu a {
+  display: block;
+  padding: 1rem;
+  text-decoration: none;
+  border-bottom: 1px solid #eee;
+}
+
+/* Single column layout for mobile */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+/* Hero section mobile-first */
+.hero {
+  padding: 2rem 0;
+  text-align: center;
+}
+
+/* Card components */
+.card {
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1rem;
+}
+
+/* Form elements */
+input,
+textarea,
+select {
+  min-height: var(--touch-target);
+  padding: 0.75rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 1rem;
+  width: 100%;
+}
+
+/* Images responsive */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Responsive images in sections */
+section img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+@media (max-width: 768px) {
+  section img {
+    margin: 1rem auto;
+    border-radius: 0.5rem;
+  }
+}
+
+/* Tablet breakpoint */
+@media (min-width: 768px) {
+  .container {
+    padding: 0 var(--tablet-padding);
+  }
+
+  .nav-menu {
+    display: flex !important;
+    position: static;
+    background: none;
+    box-shadow: none;
+  }
+
+  .nav-menu a {
+    border: none;
+    padding: 0.5rem 1rem;
+  }
+
+  /* Allow 2-column grids on tablet */
+}
+
+/* Desktop breakpoint */
+@media (min-width: 1024px) {
+  .container {
+    max-width: 1200px;
+    padding: 0 var(--desktop-padding);
+  }
+
+  .hero {
+    padding: 4rem 0;
+  }
+}
+
+/* Performance optimizations */
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .btn {
+    border: 2px solid currentColor;
+  }
+}
+
+/* Focus indicators */
+*:focus-visible {
+  outline: 3px solid #0ea5e9;
+  outline-offset: 2px;
+}
+
+/* ── Patty's Fix: Override problematic inline styles on mobile ── */
+
+/* Section titles with hardcoded font-size: 3rem */
+@media (max-width: 768px) {
+  .section-title,
+  h2.section-title {
+    font-size: clamp(1.6rem, 5vw, 2.2rem) !important;
+    line-height: 1.25;
+  }
+
+  /* Section subtitles with hardcoded font-size: 1.25rem */
+
+  /* Containers with hardcoded max-width: 800px */
+
+  /* Sections with hardcoded padding: 4rem 0 */
+  .section,
+  section.section {
+    padding: 2rem 0 !important;
+  }
+
+  /* Service icon containers — prevent overflow on small screens */
+
+  /* Mobile grid — force single column */
+
+  /* Sticky call CTA for mobile */
+}
+
+/* Sticky call button — hidden on desktop, shown on mobile */
