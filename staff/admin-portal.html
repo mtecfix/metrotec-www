@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Admin Portal | MetroTec</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="admin-portal.css">
+</head>
+<body>
+  <!-- Sidebar -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-brand">
+      <i class="bi bi-cpu"></i>
+      <span>MetroTec Admin</span>
+    </div>
+    <nav class="sidebar-nav">
+      <a href="#" class="nav-item active" data-section="dashboard"><i class="bi bi-grid-1x2"></i> Dashboard</a>
+      <a href="#" class="nav-item" data-section="tickets"><i class="bi bi-ticket-detailed"></i> Tickets</a>
+      <a href="#" class="nav-item" data-section="customers"><i class="bi bi-people"></i> Customers</a>
+      <a href="#" class="nav-item" data-section="cms"><i class="bi bi-file-earmark-text"></i> Content CMS</a>
+      <a href="#" class="nav-item" data-section="analytics"><i class="bi bi-bar-chart"></i> Analytics</a>
+      <a href="#" class="nav-item" data-section="settings"><i class="bi bi-gear"></i> Settings</a>
+    </nav>
+    <div class="sidebar-footer">
+      <span class="user-badge" id="userBadge">Not signed in</span>
+      <button class="btn-icon" id="logoutBtn" title="Sign Out"><i class="bi bi-box-arrow-right"></i></button>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <!-- Top Bar -->
+    <header class="topbar">
+      <button class="btn-icon mobile-toggle" id="menuToggle"><i class="bi bi-list"></i></button>
+      <h2 id="pageTitle">Dashboard</h2>
+      <div class="topbar-actions">
+        <button class="btn btn-sm" id="refreshBtn"><i class="bi bi-arrow-clockwise"></i> Refresh</button>
+      </div>
+    </header>
+
+    <!-- Login Section -->
+    <section id="loginSection" class="section">
+      <div class="login-card">
+        <div class="login-header">
+          <i class="bi bi-shield-lock"></i>
+          <h1>Staff Sign In</h1>
+          <p>MetroTec Admin Portal</p>
+        </div>
+        <div class="alert hidden" id="loginMsg"></div>
+        <form id="loginForm">
+          <div class="form-group">
+            <label for="loginEmail">Email</label>
+            <input type="email" id="loginEmail" required autocomplete="username" placeholder="admin@metrotec.com">
+          </div>
+          <div class="form-group">
+            <label for="loginPass">Password</label>
+            <input type="password" id="loginPass" required autocomplete="current-password" placeholder="••••••••••">
+          </div>
+          <button type="submit" class="btn btn-primary btn-full" id="loginBtn">Sign In</button>
+        </form>
+        <div id="newPassBlock" class="hidden">
+          <p class="text-muted">First login — set a new password (min 12 chars, upper/lower/number/symbol).</p>
+          <div class="form-group">
+            <label for="newPass">New Password</label>
+            <input type="password" id="newPass" placeholder="New secure password">
+          </div>
+          <button type="button" class="btn btn-primary btn-full" id="newPassBtn">Set Password & Continue</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Dashboard Section -->
+    <section id="dashboardSection" class="section hidden">
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon bg-blue"><i class="bi bi-ticket-detailed"></i></div>
+          <div class="stat-info">
+            <span class="stat-value" id="statTotal">—</span>
+            <span class="stat-label">Total Tickets</span>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon bg-orange"><i class="bi bi-exclamation-triangle"></i></div>
+          <div class="stat-info">
+            <span class="stat-value" id="statOpen">—</span>
+            <span class="stat-label">Open / New</span>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon bg-green"><i class="bi bi-check-circle"></i></div>
+          <div class="stat-info">
+            <span class="stat-value" id="statResolved">—</span>
+            <span class="stat-label">Resolved</span>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon bg-red"><i class="bi bi-fire"></i></div>
+          <div class="stat-info">
+            <span class="stat-value" id="statUrgent">—</span>
+            <span class="stat-label">Urgent / High</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Recent Tickets</h3>
+        <div id="recentTickets" class="ticket-list">Loading...</div>
+      </div>
+    </section>
+
+    <!-- Tickets Section -->
+    <section id="ticketsSection" class="section hidden">
+      <div class="toolbar">
+        <div class="filter-group">
+          <select id="filterStatus" class="input-sm">
+            <option value="">All Status</option>
+            <option value="new">New</option>
+            <option value="open">Open</option>
+            <option value="pending">Pending</option>
+            <option value="resolved">Resolved</option>
+            <option value="closed">Closed</option>
+          </select>
+          <select id="filterPriority" class="input-sm">
+            <option value="">All Priority</option>
+            <option value="urgent">Urgent</option>
+            <option value="high">High</option>
+            <option value="normal">Normal</option>
+            <option value="low">Low</option>
+          </select>
+        </div>
+        <span class="text-muted" id="ticketCount"></span>
+      </div>
+      <div class="card">
+        <table class="table">
+          <thead>
+            <tr><th>ID</th><th>From</th><th>Subject</th><th>Priority</th><th>Status</th><th>Created</th><th>Actions</th></tr>
+          </thead>
+          <tbody id="ticketTableBody"><tr><td colspan="7">Loading...</td></tr></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Customers Section -->
+    <section id="customersSection" class="section hidden">
+      <div class="card">
+        <h3>Create Client Portal Account</h3>
+        <p class="text-muted" style="margin-bottom:1rem;">Create a Cognito account so clients can view and comment on their tickets.</p>
+        <form id="createCustForm" class="inline-form">
+          <input type="email" id="custEmail" placeholder="client@company.com" required class="input">
+          <input type="text" id="custName" placeholder="Client Name" class="input">
+          <button type="submit" class="btn btn-primary">Create Account</button>
+        </form>
+        <div class="alert hidden" id="custMsg" style="margin-top:1rem;"></div>
+      </div>
+    </section>
+
+    <!-- CMS Section -->
+    <section id="cmsSection" class="section hidden">
+      <div class="cms-grid">
+        <a href="blog/admin/cms/" class="cms-card">
+          <div class="cms-icon"><i class="bi bi-pencil-square"></i></div>
+          <h3>Decap CMS</h3>
+          <p>Visual blog editor with Markdown, images, and SEO fields. Git-backed editorial workflow.</p>
+          <span class="cms-tag">Blog Posts</span>
+        </a>
+        <a href="blog/admin/" class="cms-card">
+          <div class="cms-icon"><i class="bi bi-terminal"></i></div>
+          <h3>Blog Admin</h3>
+          <p>Advanced blog management — CLI tools, batch operations, SEO fixes.</p>
+          <span class="cms-tag">Advanced</span>
+        </a>
+        <div class="cms-card">
+          <div class="cms-icon"><i class="bi bi-layout-text-window-reverse"></i></div>
+          <h3>Page Editor</h3>
+          <p>Edit service pages, homepage content, and call-to-action sections.</p>
+          <span class="cms-tag">Coming Soon</span>
+        </div>
+        <div class="cms-card">
+          <div class="cms-icon"><i class="bi bi-images"></i></div>
+          <h3>Media Library</h3>
+          <p>Manage images, logos, and blog graphics. Upload and organize assets.</p>
+          <span class="cms-tag">Coming Soon</span>
+        </div>
+        <a href="search.html" class="cms-card">
+          <div class="cms-icon"><i class="bi bi-search"></i></div>
+          <h3>Site Search</h3>
+          <p>Pagefind-powered search across all pages and blog posts.</p>
+          <span class="cms-tag">Live</span>
+        </a>
+        <a href="https://github.com/mtecfix/metrotec-www/actions" target="_blank" class="cms-card">
+          <div class="cms-icon"><i class="bi bi-github"></i></div>
+          <h3>CI/CD Pipelines</h3>
+          <p>GitHub Actions — Lighthouse, PurgeCSS, Pagefind, Deploy to S3.</p>
+          <span class="cms-tag">Active</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- Analytics Section -->
+    <section id="analyticsSection" class="section hidden">
+      <div class="cms-grid">
+        <a href="https://cloud.umami.is" target="_blank" class="cms-card">
+          <div class="cms-icon"><i class="bi bi-graph-up"></i></div>
+          <h3>Umami Analytics</h3>
+          <p>Privacy-friendly website analytics. Pageviews, referrers, device stats.</p>
+          <span class="cms-tag">Setup Pending</span>
+        </a>
+        <a href="https://mtecfix.github.io/metrotec-upptime/" target="_blank" class="cms-card">
+          <div class="cms-icon"><i class="bi bi-heart-pulse"></i></div>
+          <h3>Uptime Monitor</h3>
+          <p>Upptime status page — 5-minute checks on all site endpoints.</p>
+          <span class="cms-tag">Live</span>
+        </a>
+        <a href="https://github.com/mtecfix/metrotec-www/actions/workflows/lighthouse-ci.yml" target="_blank" class="cms-card">
+          <div class="cms-icon"><i class="bi bi-speedometer2"></i></div>
+          <h3>Lighthouse Reports</h3>
+          <p>SEO, performance, accessibility audits on every deploy.</p>
+          <span class="cms-tag">Active</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- Settings Section -->
+    <section id="settingsSection" class="section hidden">
+      <div class="card">
+        <h3>Quick Links</h3>
+        <ul class="settings-links">
+          <li><a href="https://github.com/mtecfix/metrotec-www" target="_blank"><i class="bi bi-github"></i> GitHub Repo</a></li>
+          <li><a href="https://us-east-1.console.aws.amazon.com/s3/buckets/metrotec-www" target="_blank"><i class="bi bi-cloud"></i> AWS S3 Console</a></li>
+          <li><a href="https://us-east-1.console.aws.amazon.com/dynamodb/home?region=us-east-1#tables" target="_blank"><i class="bi bi-database"></i> DynamoDB Tables</a></li>
+          <li><a href="https://us-east-1.console.aws.amazon.com/lambda/home?region=us-east-1#/functions" target="_blank"><i class="bi bi-lightning"></i> Lambda Functions</a></li>
+          <li><a href="https://dashboard.tawk.to" target="_blank"><i class="bi bi-chat-dots"></i> Tawk.to Dashboard</a></li>
+          <li><a href="https://mtecfix.github.io/metrotec-upptime/" target="_blank"><i class="bi bi-heart-pulse"></i> Upptime Status</a></li>
+        </ul>
+      </div>
+      <div class="card" style="margin-top:1rem;">
+        <h3>System Info</h3>
+        <table class="table">
+          <tr><td><strong>API Endpoint</strong></td><td><code>https://sebm7k9d9c.execute-api.us-east-1.amazonaws.com</code></td></tr>
+          <tr><td><strong>S3 Bucket</strong></td><td><code>metrotec-www</code></td></tr>
+          <tr><td><strong>Region</strong></td><td><code>us-east-1</code></td></tr>
+          <tr><td><strong>Ticket Table</strong></td><td><code>metrotec-tickets</code></td></tr>
+          <tr><td><strong>Cognito Pool (customers)</strong></td><td><code>us-east-1_Qntxlc9eP</code></td></tr>
+        </table>
+      </div>
+    </section>
+
+    <!-- Ticket Detail Modal -->
+    <div class="modal hidden" id="ticketModal">
+      <div class="modal-backdrop" id="modalBackdrop"></div>
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 id="modalTitle">Ticket Details</h3>
+          <button class="btn-icon" id="modalClose"><i class="bi bi-x-lg"></i></button>
+        </div>
+        <div class="modal-body" id="modalBody"></div>
+      </div>
+    </div>
+  </main>
+
+  <script src="admin-portal.js"></script>
+</body>
+</html>
