@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8815300775068949" crossorigin="anonymous"></script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-17815464842"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'AW-17815464842');
+</script>
+  <script src="js/mobile-detect.js"></script>
+
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <link rel="canonical" href="http://metrotec.s3-website.us-east-2.amazonaws.com/custom-builder.html">
+  <meta property="og:title" content="Custom Instance Builder - MetroTec">
+  <meta property="og:description" content="Build custom cloud development instances tailored to your needs. Choose your stack, tools, and configurations for the perfect development environment.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="http://metrotec.s3-website.us-east-2.amazonaws.com/custom-builder.html">
+  <meta property="og:image" content="http://metrotec.s3-website.us-east-2.amazonaws.com/metrotec-logo.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Custom Instance Builder - MetroTec">
+  <meta name="twitter:description" content="Build custom cloud development instances tailored to your needs. Choose your stack, tools, and configurations for the perfect development environment.">
+  <meta name="description" content="Build custom cloud development instances tailored to your needs. Choose your stack, tools, and configurations for the perfect development environment.">
+  <title>Custom Instance Builder - MetroTec</title>
+  <link rel="stylesheet" href="universal-ui.css">
+  <link rel="stylesheet" href="mobile-optimized.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
+</head>
+<body>
+  <!-- Navigation -->
+    <div class="nav-container">
+      <div class="nav-brand">
+        <a href="index.html">
+          <img class="responsive-img" src="metrotec-logo.png" alt="MetroTec" style="height: 60px;">
+        </a>
+      </div>
+      
+      <div class="nav-menu-toggle" onclick="toggleMobileMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="cloud-instances.html" class="active">Cloud Instances</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <h1 class="hero-title">🛠️ Custom Instance Builder</h1>
+      <p class="hero-subtitle">
+        Configure your perfect development environment with our interactive builder
+      </p>
+    </div>
+  </section>
+
+  <!-- Builder Form -->
+  <section class="section">
+    <div class="container">
+      <form id="customBuilder" style="max-width: 800px; margin: 0 auto;">
+        
+        <!-- Hardware Configuration -->
+        <div class="card" style="margin-bottom: 2rem;">
+          <h3 style="color: var(--primary-600); margin-bottom: 1.5rem;">💻 Hardware Configuration</h3>
+          
+          <div style="margin-bottom: 1.5rem;">
+            <label style="display: block; font-weight: 600; margin-bottom: 0.5rem;">CPU Cores</label>
+            <select style="width: 100%; padding: 0.75rem; border: 2px solid var(--gray-300); border-radius: 0.5rem; font-size: 1rem;">
+              <option value="2">2 vCPU - $0.05/hour</option>
+              <option value="4" selected>4 vCPU - $0.10/hour</option>
+              <option value="8">8 vCPU - $0.20/hour</option>
+              <option value="16">16 vCPU - $0.40/hour</option>
+              <option value="32">32 vCPU - $0.80/hour</option>
+            </select>
+          </div>
+
+          <div style="margin-bottom: 1.5rem;">
+            <label style="display: block; font-weight: 600; margin-bottom: 0.5rem;">Memory (RAM)</label>
+            <select style="width: 100%; padding: 0.75rem; border: 2px solid var(--gray-300); border-radius: 0.5rem; font-size: 1rem;">
+              <option value="4">4GB RAM - $0.02/hour</option>
+              <option value="8">8GB RAM - $0.04/hour</option>
+              <option value="16" selected>16GB RAM - $0.08/hour</option>
+              <option value="32">32GB RAM - $0.16/hour</option>
+              <option value="64">64GB RAM - $0.32/hour</option>
+            </select>
+          </div>
+
+          <div style="margin-bottom: 1.5rem;">
+            <label style="display: block; font-weight: 600; margin-bottom: 1rem;">Storage Type</label>
+            <div class="mobile-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+              <label style="display: flex; align-items: center; padding: 1rem; border: 2px solid var(--gray-300); border-radius: 0.5rem; cursor: pointer;">
+                <input type="radio" name="storage_type" value="ssd" checked style="margin-right: 0.5rem;">
+                <div>
+                  <strong>SSD Storage</strong><br>
+                  <small style="color: var(--gray-600);">Fast, reliable</small>
+                </div>
+              </label>
+              <label style="display: flex; align-items: center; padding: 1rem; border: 2px solid var(--gray-300); border-radius: 0.5rem; cursor: pointer;">
+                <input type="radio" name="storage_type" value="nvme" style="margin-right: 0.5rem;">
+                <div>
+                  <strong>NVMe Storage</strong><br>
+                  <small style="color: var(--gray-600);">Ultra-fast (+$0.02/hour)</small>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <div style="margin-bottom: 1.5rem;">
+            <label style="display: block; font-weight: 600; margin-bottom: 0.5rem;">Storage Size</label>
+            <select style="width: 100%; padding: 0.75rem; border: 2px solid var(--gray-300); border-radius: 0.5rem; font-size: 1rem;">
+              <option value="50">50GB - $0.01/hour</option>
+              <option value="100" selected>100GB - $0.02/hour</option>
+              <option value="200">200GB - $0.04/hour</option>
+              <option value="500">500GB - $0.10/hour</option>
+              <option value="1000">1TB - $0.20/hour</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Software Stack -->
+        <div class="card" style="margin-bottom: 2rem;">
+          <h3 style="color: var(--success-600); margin-bottom: 1.5rem;">⚡ Software Stack</h3>
+          
+          <div style="margin-bottom: 1.5rem;">
+            <label style="display: block; font-weight: 600; margin-bottom: 0.5rem;">Primary Framework</label>
+            <select style="width: 100%; padding: 0.75rem; border: 2px solid var(--gray-300); border-radius: 0.5rem; font-size: 1rem;">
+              <option value="react">React + Node.js</option>
+              <option value="vue">Vue.js + Express</option>
+              <option value="angular">Angular + TypeScript</option>
+              <option value="django">Django + Python</option>
+              <option value="rails">Ruby on Rails</option>
+              <option value="laravel">Laravel + PHP</option>
+              <option value="dotnet">.NET Core + C#</option>
+            </select>
+          </div>
+
+          <div style="margin-bottom: 1.5rem;">
+            <label style="display: block; font-weight: 600; margin-bottom: 1rem;">Database</label>
+            <div class="mobile-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem;">
+              <label style="display: flex; align-items: center; padding: 0.75rem; border: 2px solid var(--gray-300); border-radius: 0.5rem; cursor: pointer;">
+                <input type="radio" name="database" value="postgresql" checked style="margin-right: 0.5rem;">
+                <strong>PostgreSQL</strong>
+              </label>
+              <label style="display: flex; align-items: center; padding: 0.75rem; border: 2px solid var(--gray-300); border-radius: 0.5rem; cursor: pointer;">
+                <input type="radio" name="database" value="mysql" style="margin-right: 0.5rem;">
+                <strong>MySQL</strong>
+              </label>
+              <label style="display: flex; align-items: center; padding: 0.75rem; border: 2px solid var(--gray-300); border-radius: 0.5rem; cursor: pointer;">
+                <input type="radio" name="database" value="mongodb" style="margin-right: 0.5rem;">
+                <strong>MongoDB</strong>
+              </label>
+              <label style="display: flex; align-items: center; padding: 0.75rem; border: 2px solid var(--gray-300); border-radius: 0.5rem; cursor: pointer;">
+                <input type="radio" name="database" value="redis" style="margin-right: 0.5rem;">
+                <strong>Redis</strong>
+              </label>
+            </div>
+          </div>
+
+          <div style="margin-bottom: 1.5rem;">
+            <label style="display: block; font-weight: 600; margin-bottom: 1rem;">Additional Tools (Select all that apply)</label>
+            <div class="mobile-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.5rem;">
+              <label style="display: flex; align-items: center; padding: 0.5rem;">
+                <input type="checkbox" value="docker" checked style="margin-right: 0.5rem;">
+                Docker & Docker Compose
+              </label>
+              <label style="display: flex; align-items: center; padding: 0.5rem;">
+                <input type="checkbox" value="git" checked style="margin-right: 0.5rem;">
+                Git & GitHub CLI
+              </label>
+              <label style="display: flex; align-items: center; padding: 0.5rem;">
+                <input type="checkbox" value="vscode" checked style="margin-right: 0.5rem;">
+                VS Code Server
+              </label>
+              <label style="display: flex; align-items: center; padding: 0.5rem;">
+                <input type="checkbox" value="nginx" style="margin-right: 0.5rem;">
+                Nginx Web Server
+              </label>
+              <label style="display: flex; align-items: center; padding: 0.5rem;">
+                <input type="checkbox" value="ssl" style="margin-right: 0.5rem;">
+                SSL Certificate Manager
+              </label>
+              <label style="display: flex; align-items: center; padding: 0.5rem;">
+                <input type="checkbox" value="monitoring" style="margin-right: 0.5rem;">
+                System Monitoring
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pricing Summary -->
+        <div class="card" style="margin-bottom: 2rem; background: linear-gradient(135deg, var(--primary-50) 0%, white 100%); border: 2px solid var(--primary-200);">
+          <h3 style="color: var(--primary-600); margin-bottom: 1.5rem;">💰 Pricing Summary</h3>
+          
+          <div class="mobile-grid" style="display: grid; grid-template-columns: 1fr auto; gap: 1rem; margin-bottom: 1rem;">
+            <div>Base Hardware (4 vCPU, 16GB RAM, 100GB SSD)</div>
+            <div style="font-weight: 600;">$0.20/hour</div>
+          </div>
+          
+          <div class="mobile-grid" style="display: grid; grid-template-columns: 1fr auto; gap: 1rem; margin-bottom: 1rem; padding-top: 1rem; border-top: 1px solid var(--gray-300);">
+            <div style="font-size: 1.25rem; font-weight: 700; color: var(--primary-600);">Total Estimated Cost</div>
+            <div style="font-size: 1.5rem; font-weight: 800; color: var(--primary-600);">$0.20/hour</div>
+          </div>
+          
+          <div style="text-align: center; color: var(--gray-600); font-size: 0.875rem;">
+            * Pricing updates automatically based on your selections
+          </div>
+        </div>
+
+        <!-- Submit -->
+        <div style="text-align: center;">
+          <button type="submit" class="btn btn-primary btn-lg" style="padding: 1rem 2rem;">
+            <i class="bi bi-rocket"></i>
+            Build My Custom Instance
+          </button>
+          <p style="margin-top: 1rem; color: var(--gray-600);">
+            we will review your configuration and contact you within 24 hours
+          </p>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+<footer style="background:#0284c7;padding:24px 0;color:white"><div style="max-width:1200px;margin:auto;display:flex;flex-wrap:wrap;justify-content:space-around;padding:0 20px"><div style="flex:1;min-width:200px;margin:10px"><h4 style="margin-top:0;font-size:1rem">Quick Links</h4><ul style="list-style:none;padding:0;font-size:0.875rem"><li style="margin:8px 0"><a href="index.html" style="color:white;text-decoration:none">Home</a></li><li style="margin:8px 0"><a href="services.html" style="color:white;text-decoration:none">Services</a></li><li style="margin:8px 0"><a href="about.html" style="color:white;text-decoration:none">About Us</a></li><li style="margin:8px 0"><a href="contact.html" style="color:white;text-decoration:none">Contact</a></li></ul></div><div style="flex:1;min-width:200px;margin:10px"><h4 style="margin-top:0;font-size:1rem">Connect</h4><ul style="list-style:none;padding:0;font-size:0.875rem"><li style="margin:8px 0"><a href="https://www.linkedin.com/company/metrotec" target="_blank" style="color:white;text-decoration:none">LinkedIn</a></li><li style="margin:8px 0"><a href="get-quote.html" style="color:white;text-decoration:none">Get a Quote</a></li><li style="margin:8px 0"><a href="blog/index.html" style="color:white;text-decoration:none">Blog</a></li></ul></div><div style="flex:1;min-width:200px;margin:10px"><h4 style="margin-top:0;font-size:1rem">Troy, Michigan</h4><p style="font-size:0.875rem;margin:8px 0">Professional IT Services<br>Managed IT & Cybersecurity</p></div></div><div style="text-align:center;padding:12px 0;font-size:0.75rem;border-top:1px solid rgba(255,255,255,0.2);margin-top:20px">&copy; 2026 MetroTec | <a href="terms-of-service.html" style="color:white;text-decoration:none">Terms</a> | <a href="privacy-policy.html" style="color:white;text-decoration:none">Privacy</a></div></footer>
+<style>
+  .ft-footer { background-color: #0284c7; padding: 24px 0; color: white; }
+  .ft-container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+  .ft-columns { display: flex; flex-wrap: wrap; gap: 20px; }
+  .ft-brand { flex: 1 1 250px; position: relative; }
+  .ft-accent-bar { position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(to right, #fff, rgba(255,255,255,0.3)); transform: scaleX(0); transform-origin: left; animation: accent-bar 0.5s ease forwards; }
+  @keyframes accent-bar { to { transform: scaleX(1); } }
+  .ft-brand img { width: 150px; margin-bottom: 20px; }
+  .ft-tagline { margin-bottom: 16px; color: rgba(255,255,255,0.8); font-size: 0.875rem; }
+  .ft-social-icons a { display: inline-flex; justify-content: center; align-items: center; width: 36px; height: 36px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.4); margin-right: 8px; color: white; transition: all 0.25s ease; }
+  .ft-social-icons a:hover { border-color: white; box-shadow: 0 0 10px rgba(255,255,255,0.3); transform: scale(1.1); }
+  .ft-services, .ft-company, .ft-contact { flex: 1 1 150px; }
+  .ft-services h5, .ft-company h5, .ft-contact h5 { margin-bottom: 12px; color: rgba(255,255,255,0.7); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; }
+  .ft-services ul, .ft-company ul, .ft-contact ul { list-style: none; padding: 0; margin: 0; }
+  .ft-services li, .ft-company li, .ft-contact li { margin-bottom: 4px; }
+  .ft-services a, .ft-company a, .ft-contact a { text-decoration: none; position: relative; color: rgba(255,255,255,0.85); }
+  .ft-services a:hover, .ft-company a:hover, .ft-contact a:hover { color: white; }
+  .ft-services a::before, .ft-company a::before, .ft-contact a:not([href^="tel"]):not([href^="mailto"])::before { content: "\2192"; position: absolute; left: -15px; opacity: 0; transition: all 0.2s ease; }
+  .ft-services a:hover::before, .ft-company a:hover::before, .ft-contact a:not([href^="tel"]):not([href^="mailto"]):hover::before { left: 0; opacity: 1; }
+  .ft-bottom-bar { margin-top: 20px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.2); display: flex; justify-content: space-between; font-size: 0.8rem; flex-wrap: wrap; gap: 8px; }
+  .ft-bottom-bar a { color: rgba(255,255,255,0.8); text-decoration: none; }
+  .ft-bottom-bar a:hover { color: white; text-decoration: underline; }
+  @media (max-width: 992px) { .ft-brand, .ft-services, .ft-company, .ft-contact { flex: 1 1 45%; } }
+  @media (max-width: 576px) { .ft-brand, .ft-services, .ft-company, .ft-contact { flex: 1 1 100%; } .ft-bottom-bar { flex-direction: column; align-items: center; } }
+</style>
+
+  <script>
+    function toggleMobileMenu() {
+      const navLinks = document.querySelector('.nav-links');
+      navLinks.classList.toggle('active');
+    }
+
+    // Update pricing dynamically
+    document.addEventListener('DOMContentLoaded', function() {
+      const form = document.getElementById('customBuilder');
+      
+      form.addEventListener('change', function() {
+        // Simple pricing calculation would go here
+      });
+    });
+  </script>
+<script id="mobile-nav-script">
+document.addEventListener("DOMContentLoaded", function() {
+  const toggle = document.getElementById("navMenuToggle");
+  const links = document.getElementById("navLinks");
+  if (toggle && links) {
+    toggle.addEventListener("click", () => links.classList.toggle("active"));
+  }
+});
+</script>
+</body>
+</html>

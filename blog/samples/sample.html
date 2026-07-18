@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sample Article - The MetroTec Times</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Merriweather', serif; line-height: 1.8; color: #1a1a1a; background: #f5f5f5; }
+    
+    .newspaper-wrapper { max-width: 1200px; margin: 2rem auto; background: white; box-shadow: 0 0 30px rgba(0,0,0,0.1); }
+    
+    .masthead { background: #000; color: white; padding: 2rem; text-align: center; border-bottom: 4px solid #7c3aed; }
+    .masthead-title { font-family: 'Playfair Display', serif; font-size: 4rem; font-weight: 900; letter-spacing: 0.1em; margin: 0; }
+    .masthead-tagline { font-size: 0.875rem; margin-top: 0.5rem; letter-spacing: 0.2em; text-transform: uppercase; }
+    .masthead-date { font-size: 0.75rem; margin-top: 0.5rem; color: #999; }
+    
+    .article-header { padding: 3rem 3rem 2rem; border-bottom: 3px solid #000; }
+    .article-category { color: #7c3aed; font-size: 0.875rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem; }
+    .article-title { font-family: 'Playfair Display', serif; font-size: 3.5rem; font-weight: 700; line-height: 1.1; margin-bottom: 1rem; }
+    .article-subtitle { font-size: 1.5rem; color: #666; line-height: 1.4; margin-bottom: 1rem; }
+    .article-byline { font-size: 0.875rem; color: #999; }
+    
+    .article-body { padding: 2rem 3rem; column-count: 2; column-gap: 3rem; }
+    .article-body p { margin-bottom: 1.25rem; text-align: justify; }
+    .article-body .drop-cap::first-letter { font-size: 4rem; font-weight: 700; float: left; line-height: 0.8; margin: 0.1rem 0.5rem 0 0; font-family: 'Playfair Display', serif; }
+    
+    .article-body h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; margin: 2rem 0 1rem; column-span: all; border-bottom: 2px solid #000; padding-bottom: 0.5rem; }
+    
+    .pullquote { column-span: all; text-align: center; font-size: 1.75rem; font-style: italic; padding: 2rem 4rem; margin: 2rem 0; border-top: 3px solid #7c3aed; border-bottom: 3px solid #7c3aed; font-family: 'Playfair Display', serif; }
+    
+    .sidebar { background: #f9f9f9; padding: 1.5rem; margin: 2rem 0; border-left: 4px solid #7c3aed; column-span: all; }
+    .sidebar h4 { font-family: 'Playfair Display', serif; font-size: 1.25rem; margin-bottom: 0.75rem; }
+    
+    @media (max-width: 768px) {
+      .article-body { column-count: 1; padding: 2rem 1.5rem; }
+      .article-header { padding: 2rem 1.5rem; }
+      .article-title { font-size: 2.5rem; }
+      .masthead-title { font-size: 2.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="newspaper-wrapper">
+  
+  <div class="masthead">
+    <h1 class="masthead-title">THE METROTEC TIMES</h1>
+    <p class="masthead-tagline">Metro Detroit's Technology Chronicle</p>
+    <p class="masthead-date">Wednesday, March 18, 2026 • Volume XLII, No. 12</p>
+  </div>
+
+  <div class="article-header">
+    <div class="article-category">Technology & Business</div>
+    <h1 class="article-title">Lorem Ipsum Dolor Sit Amet Consectetur</h1>
+    <p class="article-subtitle">Adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
+    <p class="article-byline">By John Smith • March 18, 2026 • 8 min read</p>
+  </div>
+
+  <div class="article-body">
+    
+    <p class="drop-cap">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+
+    <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+    <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+
+    <h3>Nemo Enim Ipsam Voluptatem</h3>
+
+    <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit.</p>
+
+    <p>Sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur?</p>
+
+    <div class="pullquote">
+      "Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur"
+    </div>
+
+    <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.</p>
+
+    <p>Similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio.</p>
+
+    <div class="sidebar">
+      <h4>Key Points</h4>
+      <ul style="margin-left: 1.5rem; line-height: 1.6;">
+        <li>Lorem ipsum dolor sit amet</li>
+        <li>Consectetur adipiscing elit</li>
+        <li>Sed do eiusmod tempor</li>
+        <li>Incididunt ut labore</li>
+      </ul>
+    </div>
+
+    <h3>Temporibus Autem Quibusdam</h3>
+
+    <p>Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus.</p>
+
+    <p>Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus.</p>
+
+    <p>Ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+
+    <p>Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+
+  </div>
+
+  <div style="padding: 2rem 3rem; border-top: 2px solid #e5e7eb; text-align: center;">
+    <a href="../blog.html" style="color: #7c3aed; text-decoration: none; font-weight: 600;">← Back to Blog</a>
+  </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Metro Detroit IT Support | Business IT Services Michigan - MetroTec</title>
+  <meta name="description" content="Leading Metro Detroit IT support company providing managed IT services, cybersecurity, and 24/7 business IT support. Same-day onsite service within 25 miles.">
+  
+  <script type="importmap">
+    {
+      "imports": {
+        "lit": "https://cdn.jsdelivr.net/gh/lit/dist@3/core/lit-core.min.js"
+      }
+    }
+  </script>
+  
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 1rem; }
+    @media (min-width: 768px) { .container { padding: 0 2rem; } }
+  </style>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8815300775068949" crossorigin="anonymous"></script>
+</head>
+<body>
+  <mt-header></mt-header>
+  <mt-hero></mt-hero>
+  <mt-stats></mt-stats>
+  <mt-services></mt-services>
+  <mt-industries></mt-industries>
+  <mt-testimonials></mt-testimonials>
+  <mt-cta></mt-cta>
+  <mt-footer></mt-footer>
+
+  <script type="module">
+    import {LitElement, html, css} from 'lit';
+
+    class MtHeader extends LitElement {
+      static styles = css\`
+        :host { display: block; background: white; box-shadow: 0 1px 3px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 100; }
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 1rem; max-width: 1200px; margin: 0 auto; }
+        img { height: 40px; }
+        ul { display: none; gap: 2rem; list-style: none; }
+        a { text-decoration: none; color: #1a1a1a; font-weight: 500; transition: color 0.2s; }
+        a:hover { color: #0284c7; }
+        .btn { background: #0284c7; color: white; padding: 0.75rem 1.5rem; border-radius: 0.5rem; white-space: nowrap; }
+        .btn:hover { background: #0369a1; }
+        button { background: none; border: none; font-size: 1.5rem; cursor: pointer; }
+        @media (min-width: 768px) { ul { display: flex; } button { display: none; } }
+      \`;
+
+      render() {
+        return html\`
+          <nav>
+            <a href="index.html"><img src="metrotec-logo.png" alt="MetroTec"></a>
+            <ul>
+              <li><a href="index.html">Home</a></li>
+              <li><a href="services.html">Services</a></li>
+              <li><a href="industries.html">Industries</a></li>
+              <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <a href="get-quote.html" class="btn">Get Quote</a>
+            <button>☰</button>
+          </nav>
+        \`;
+      }
+    }
+
+    class MtHero extends LitElement {
+      static styles = css\`
+        :host { display: block; background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%); color: white; padding: 4rem 1rem; text-align: center; }
+        h1 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 700; margin-bottom: 1rem; }
+        p { font-size: 1.125rem; margin-bottom: 2rem; opacity: 0.95; max-width: 800px; margin-left: auto; margin-right: auto; }
+        .actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+        a { padding: 1rem 2rem; border-radius: 0.5rem; text-decoration: none; font-weight: 600; transition: transform 0.2s; }
+        .primary { background: white; color: #0284c7; }
+        .primary:hover { transform: translateY(-2px); }
+        .secondary { background: transparent; color: white; border: 2px solid white; }
+        .secondary:hover { background: rgba(255,255,255,0.1); }
+      \`;
+
+      render() {
+        return html\`
+          <h1>Metro Detroit's Premier Business IT Support</h1>
+          <p>Leading Metro Detroit IT support company serving businesses within 25 miles. Our managed IT services, cybersecurity solutions, and 24/7 network support keep your business running smoothly.</p>
+          <div class="actions">
+            <a href="get-quote.html" class="primary">Get Quote</a>
+            <a href="#services" class="secondary">View Services</a>
+          </div>
+        \`;
+      }
+    }
+
+    class MtStats extends LitElement {
+      static styles = css\`
+        :host { display: block; padding: 3rem 1rem; background: #f8fafc; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 2rem; max-width: 1200px; margin: 0 auto; text-align: center; }
+        .num { display: block; font-size: 2.5rem; font-weight: 700; color: #0284c7; }
+        .label { display: block; color: #475569; margin-top: 0.5rem; }
+      \`;
+
+      render() {
+        return html\`
+          <div class="grid">
+            <div><span class="num">200+</span><span class="label">Businesses Served</span></div>
+            <div><span class="num">24/7</span><span class="label">Support Available</span></div>
+            <div><span class="num">25mi</span><span class="label">Service Radius</span></div>
+            <div><span class="num">2hr</span><span class="label">Response Time</span></div>
+          </div>
+        \`;
+      }
+    }
+
+    class MtServices extends LitElement {
+      static styles = css\`
+        :host { display: block; padding: 4rem 1rem; }
+        h2 { font-size: clamp(2rem, 4vw, 2.5rem); text-align: center; margin-bottom: 1rem; }
+        .sub { text-align: center; color: #475569; margin-bottom: 3rem; font-size: 1.125rem; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; max-width: 1200px; margin: 0 auto; }
+        .card { background: white; padding: 2rem; border-radius: 0.75rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1); transition: transform 0.2s; }
+        .card:hover { transform: translateY(-4px); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+        .icon { font-size: 2rem; color: #0284c7; margin-bottom: 1rem; }
+        h3 { font-size: 1.25rem; margin-bottom: 0.75rem; }
+        p { color: #475569; line-height: 1.6; }
+      \`;
+
+      render() {
+        const services = [
+          {icon: '🛡️', title: 'Cybersecurity', desc: 'Multi-layered protection with 24/7 threat monitoring and compliance management.'},
+          {icon: '⚙️', title: 'Managed IT', desc: 'Proactive monitoring, maintenance, and strategic consulting to prevent issues.'},
+          {icon: '🎧', title: '24/7 Support', desc: 'US-based help desk with rapid response times and expert resolution.'},
+          {icon: '☁️', title: 'Cloud Services', desc: 'Seamless migration with Microsoft 365, Google Workspace, and hybrid solutions.'},
+          {icon: '👥', title: 'IT Consulting', desc: 'Align technology with business goals through strategic planning.'},
+          {icon: '🔄', title: 'Backup & Recovery', desc: 'Comprehensive disaster recovery solutions to protect critical data.'}
+        ];
+
+        return html\`
+          <h2 id="services">Complete IT Solutions for Metro Detroit</h2>
+          <p class="sub">Enterprise-grade technology solutions designed for Southeast Michigan's growing businesses.</p>
+          <div class="grid">
+            \${services.map(s => html\`
+              <div class="card">
+                <div class="icon">\${s.icon}</div>
+                <h3>\${s.title}</h3>
+                <p>\${s.desc}</p>
+              </div>
+            \`)}
+          </div>
+        \`;
+      }
+    }
+
+    class MtIndustries extends LitElement {
+      static styles = css\`
+        :host { display: block; padding: 4rem 1rem; background: #f8fafc; }
+        h2 { font-size: clamp(2rem, 4vw, 2.5rem); text-align: center; margin-bottom: 1rem; }
+        .sub { text-align: center; color: #475569; margin-bottom: 3rem; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; max-width: 1200px; margin: 0 auto; }
+        .card { background: white; padding: 1.5rem; border-radius: 0.75rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+        .icon { font-size: 2rem; margin-bottom: 0.75rem; }
+        h3 { font-size: 1.125rem; margin-bottom: 0.5rem; }
+        p { color: #475569; font-size: 0.9rem; }
+      \`;
+
+      render() {
+        const industries = [
+          {icon: '🏥', title: 'Healthcare & Medical', desc: 'HIPAA-compliant IT solutions for medical practices.'},
+          {icon: '💼', title: 'Professional Services', desc: 'Secure IT for law firms and consulting.'},
+          {icon: '🏭', title: 'Manufacturing', desc: 'Industrial-grade IT solutions.'},
+          {icon: '🏪', title: 'Retail & E-commerce', desc: 'POS systems and e-commerce platforms.'},
+          {icon: '🧮', title: 'Accounting & Finance', desc: 'Secure IT with compliance management.'},
+          {icon: '🏢', title: 'Real Estate', desc: 'IT infrastructure with MLS support.'}
+        ];
+
+        return html\`
+          <h2>Industries We Serve</h2>
+          <p class="sub">Specialized IT solutions tailored to various industries throughout Metro Detroit.</p>
+          <div class="grid">
+            \${industries.map(i => html\`
+              <div class="card">
+                <div class="icon">\${i.icon}</div>
+                <h3>\${i.title}</h3>
+                <p>\${i.desc}</p>
+              </div>
+            \`)}
+          </div>
+        \`;
+      }
+    }
+
+    class MtTestimonials extends LitElement {
+      static styles = css\`
+        :host { display: block; padding: 4rem 1rem; }
+        h2 { font-size: clamp(2rem, 4vw, 2.5rem); text-align: center; margin-bottom: 1rem; }
+        .sub { text-align: center; color: #475569; margin-bottom: 3rem; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; max-width: 1200px; margin: 0 auto; }
+        .card { background: white; padding: 2rem; border-radius: 0.75rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+        .avatar { width: 50px; height: 50px; background: #e0f2fe; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; color: #0284c7; margin-bottom: 1rem; }
+        .name { font-weight: 600; margin-bottom: 0.25rem; }
+        .role { color: #475569; font-size: 0.875rem; margin-bottom: 1rem; }
+        .quote { color: #475569; font-style: italic; }
+      \`;
+
+      render() {
+        const testimonials = [
+          {name: 'Jennifer Martinez', role: 'Healthcare Practice Manager', avatar: 'JM', quote: 'MetroTec\'s same-day response saved us during a critical system failure.'},
+          {name: 'David Rodriguez', role: 'Manufacturing Operations Director', avatar: 'DR', quote: 'Their proactive monitoring prevented 3 major outages this year.'},
+          {name: 'Sarah Kim', role: 'Law Firm Partner', avatar: 'SK', quote: 'Local expertise matters. They understand Detroit business needs.'}
+        ];
+
+        return html\`
+          <h2>Why Metro Detroit Businesses Choose MetroTec</h2>
+          <p class="sub">Over 200 local businesses trust us with their IT infrastructure.</p>
+          <div class="grid">
+            \${testimonials.map(t => html\`
+              <div class="card">
+                <div class="avatar">\${t.avatar}</div>
+                <div class="name">\${t.name}</div>
+                <div class="role">\${t.role}</div>
+                <p class="quote">"\${t.quote}"</p>
+              </div>
+            \`)}
+          </div>
+        \`;
+      }
+    }
+
+    class MtCta extends LitElement {
+      static styles = css\`
+        :host { display: block; padding: 4rem 1rem; background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%); color: white; text-align: center; }
+        h3 { font-size: 2rem; margin-bottom: 1rem; }
+        p { font-size: 1.125rem; margin-bottom: 2rem; opacity: 0.95; }
+        a { display: inline-block; background: white; color: #0284c7; padding: 1rem 2.5rem; border-radius: 0.5rem; text-decoration: none; font-weight: 600; font-size: 1.125rem; transition: transform 0.2s; }
+        a:hover { transform: translateY(-2px); }
+      \`;
+
+      render() {
+        return html\`
+          <h3>Ready to Transform Your IT?</h3>
+          <p>Schedule your free IT assessment today. No obligation, just expert insights.</p>
+          <a href="get-quote.html">Get Started</a>
+        \`;
+      }
+    }
+
+    class MtFooter extends LitElement {
+      static styles = css\`
+        :host { display: block; background: #1a1a1a; color: white; padding: 3rem 1rem 1rem; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; max-width: 1200px; margin: 0 auto 2rem; }
+        h4 { margin-bottom: 1rem; }
+        ul { list-style: none; }
+        a { color: #cbd5e1; text-decoration: none; display: block; margin-bottom: 0.5rem; transition: color 0.2s; }
+        a:hover { color: white; }
+        .bottom { text-align: center; padding-top: 2rem; border-top: 1px solid #334155; color: #94a3b8; font-size: 0.875rem; }
+      \`;
+
+      render() {
+        return html\`
+          <div class="grid">
+            <div>
+              <h4>Services</h4>
+              <ul>
+                <li><a href="managed-it.html">Managed IT</a></li>
+                <li><a href="cybersecurity.html">Cybersecurity</a></li>
+                <li><a href="cloud-services.html">Cloud Services</a></li>
+                <li><a href="help-desk.html">Help Desk</a></li>
+              </ul>
+            </div>
+            <div>
+              <h4>Industries</h4>
+              <ul>
+                <li><a href="healthcare.html">Healthcare</a></li>
+                <li><a href="manufacturing.html">Manufacturing</a></li>
+                <li><a href="retail.html">Retail</a></li>
+              </ul>
+            </div>
+            <div>
+              <h4>Contact</h4>
+              <ul>
+                <li><a href="tel:313-242-7311">(313) 242-7311</a></li>
+                <li><a href="mailto:info@mrtechfixes.com">info@mrtechfixes.com</a></li>
+                <li>Metro Detroit Area, MI</li>
+              </ul>
+            </div>
+          </div>
+          <div class="bottom">
+            <p>&copy; 2026 MetroTec. All rights reserved.</p>
+          </div>
+        \`;
+      }
+    }
+
+    customElements.define('mt-header', MtHeader);
+    customElements.define('mt-hero', MtHero);
+    customElements.define('mt-stats', MtStats);
+    customElements.define('mt-services', MtServices);
+    customElements.define('mt-industries', MtIndustries);
+    customElements.define('mt-testimonials', MtTestimonials);
+    customElements.define('mt-cta', MtCta);
+    customElements.define('mt-footer', MtFooter);
+  </script>
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-R1RK39ZBXM"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-R1RK39ZBXM');
+  </script>
+</body>
+</html>

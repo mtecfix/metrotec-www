@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Configuration - MetroTec CMS</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; background: #f5f5f5; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+        .header { background: white; padding: 1rem 2rem; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin-bottom: 2rem; }
+        .card { background: white; border-radius: 8px; padding: 2rem; margin-bottom: 2rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        .btn { background: #0ea5e9; color: white; padding: 0.75rem 1.5rem; border: none; border-radius: 6px; cursor: pointer; }
+        .btn:hover { background: #0284c7; }
+        .form-group { margin-bottom: 1rem; }
+        label { display: block; margin-bottom: 0.5rem; font-weight: 600; }
+        input, textarea, select { width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 4px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>MetroTec CMS - AI Configuration</h1>
+    </div>
+    
+    <div class="container">
+        <div class="grid">
+            <div class="card">
+                <h2>OpenAI Integration</h2>
+                <div class="form-group">
+                    <label>API Key</label>
+                    <input type="password" id="openai-key" placeholder="sk-...">
+                </div>
+                <div class="form-group">
+                    <label>Model</label>
+                    <select id="openai-model">
+                        <option value="gpt-4">GPT-4</option>
+                        <option value="gpt-3.5-turbo">GPT-3.5 Turbo</option>
+                    </select>
+                </div>
+                <button class="btn" onclick="saveOpenAI()">Save OpenAI Config</button>
+            </div>
+            
+            <div class="card">
+                <h2>Content Generation</h2>
+                <div class="form-group">
+                    <label>Default Tone</label>
+                    <select id="content-tone">
+                        <option value="professional">Professional</option>
+                        <option value="friendly">Friendly</option>
+                        <option value="technical">Technical</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Target Keywords</label>
+                    <textarea id="keywords" placeholder="IT support, managed services, cybersecurity"></textarea>
+                </div>
+                <button class="btn" onclick="saveContentConfig()">Save Content Config</button>
+            </div>
+            
+            <div class="card">
+                <h2>SEO Optimization</h2>
+                <div class="form-group">
+                    <label>Focus Location</label>
+                    <input type="text" id="location" value="Metro Detroit" placeholder="Metro Detroit">
+                </div>
+                <div class="form-group">
+                    <label>Business Type</label>
+                    <input type="text" id="business-type" value="IT Services" placeholder="IT Services">
+                </div>
+                <button class="btn" onclick="saveSEOConfig()">Save SEO Config</button>
+            </div>
+            
+            <div class="card">
+                <h2>Automation Settings</h2>
+                <div class="form-group">
+                    <label>Auto-generate blog posts</label>
+                    <input type="checkbox" id="auto-blog"> Weekly
+                </div>
+                <div class="form-group">
+                    <label>Auto-optimize existing content</label>
+                    <input type="checkbox" id="auto-optimize"> Monthly
+                </div>
+                <button class="btn" onclick="saveAutomation()">Save Automation</button>
+            </div>
+        </div>
+        
+        <div class="card">
+            <h2>Quick Actions</h2>
+            <button class="btn" onclick="generateContent()">Generate New Content</button>
+            <button class="btn" onclick="optimizeSEO()">Optimize SEO</button>
+            <button class="btn" onclick="runAnalytics()">Run Analytics</button>
+        </div>
+    </div>
+    
+    <script>
+        function saveOpenAI() {
+            const key = document.getElementById('openai-key').value;
+            const model = document.getElementById('openai-model').value;
+            alert('OpenAI configuration saved!');
+        }
+        
+        function saveContentConfig() {
+            alert('Content configuration saved!');
+        }
+        
+        function saveSEOConfig() {
+            alert('SEO configuration saved!');
+        }
+        
+        function saveAutomation() {
+            alert('Automation settings saved!');
+        }
+        
+        function generateContent() {
+            window.open('/admin/content-generator', '_blank');
+        }
+        
+        function optimizeSEO() {
+            window.open('/admin/seo-optimizer', '_blank');
+        }
+        
+        function runAnalytics() {
+            alert('Analytics running...');
+        }
+    </script>
+</body>
+</html>

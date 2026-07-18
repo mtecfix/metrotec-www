@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover"><title>Active Directory Security Best Practices | MetroTec IT Blog</title><meta name="description" content="Learn essential Active Directory security practices to protect your Metro Detroit business from unauthorized access, credential theft, and domain compromise."><link rel="canonical" href="https://metrotec.biz/blog/active-directory-security.html"><script async src="https://www.googletagmanager.com/gtag/js?id=AW-17815464842"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","AW-17815464842");</script><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet"><link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet"><style>:root{--primary:#0284c7;--primary-dark:#0369a1;--primary-light:#e0f2fe;--primary-50:#f0f9ff;--gray-900:#0f172a;--gray-600:#475569;--gray-200:#e2e8f0;--gray-100:#f1f5f9;--radius:12px;}*{box-sizing:border-box;margin:0;padding:0;}body{font-family:"Inter",-apple-system,sans-serif;font-size:18px;line-height:1.8;color:var(--gray-900);background:#fff;padding-bottom:72px;}a{color:var(--primary);}img{max-width:100%;height:auto;display:block;}.header{background:rgba(255,255,255,.95);border-bottom:1px solid var(--gray-200);padding:.75rem 1rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;}.header img{height:36px;}.header-call{color:var(--primary);font-weight:700;font-size:.9rem;display:flex;align-items:center;gap:.4rem;}.header-menu-btn{background:none;border:none;color:#334155;font-size:1.5rem;cursor:pointer;}.post-hero{background:linear-gradient(135deg,var(--primary-50) 0%,var(--gray-100) 100%);padding:2rem 1rem;border-bottom:1px solid var(--gray-200);}.post-cat{display:inline-block;background:var(--primary-light);color:var(--primary-dark);font-size:.75rem;font-weight:700;padding:.2rem .6rem;border-radius:2rem;margin-bottom:.75rem;text-transform:uppercase;}.post-hero h1{font-size:1.6rem;font-weight:700;line-height:1.3;margin-bottom:.75rem;color:var(--gray-900);}.post-hero .subtitle{font-size:1rem;color:var(--gray-600);margin-bottom:.75rem;}.post-hero .byline{font-size:.85rem;color:var(--gray-600);}.post-body{padding:1.5rem 1rem;color:var(--gray-900);}.post-body p{margin-bottom:1rem;font-size:1rem;color:var(--gray-900);}.post-body h2,.post-body h3{font-size:1.2rem;font-weight:700;margin:1.5rem 0 .5rem;color:var(--gray-900);}.post-body ul,.post-body ol{padding-left:1.5rem;margin-bottom:1rem;}.post-body li{margin-bottom:.4rem;font-size:1rem;color:var(--gray-900);}.post-body .pullquote{background:var(--primary-light);border-left:4px solid var(--primary);padding:1rem 1.25rem;margin:1.5rem 0;font-style:italic;color:#0369a1;border-radius:0 var(--radius) var(--radius) 0;}.post-body .sidebar{background:var(--gray-100);border-radius:var(--radius);padding:1.25rem;margin:1.5rem 0;}.back-link{display:flex;align-items:center;gap:.5rem;padding:1rem;font-size:.9rem;font-weight:600;color:var(--primary);border-bottom:1px solid var(--gray-200);text-decoration:none;}.cta-card{background:linear-gradient(135deg,var(--primary) 0%,var(--primary-dark) 100%);color:white;padding:1.5rem;margin:2rem 1rem;text-align:center;border-radius:var(--radius);}.cta-card h3{font-size:1.2rem;font-weight:700;margin-bottom:.5rem;}.cta-card p{font-size:.95rem;opacity:.9;margin-bottom:1rem;}.cta-card a{display:inline-flex;align-items:center;gap:.5rem;background:white;color:var(--primary);font-weight:700;padding:.75rem 1.5rem;border-radius:var(--radius);font-size:.95rem;text-decoration:none;}footer{background:var(--gray-900);color:#9ca3af;padding:1.5rem 1rem;font-size:.9rem;text-align:center;}footer a{color:#d1d5db;}.footer-links{display:flex;flex-wrap:wrap;justify-content:center;gap:1rem;margin-bottom:1rem;}.sticky-cta{position:fixed;bottom:0;left:0;right:0;background:var(--primary);display:flex;z-index:999;box-shadow:0 -2px 12px rgba(0,0,0,.15);}.sticky-cta a{flex:1;color:white;font-weight:600;font-size:.95rem;padding:1rem .5rem;display:flex;align-items:center;justify-content:center;gap:.4rem;min-height:56px;text-decoration:none;}.sticky-cta a:first-child{background:white;color:var(--primary);border-right:1px solid var(--gray-200);}.nav-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.5);z-index:200;}.nav-menu.open{display:block;}.nav-drawer{background:white;width:80%;max-width:300px;height:100%;padding:1.5rem 1rem;overflow-y:auto;}.nav-drawer a{display:flex;align-items:center;gap:.75rem;padding:.875rem 0;border-bottom:1px solid var(--gray-100);font-weight:500;color:var(--gray-900);font-size:1rem;text-decoration:none;}.nav-close{background:none;border:none;font-size:1.5rem;cursor:pointer;margin-bottom:1rem;}
+    .hero-image { width: 100%; height: 200px; overflow: hidden; margin-bottom: 0; }
+    .hero-image img { width: 100%; height: 200px; object-fit: cover; display: block; }</style>
+</head>
+<body>
+  <header class="header"><a href="../../m/index.html"><img src="../../metrotec-logo.png" alt="MetroTec"></a><div style="display:flex;gap:1rem;align-items:center;"><a href="tel:+13132427311" class="header-call"><i class="bi bi-telephone-fill"></i> Call</a><button onclick="document.getElementById('navMenu').classList.toggle('open')" class="header-menu-btn"><i class="bi bi-list"></i></button></div></header><div class="nav-menu" id="navMenu" onclick="if(event.target===this)this.classList.remove('open')"><div class="nav-drawer"><button class="nav-close" onclick="document.getElementById('navMenu').classList.remove('open')"><i class="bi bi-x-lg"></i></button><a href="../../m/index.html"><i class="bi bi-house"></i> Home</a><a href="../../m/services.html"><i class="bi bi-grid"></i> Services</a><a href="../../m/managed-it.html"><i class="bi bi-gear"></i> Managed IT</a><a href="../../m/cybersecurity.html"><i class="bi bi-shield-check"></i> Cybersecurity</a><a href="../../m/about.html"><i class="bi bi-people"></i> About</a><a href="../../m/contact.html"><i class="bi bi-envelope"></i> Contact</a><a href="index.html" style="color:var(--primary);font-weight:700;"><i class="bi bi-newspaper"></i> Blog</a><a href="../../m/portal.html"><i class="bi bi-box-arrow-in-right"></i> Client Portal</a><a href="../../m/submit-ticket.html"><i class="bi bi-life-preserver"></i> Submit a Ticket</a><a href="../../m/get-quote.html" style="color:var(--primary);font-weight:700;"><i class="bi bi-file-text"></i> Get Free Quote</a></div></div>
+  <a href="index.html" class="back-link"><i class="bi bi-arrow-left"></i> Back to Blog</a>
+  <section class="post-hero"><span class="post-cat">Security</span><h1>Active Directory Security Best Practices</h1><p class="subtitle">Protecting your organization's identity infrastructure from modern threats</p><p class="byline">By MetroTec Team • December 13, 2025 • 7 min read</p></section>
+  <div class="hero-image"><img src="https://source.unsplash.com/800x200/?cybersecurity&sig=251" alt="Active Directory Security" loading="lazy"></div>
+  <div class="post-body"><p class="drop-cap">Active Directory remains the backbone of identity management for 90% of Fortune 1000 companies. Yet it's also one of the most targeted attack vectors. A compromised AD environment can give attackers complete control over your entire network, making security hardening essential.</p>
+
+    <p>Recent attacks on Metro Detroit businesses have exploited weak AD configurations. One manufacturing firm lost $2.3M after attackers gained Domain Admin privileges through a misconfigured service account. These incidents are preventable with proper security measures.</p>
+
+    <p>Active Directory security requires a multi-layered approach covering authentication, authorization, auditing, and monitoring. Organizations must implement least privilege access, secure privileged accounts, and continuously monitor for suspicious activity.</p>
+<div style="background:linear-gradient(135deg,#0284c7,#0369a1);color:white;padding:1.25rem;border-radius:12px;margin:1.5rem 0;text-align:center;"><p style="font-weight:700;margin-bottom:.5rem;color:white;">Need IT Help in Metro Detroit?</p><a href="../../m/get-quote.html" style="display:inline-flex;align-items:center;gap:.4rem;background:white;color:#0284c7;font-weight:700;padding:.6rem 1.25rem;border-radius:8px;font-size:.9rem;text-decoration:none;">Get Free Quote</a></div>
+
+
+    <h3>Privileged Account Management</h3>
+
+
+
+    <p>Privileged accounts are the keys to your kingdom. Domain Admins, Enterprise Admins, and service accounts with elevated permissions must be strictly controlled. Implement separate admin accounts for IT staff—never use privileged accounts for daily tasks like email or web browsing.</p>
+
+    <p>Use Privileged Access Workstations (PAWs) for all administrative tasks. These hardened systems should only be used for AD management and never for general productivity. Microsoft recommends the tiered administration model: Tier 0 for domain controllers, Tier 1 for servers, Tier 2 for workstations.</p>
+
+    <div class="pullquote">
+      "82% of security breaches involve compromised privileged credentials"
+    </div>
+
+    <p>Enable just-in-time (JIT) administration where possible. Accounts should only have elevated privileges when actively performing admin tasks. Tools like Microsoft Identity Manager or third-party PAM solutions can automate privilege elevation and de-elevation.</p>
+
+    <p>Regularly audit privileged group membership. Many organizations discover dormant accounts with Domain Admin rights during security assessments. Remove unnecessary accounts and implement approval workflows for adding new privileged users.</p>
+
+    <div class="sidebar">
+      <h4>Critical Security Controls</h4>
+      <ul style="margin-left: 1.5rem; line-height: 1.6;">
+        <li>Separate admin accounts for IT staff</li>
+        <li>Privileged Access Workstations (PAWs)</li>
+        <li>Just-in-time privilege elevation</li>
+        <li>Regular privileged account audits</li>
+        <li>Service account password rotation</li>
+      </ul>
+    </div>
+
+    <h3>Authentication Hardening</h3>
+
+    <p>Disable legacy authentication protocols. NTLM and LM hashing are vulnerable to pass-the-hash attacks. Enforce Kerberos authentication and enable AES encryption for Kerberos tickets. Configure Group Policy to prevent NTLM fallback.</p>
+
+    <p>Implement strong password policies with complexity requirements and regular rotation for privileged accounts. Consider using passphrases instead of passwords—"CorrectHorseBatteryStaple" is stronger than "P@ssw0rd123" and easier to remember.</p>
+
+    <p>Deploy multi-factor authentication for all privileged access. Azure MFA integrates seamlessly with on-premises AD through Azure AD Connect. Require MFA for VPN access, administrative portals, and any external-facing authentication.</p>
+
+    <p>Monitor for suspicious authentication patterns. Multiple failed login attempts, authentication from unusual locations, or off-hours access by privileged accounts should trigger alerts. SIEM integration provides real-time visibility into authentication events.</p>
+
+    <h3>Domain Controller Hardening</h3>
+
+    <p>Domain controllers are the crown jewels of your AD infrastructure. Isolate them on dedicated network segments with strict firewall rules. Only allow necessary management traffic and block internet access entirely. DCs should never run additional services like email, web servers, or file sharing.</p>
+
+    <p>Keep domain controllers patched and updated. Microsoft releases security updates monthly—apply them within 48 hours for critical vulnerabilities. Test patches in a lab environment first, but don't delay deployment. Attackers exploit known vulnerabilities within days of disclosure.</p>
+
+    <p>Enable advanced audit policies to track all privileged actions. Log account management, directory service access, and policy changes. Forward logs to a centralized SIEM for analysis and long-term retention. Logs stored only on DCs can be deleted by attackers covering their tracks.</p>
+
+    <div class="sidebar">
+      <h4>AD Security Tools</h4>
+      <ul style="margin-left: 1.5rem; line-height: 1.6;">
+        <li>BloodHound - Attack path analysis</li>
+        <li>PingCastle - Security assessment</li>
+        <li>Purple Knight - Vulnerability scanner</li>
+        <li>Microsoft ATA - Threat detection</li>
+      </ul>
+    </div>
+
+    <h3>Group Policy Security</h3>
+
+    <p>Group Policy Objects (GPOs) enforce security settings across your environment. Restrict GPO modification to a small group of trusted administrators. Enable GPO change auditing and review modifications regularly. A malicious GPO can compromise every system in your domain.</p>
+
+    <p>Use security filtering and WMI filters to apply policies precisely. Overly broad GPOs create security gaps or break legitimate functionality. Test policy changes in a pilot OU before domain-wide deployment.</p>
+
+    <p>Implement security baselines from Microsoft or CIS. These provide hardened configurations for workstations, servers, and domain controllers. Customize baselines for your environment but start with proven security settings rather than building from scratch.</p>
+
+    <p>Active Directory security requires continuous attention. Regular audits, prompt patching, and monitoring for suspicious activity form the foundation. Combined with privileged account management and authentication hardening, these measures significantly reduce your attack surface and protect against modern threats targeting AD infrastructure.</p>
+
+  </div>
+
+  
+  <div style="</div>
+  <div class="cta-card"><h3>Need IT Help in Metro Detroit?</h3><p>MetroTec provides managed IT, cybersecurity, and cloud solutions for local businesses.</p><a href="../../m/get-quote.html"><i class="bi bi-file-earmark-text"></i> Get Free Quote</a></div>
+  <footer><div class="footer-links"><a href="../../m/services.html">Services</a><a href="../../m/about.html">About</a><a href="../../m/contact.html">Contact</a></div><p>© 2026 MetroTec</p><p style="margin-top:.5rem;font-style:normal;"><i class="bi bi-geo-alt-fill"></i> 607 Shelby St, Detroit, MI 48226</p><p style="margin-top:.75rem;font-size:.8rem;"><a href="../../blog/active-directory-security.html" onclick="sessionStorage.setItem('prefer_desktop','1')">View full site →</a></p></footer>
+  <div class="sticky-cta"><a href="tel:+13132427311"><i class="bi bi-telephone-fill"></i> Call Now</a><a href="../../m/get-quote.html"><i class="bi bi-file-earmark-text"></i> Get Quote</a></div>
+</body></html>

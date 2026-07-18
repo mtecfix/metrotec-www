@@ -1,0 +1,58 @@
+set sftp:auto-confirm yes
+set net:timeout 30
+set net:max-retries 3
+open sftp://a3460704:$BlackGoldGreen9!@access-5019068109.webspace-host.com
+
+# Root HTML pages
+put about.html
+put backup-recovery.html
+put cloud-services.html
+put contact.html
+put cybersecurity.html
+put get-quote.html
+put googlebbfd308d53d31677.html
+put hardware-software.html
+put healthcare.html
+put help-desk.html
+put index.html
+put industries.html
+put it-consulting.html
+put managed-it.html
+put manufacturing.html
+put network-support.html
+put privacy-policy.html
+put professional-services.html
+put retail.html
+put services.html
+put terms-of-service.html
+put voip-phone.html
+
+# CSS
+put blog-enhanced.css
+put mobile-android.css
+put mobile-consolidated.css
+put mobile-iphone.css
+put mobile-optimized.css
+put mobile-responsive.css
+put universal-ui.css
+
+# JS
+put lead-engine.js
+
+# SEO/config
+put robots.txt
+put sitemap.xml
+put sitemap-enhanced.xml
+put .htaccess
+put googlebbfd308d53d31677.html
+
+# Logo
+put metrotec-logo.png
+
+# Folders
+mirror --reverse --delete --exclude-glob *.backup --exclude-glob *.py --exclude-glob *.sh --exclude-glob *.txt --exclude-glob samples images images
+mirror --reverse --delete js js
+mirror --reverse --delete store store
+mirror --reverse --delete --exclude-glob *.backup --exclude-glob *.py --exclude-glob *.sh --exclude-glob *.txt --exclude-glob samples blog blog
+
+bye

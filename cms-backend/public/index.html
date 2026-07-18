@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MetroTec CMS - Admin Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <style>
+        * { box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; margin: 0; background: #f5f5f5; min-width: 1024px; }
+        .header { background: #1976d2; color: white; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+        .card { background: white; border-radius: 8px; padding: 2rem; margin-bottom: 2rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        .btn { background: #1976d2; color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 4px; cursor: pointer; margin: 0.25rem; }
+        .btn:hover { background: #1565c0; }
+        .btn-danger { background: #d32f2f; }
+        .btn-success { background: #388e3c; }
+        .form-group { margin-bottom: 1rem; }
+        .form-group label { display: block; margin-bottom: 0.5rem; font-weight: 600; }
+        .form-group input, .form-group textarea { width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 4px; }
+        .form-group textarea { height: 200px; }
+        .pages-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem; }
+        .page-item { border: 1px solid #ddd; border-radius: 8px; padding: 1rem; background: white; }
+        .page-item h3 { margin: 0 0 0.5rem 0; color: #1976d2; }
+        .page-item p { margin: 0.25rem 0; color: #666; font-size: 0.9rem; }
+        .status { padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.8rem; }
+        .status.published { background: #e8f5e8; color: #2e7d32; }
+        .status.draft { background: #fff3e0; color: #f57c00; }
+        .hidden { display: none; }
+        .login-form { max-width: 400px; margin: 10% auto; }
+    </style>
+</head>
+<body>
+    <!-- Login Form -->
+    <div id="loginForm" class="login-form">
+        <div class="card">
+            <h2>MetroTec CMS Login</h2>
+            <div class="form-group">
+                <label>Username</label>
+                <input type="text" id="username" placeholder="Enter username">
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" id="password" placeholder="Enter password">
+            </div>
+            <button class="btn" onclick="login()">Login</button>
+        </div>
+    </div>
+
+    <!-- Main Dashboard -->
+    <div id="dashboard" class="hidden">
+        <div class="header">
+            <h1>MetroTec CMS Dashboard</h1>
+            <div>
+                <button class="btn" onclick="showSection('pages')">Pages</button>
+                <button class="btn" onclick="showSection('ai-systems')">AI Systems</button>
+                <button class="btn" onclick="showSection('config')">Config</button>
+                <button class="btn btn-success" onclick="deployToS3()">Deploy to S3</button>
+                <button class="btn" onclick="logout()">Logout</button>
+            </div>
+        </div>
+
+        <div class="container">
+            <!-- Pages Section -->
+            <div id="pages-section" class="section">
+                <div class="card">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+                        <h2>Pages</h2>
+                        <button class="btn" onclick="showAddForm()">Add New Page</button>
+                    </div>
+                    
+                    <div id="pagesList" class="pages-grid"></div>
+                </div>
+
+                <!-- Add/Edit Form -->
+                <div id="pageForm" class="card hidden">
+                    <h3 id="formTitle">Add New Page</h3>
+                    <input type="hidden" id="pageId">
+                    
+                    <div class="form-group">
+                        <label>Title</label>
+                        <input type="text" id="pageTitle" placeholder="Page title">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Slug</label>
+                        <input type="text" id="pageSlug" placeholder="page-slug">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Meta Description</label>
+                        <input type="text" id="pageMetaDescription" placeholder="SEO meta description">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Content</label>
+                        <textarea id="pageContent" placeholder="HTML content"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" id="pagePublished"> Published
+                        </label>
+                    </div>
+                    
+                    <button class="btn" onclick="savePage()">Save Page</button>
+                    <button class="btn" onclick="hideForm()">Cancel</button>
+                </div>
+            </div>
+
+            <!-- AI Systems Section -->
+            <div id="ai-systems-section" class="section hidden">
+                <div class="card">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+                        <h2>AI Systems</h2>
+                        <button class="btn" onclick="showAddAIForm()">Add AI System</button>
+                    </div>
+                    
+                    <div id="aiSystemsList" class="pages-grid"></div>
+                </div>
+
+                <!-- AI System Form -->
+                <div id="aiForm" class="card hidden">
+                    <h3 id="aiFormTitle">Add AI System</h3>
+                    <input type="hidden" id="aiId">
+                    
+                    <div class="form-group">
+                        <label>System Name</label>
+                        <input type="text" id="aiName" placeholder="Lead Engine, SEO Analyzer, etc.">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Type</label>
+                        <select id="aiType">
+                            <option value="lead-generation">Lead Generation</option>
+                            <option value="seo-analysis">SEO Analysis</option>
+                            <option value="automation">Automation</option>
+                            <option value="security">Security</option>
+                            <option value="analytics">Analytics</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Configuration (JSON)</label>
+                        <textarea id="aiConfig" placeholder='{"api_key": "", "endpoint": "", "settings": {}}'></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" id="aiEnabled"> Enabled
+                        </label>
+                    </div>
+                    
+                    <button class="btn" onclick="saveAISystem()">Save AI System</button>
+                    <button class="btn" onclick="hideAIForm()">Cancel</button>
+                </div>
+            </div>
+
+            <!-- Config Section -->
+            <div id="config-section" class="section hidden">
+                <div class="card">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+                        <h2>System Configuration</h2>
+                        <button class="btn" onclick="showAddConfigForm()">Add Config</button>
+                    </div>
+                    
+                    <div id="configList"></div>
+                </div>
+
+                <!-- Config Form -->
+                <div id="configForm" class="card hidden">
+                    <h3>Add Configuration</h3>
+                    
+                    <div class="form-group">
+                        <label>Key</label>
+                        <input type="text" id="configKey" placeholder="aws.s3.bucket">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Value</label>
+                        <input type="text" id="configValue" placeholder="Configuration value">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Description</label>
+                        <input type="text" id="configDescription" placeholder="What this config does">
+                    </div>
+                    
+                    <button class="btn" onclick="saveConfig()">Save Config</button>
+                    <button class="btn" onclick="hideConfigForm()">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = 'http://localhost:3001/api';
+        let authToken = localStorage.getItem('cms_token');
+
+        if (authToken) {
+            showDashboard();
+        }
+
+        async function login() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            try {
+                const response = await fetch(`${API_BASE}/login`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username, password })
+                });
+                
+                const data = await response.json();
+                if (response.ok) {
+                    authToken = data.token;
+                    localStorage.setItem('cms_token', authToken);
+                    showDashboard();
+                } else {
+                    alert(data.error);
+                }
+            } catch (error) {
+                alert('Login failed: ' + error.message);
+            }
+        }
+
+        function logout() {
+            localStorage.removeItem('cms_token');
+            authToken = null;
+            document.getElementById('loginForm').classList.remove('hidden');
+            document.getElementById('dashboard').classList.add('hidden');
+        }
+
+        function showDashboard() {
+            document.getElementById('loginForm').classList.add('hidden');
+            document.getElementById('dashboard').classList.remove('hidden');
+            loadPages();
+        }
+
+        async function loadPages() {
+            try {
+                const response = await fetch(`${API_BASE}/pages`, {
+                    headers: { 'Authorization': `Bearer ${authToken}` }
+                });
+                
+                const pages = await response.json();
+                renderPages(pages);
+            } catch (error) {
+                alert('Failed to load pages: ' + error.message);
+            }
+        }
+
+        function renderPages(pages) {
+            const container = document.getElementById('pagesList');
+            container.innerHTML = pages.map(page => `
+                <div class="page-item">
+                    <h3>${page.title}</h3>
+                    <p><strong>Slug:</strong> ${page.slug}</p>
+                    <p><strong>Description:</strong> ${page.meta_description || 'No description'}</p>
+                    <p><span class="status ${page.published ? 'published' : 'draft'}">
+                        ${page.published ? 'Published' : 'Draft'}
+                    </span></p>
+                    <p><strong>Updated:</strong> ${new Date(page.updated_at).toLocaleDateString()}</p>
+                    <div style="margin-top: 1rem;">
+                        <button class="btn" onclick="editPage(${page.id})">Edit</button>
+                        <button class="btn btn-danger" onclick="deletePage(${page.id})">Delete</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function showAddForm() {
+            document.getElementById('formTitle').textContent = 'Add New Page';
+            document.getElementById('pageId').value = '';
+            document.getElementById('pageTitle').value = '';
+            document.getElementById('pageSlug').value = '';
+            document.getElementById('pageMetaDescription').value = '';
+            document.getElementById('pageContent').value = '';
+            document.getElementById('pagePublished').checked = false;
+            document.getElementById('pageForm').classList.remove('hidden');
+        }
+
+        async function editPage(id) {
+            try {
+                const response = await fetch(`${API_BASE}/pages`, {
+                    headers: { 'Authorization': `Bearer ${authToken}` }
+                });
+                
+                const pages = await response.json();
+                const page = pages.find(p => p.id === id);
+                
+                if (page) {
+                    document.getElementById('formTitle').textContent = 'Edit Page';
+                    document.getElementById('pageId').value = page.id;
+                    document.getElementById('pageTitle').value = page.title;
+                    document.getElementById('pageSlug').value = page.slug;
+                    document.getElementById('pageMetaDescription').value = page.meta_description || '';
+                    document.getElementById('pageContent').value = page.content;
+                    document.getElementById('pagePublished').checked = page.published;
+                    document.getElementById('pageForm').classList.remove('hidden');
+                }
+            } catch (error) {
+                alert('Failed to load page: ' + error.message);
+            }
+        }
+
+        async function savePage() {
+            const id = document.getElementById('pageId').value;
+            const data = {
+                title: document.getElementById('pageTitle').value,
+                slug: document.getElementById('pageSlug').value,
+                meta_description: document.getElementById('pageMetaDescription').value,
+                content: document.getElementById('pageContent').value,
+                published: document.getElementById('pagePublished').checked
+            };
+            
+            try {
+                const url = id ? `${API_BASE}/pages/${id}` : `${API_BASE}/pages`;
+                const method = id ? 'PUT' : 'POST';
+                
+                const response = await fetch(url, {
+                    method,
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${authToken}`
+                    },
+                    body: JSON.stringify(data)
+                });
+                
+                if (response.ok) {
+                    hideForm();
+                    loadPages();
+                } else {
+                    const error = await response.json();
+                    alert(error.error);
+                }
+            } catch (error) {
+                alert('Failed to save page: ' + error.message);
+            }
+        }
+
+        async function deletePage(id) {
+            if (!confirm('Are you sure you want to delete this page?')) return;
+            
+            try {
+                const response = await fetch(`${API_BASE}/pages/${id}`, {
+                    method: 'DELETE',
+                    headers: { 'Authorization': `Bearer ${authToken}` }
+                });
+                
+                if (response.ok) {
+                    loadPages();
+                } else {
+                    const error = await response.json();
+                    alert(error.error);
+                }
+            } catch (error) {
+                alert('Failed to delete page: ' + error.message);
+            }
+        }
+
+        async function deployToS3() {
+            if (!confirm('Deploy all published pages to S3?')) return;
+            
+            try {
+                const response = await fetch(`${API_BASE}/deploy`, {
+                    method: 'POST',
+                    headers: { 'Authorization': `Bearer ${authToken}` }
+                });
+                
+                const result = await response.json();
+                alert(result.message);
+            } catch (error) {
+                alert('Deployment failed: ' + error.message);
+            }
+        }
+
+        function hideForm() {
+            document.getElementById('pageForm').classList.add('hidden');
+        }
+
+        // Section Navigation
+        function showSection(section) {
+            document.querySelectorAll('.section').forEach(s => s.classList.add('hidden'));
+            document.getElementById(section + '-section').classList.remove('hidden');
+            
+            if (section === 'pages') loadPages();
+            if (section === 'ai-systems') loadAISystems();
+            if (section === 'config') loadConfig();
+        }
+
+        // AI Systems Functions
+        async function loadAISystems() {
+            try {
+                const response = await fetch(`${API_BASE}/ai-systems`, {
+                    headers: { 'Authorization': `Bearer ${authToken}` }
+                });
+                
+                const systems = await response.json();
+                renderAISystems(systems);
+            } catch (error) {
+                alert('Failed to load AI systems: ' + error.message);
+            }
+        }
+
+        function renderAISystems(systems) {
+            const container = document.getElementById('aiSystemsList');
+            container.innerHTML = systems.map(system => `
+                <div class="page-item">
+                    <h3>${system.name}</h3>
+                    <p><strong>Type:</strong> ${system.type}</p>
+                    <p><span class="status ${system.enabled ? 'published' : 'draft'}">
+                        ${system.enabled ? 'Enabled' : 'Disabled'}
+                    </span></p>
+                    <p><strong>Updated:</strong> ${new Date(system.updated_at).toLocaleDateString()}</p>
+                    <div style="margin-top: 1rem;">
+                        <button class="btn" onclick="editAISystem(${system.id})">Edit</button>
+                        <button class="btn btn-danger" onclick="deleteAISystem(${system.id})">Delete</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function showAddAIForm() {
+            document.getElementById('aiFormTitle').textContent = 'Add AI System';
+            document.getElementById('aiId').value = '';
+            document.getElementById('aiName').value = '';
+            document.getElementById('aiType').value = 'lead-generation';
+            document.getElementById('aiConfig').value = '';
+            document.getElementById('aiEnabled').checked = true;
+            document.getElementById('aiForm').classList.remove('hidden');
+        }
+
+        async function saveAISystem() {
+            const id = document.getElementById('aiId').value;
+            const data = {
+                name: document.getElementById('aiName').value,
+                type: document.getElementById('aiType').value,
+                config: JSON.parse(document.getElementById('aiConfig').value || '{}'),
+                enabled: document.getElementById('aiEnabled').checked
+            };
+            
+            try {
+                const url = id ? `${API_BASE}/ai-systems/${id}` : `${API_BASE}/ai-systems`;
+                const method = id ? 'PUT' : 'POST';
+                
+                const response = await fetch(url, {
+                    method,
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${authToken}`
+                    },
+                    body: JSON.stringify(data)
+                });
+                
+                if (response.ok) {
+                    hideAIForm();
+                    loadAISystems();
+                } else {
+                    const error = await response.json();
+                    alert(error.error);
+                }
+            } catch (error) {
+                alert('Failed to save AI system: ' + error.message);
+            }
+        }
+
+        function hideAIForm() {
+            document.getElementById('aiForm').classList.add('hidden');
+        }
+
+        // Config Functions
+        async function loadConfig() {
+            try {
+                const response = await fetch(`${API_BASE}/config`, {
+                    headers: { 'Authorization': `Bearer ${authToken}` }
+                });
+                
+                const configs = await response.json();
+                renderConfig(configs);
+            } catch (error) {
+                alert('Failed to load config: ' + error.message);
+            }
+        }
+
+        function renderConfig(configs) {
+            const container = document.getElementById('configList');
+            container.innerHTML = configs.map(config => `
+                <div class="page-item">
+                    <h3>${config.key}</h3>
+                    <p><strong>Value:</strong> ${config.value}</p>
+                    <p><strong>Description:</strong> ${config.description || 'No description'}</p>
+                    <p><strong>Updated:</strong> ${new Date(config.updated_at).toLocaleDateString()}</p>
+                </div>
+            `).join('');
+        }
+
+        function showAddConfigForm() {
+            document.getElementById('configKey').value = '';
+            document.getElementById('configValue').value = '';
+            document.getElementById('configDescription').value = '';
+            document.getElementById('configForm').classList.remove('hidden');
+        }
+
+        async function saveConfig() {
+            const data = {
+                key: document.getElementById('configKey').value,
+                value: document.getElementById('configValue').value,
+                description: document.getElementById('configDescription').value
+            };
+            
+            try {
+                const response = await fetch(`${API_BASE}/config`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${authToken}`
+                    },
+                    body: JSON.stringify(data)
+                });
+                
+                if (response.ok) {
+                    hideConfigForm();
+                    loadConfig();
+                } else {
+                    const error = await response.json();
+                    alert(error.error);
+                }
+            } catch (error) {
+                alert('Failed to save config: ' + error.message);
+            }
+        }
+
+        function hideConfigForm() {
+            document.getElementById('configForm').classList.add('hidden');
+        }
+    </script>
+</body>
+</html>

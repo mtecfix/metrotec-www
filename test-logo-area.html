@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src="js/mobile-detect.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Logo Clickable Area Test</title>
+  <link rel="stylesheet" href="universal-ui.css">
+  <link rel="stylesheet" href="mobile-optimized.css">
+  <style>
+    body { padding: 20px; }
+    .test-container { margin: 20px 0; }
+    .highlight { outline: 3px solid red; background: rgba(255,0,0,0.1); }
+    .info { background: #f0f0f0; padding: 15px; margin: 10px 0; border-radius: 5px; }
+  </style>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8815300775068949" crossorigin="anonymous"></script>
+</head>
+<body>
+  <h1>Logo Clickable Area Measurement</h1>
+  
+  <div class="test-container">
+    <header class="header">
+      <div class="container">
+          <a href="index.html" class="nav-brand" id="testLogo">
+            <img class="responsive-img" src="metrotec-logo.png" alt="MetroTec">
+          </a>
+        </nav>
+      </div>
+    </header>
+  </div>
+
+  <div class="info" id="measurements" style="margin-top: 200px;">
+    <h2>Measurements:</h2>
+    <p><strong>Logo Link Clickable Area:</strong></p>
+    <ul id="linkDimensions"></ul>
+    <p><strong>Logo Image Actual Size:</strong></p>
+    <ul id="imageDimensions"></ul>
+  </div>
+
+  <script>
+    window.addEventListener('load', () => {
+      const logoLink = document.getElementById('testLogo');
+      const logoImg = logoLink.querySelector('img');
+      
+      // Get computed dimensions
+      const linkRect = logoLink.getBoundingClientRect();
+      const imgRect = logoImg.getBoundingClientRect();
+      
+      // Display measurements
+      document.getElementById('linkDimensions').innerHTML = `
+        <li>Width: ${Math.round(linkRect.width)}px</li>
+        <li>Height: ${Math.round(linkRect.height)}px</li>
+        <li>Total Area: ${Math.round(linkRect.width * linkRect.height).toLocaleString()}px²</li>
+        <li>Left: ${Math.round(linkRect.left)}px</li>
+        <li>Right: ${Math.round(linkRect.right)}px</li>
+      `;
+      
+      document.getElementById('imageDimensions').innerHTML = `
+        <li>Width: ${Math.round(imgRect.width)}px</li>
+        <li>Height: ${Math.round(imgRect.height)}px</li>
+        <li>Total Area: ${Math.round(imgRect.width * imgRect.height).toLocaleString()}px²</li>
+      `;
+      
+      // Highlight the clickable area
+      logoLink.classList.add('highlight');
+      
+      // Console output
+      console.log('=== LOGO CLICKABLE AREA ===');
+      console.log('Link (clickable):', {
+        width: Math.round(linkRect.width),
+        height: Math.round(linkRect.height),
+        area: Math.round(linkRect.width * linkRect.height)
+      });
+      console.log('Image (visible):', {
+        width: Math.round(imgRect.width),
+        height: Math.round(imgRect.height),
+        area: Math.round(imgRect.width * imgRect.height)
+      });
+      console.log('Difference:', {
+        width: Math.round(linkRect.width - imgRect.width),
+        height: Math.round(linkRect.height - imgRect.height)
+      });
+    });
+  </script>
+</body>
+</html>

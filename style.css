@@ -1,0 +1,48 @@
+/*
+Theme Name: MetroTec Child
+Description: MetroTec IT Services - Child theme of Themify Ultra
+Template: themify-ultra
+Version: 1.0
+*/
+
+@import url('../themify-ultra/style.css');
+
+/* MetroTec Custom Styles */
+:root {
+  --primary-50: #eff6ff;
+  --primary-100: #dbeafe;
+  --primary-600: #2563eb;
+  --gray-600: #4b5563;
+  --gray-900: #111827;
+}
+
+.metrotec-hero {
+  background: linear-gradient(135deg, var(--primary-50) 0%, white 100%);
+  padding: 4rem 0;
+  text-align: center;
+}
+
+.metrotec-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.stat-number {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--primary-600);
+}
+
+.stat-label {
+  font-size: 0.875rem;
+  color: var(--gray-600);
+}
+
+@media (max-width: 768px) {
+  .metrotec-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

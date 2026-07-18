@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Content Generator - MetroTec CMS</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; background: #f5f5f5; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+        .header { background: white; padding: 1rem 2rem; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin-bottom: 2rem; }
+        .card { background: white; border-radius: 8px; padding: 2rem; margin-bottom: 2rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        .btn { background: #0ea5e9; color: white; padding: 0.75rem 1.5rem; border: none; border-radius: 6px; cursor: pointer; margin-right: 1rem; }
+        .btn:hover { background: #0284c7; }
+        .form-group { margin-bottom: 1rem; }
+        label { display: block; margin-bottom: 0.5rem; font-weight: 600; }
+        input, textarea, select { width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 4px; }
+        .output { background: #f8f9fa; padding: 1rem; border-radius: 4px; min-height: 200px; white-space: pre-wrap; }
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>AI Content Generator</h1>
+        <a href="/admin/ai-config">← Back to AI Config</a>
+    </div>
+    
+    <div class="container">
+        <div class="grid">
+            <div class="card">
+                <h2>Generate Content</h2>
+                <div class="form-group">
+                    <label>Content Type</label>
+                    <select id="content-type">
+                        <option value="blog-post">Blog Post</option>
+                        <option value="service-page">Service Page</option>
+                        <option value="landing-page">Landing Page</option>
+                        <option value="meta-description">Meta Description</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label>Topic/Title</label>
+                    <input type="text" id="topic" placeholder="e.g., Cybersecurity Best Practices">
+                </div>
+                
+                <div class="form-group">
+                    <label>Target Keywords</label>
+                    <input type="text" id="keywords" placeholder="cybersecurity, IT security, Metro Detroit">
+                </div>
+                
+                <div class="form-group">
+                    <label>Tone</label>
+                    <select id="tone">
+                        <option value="professional">Professional</option>
+                        <option value="friendly">Friendly</option>
+                        <option value="technical">Technical</option>
+                        <option value="conversational">Conversational</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label>Word Count</label>
+                    <select id="word-count">
+                        <option value="300">300 words</option>
+                        <option value="500">500 words</option>
+                        <option value="800">800 words</option>
+                        <option value="1200">1200 words</option>
+                    </select>
+                </div>
+                
+                <button class="btn" onclick="generateContent()">Generate Content</button>
+                <button class="btn" onclick="regenerate()">Regenerate</button>
+            </div>
+            
+            <div class="card">
+                <h2>Generated Content</h2>
+                <div id="output" class="output">Click "Generate Content" to create AI-powered content...</div>
+                <br>
+                <button class="btn" onclick="copyContent()">Copy to Clipboard</button>
+                <button class="btn" onclick="saveContent()">Save to CMS</button>
+            </div>
+        </div>
+        
+        <div class="card">
+            <h2>Content Templates</h2>
+            <button class="btn" onclick="loadTemplate('it-services')">IT Services Template</button>
+            <button class="btn" onclick="loadTemplate('cybersecurity')">Cybersecurity Template</button>
+            <button class="btn" onclick="loadTemplate('cloud-services')">Cloud Services Template</button>
+            <button class="btn" onclick="loadTemplate('managed-it')">Managed IT Template</button>
+        </div>
+    </div>
+    
+    <script>
+        function generateContent() {
+            const type = document.getElementById('content-type').value;
+            const topic = document.getElementById('topic').value;
+            const keywords = document.getElementById('keywords').value;
+            const tone = document.getElementById('tone').value;
+            const wordCount = document.getElementById('word-count').value;
+            
+            if (!topic) {
+                alert('Please enter a topic');
+                return;
+            }
+            
+            document.getElementById('output').textContent = 'Generating content...';
+            
+            // Simulate AI content generation
+            setTimeout(() => {
+                const content = generateSampleContent(type, topic, keywords, tone, wordCount);
+                document.getElementById('output').textContent = content;
+            }, 2000);
+        }
+        
+        function generateSampleContent(type, topic, keywords, tone, wordCount) {
+            return `# ${topic}
+
+In today's digital landscape, ${topic.toLowerCase()} has become increasingly important for Metro Detroit businesses. Our comprehensive approach ensures your organization stays protected and efficient.
+
+## Key Benefits
+
+- Enhanced security measures
+- 24/7 monitoring and support
+- Scalable solutions for growing businesses
+- Local expertise in Metro Detroit area
+
+## Why Choose MetroTec?
+
+With over [X] years of experience serving Metro Detroit businesses, we understand the unique challenges facing local companies. Our team of certified professionals provides:
+
+1. Same-day onsite service
+2. Proactive monitoring
+3. Customized solutions
+4. Competitive pricing
+
+## Get Started Today
+
+Ready to enhance your ${topic.toLowerCase()}? Contact MetroTec at (313) 242-7311 for a free consultation.
+
+Keywords: ${keywords}
+Tone: ${tone}
+Word Count: ~${wordCount} words`;
+        }
+        
+        function regenerate() {
+            generateContent();
+        }
+        
+        function copyContent() {
+            const content = document.getElementById('output').textContent;
+            navigator.clipboard.writeText(content);
+            alert('Content copied to clipboard!');
+        }
+        
+        function saveContent() {
+            alert('Content saved to CMS!');
+        }
+        
+        function loadTemplate(template) {
+            const templates = {
+                'it-services': 'Comprehensive IT Support for Metro Detroit Businesses',
+                'cybersecurity': 'Advanced Cybersecurity Solutions',
+                'cloud-services': 'Cloud Migration and Management Services',
+                'managed-it': 'Managed IT Services for Small Business'
+            };
+            
+            document.getElementById('topic').value = templates[template];
+        }
+    </script>
+</body>
+</html>

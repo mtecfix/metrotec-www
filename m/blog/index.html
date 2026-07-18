@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>MetroTec IT Blog | Tech News & Insights</title>
+  <meta name="description" content="IT tips, cybersecurity guides, and tech insights for Metro Detroit businesses from MetroTec.">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17815464842"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","AW-17815464842");</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
+  <style>
+    :root{--primary:#0284c7;--primary-dark:#0369a1;--primary-light:#e0f2fe;--primary-50:#f0f9ff;--gray-900:#0f172a;--gray-700:#334155;--gray-600:#475569;--gray-200:#e2e8f0;--gray-100:#f1f5f9;--radius:12px;}
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{font-family:"Inter",-apple-system,sans-serif;font-size:18px;line-height:1.7;color:var(--gray-900);background:#fff;padding-bottom:72px;}
+    a{color:var(--primary);text-decoration:none;}
+    .header{background:rgba(255,255,255,0.95);border-bottom:1px solid var(--gray-200);padding:.75rem 1rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;backdrop-filter:blur(10px);}
+    .header img{height:36px;width:auto;}
+    .header-call{color:var(--primary);font-weight:700;font-size:.9rem;display:flex;align-items:center;gap:.4rem;}
+    .header-menu-btn{background:none;border:none;color:var(--gray-700);font-size:1.5rem;cursor:pointer;}
+    .hero{background:linear-gradient(135deg,var(--primary-50) 0%,var(--gray-100) 100%);padding:2rem 1rem;text-align:center;border-bottom:1px solid var(--gray-200);}
+    .hero h1{font-size:1.9rem;font-weight:700;margin-bottom:.5rem;}
+    .hero p{font-size:1rem;color:var(--gray-600);}
+    .search-wrap{padding:1rem;background:white;border-bottom:1px solid var(--gray-200);}
+    .search-wrap input{width:100%;padding:.75rem 1rem;border:2px solid var(--gray-200);border-radius:var(--radius);font-size:1rem;font-family:inherit;}
+    .posts{padding:1rem;display:flex;flex-direction:column;gap:.75rem;}
+    .post-card{background:var(--gray-100);border-radius:var(--radius);padding:1.25rem;display:block;box-shadow:0 1px 3px rgba(0,0,0,.06);transition:box-shadow .2s;}
+    .post-card:active{box-shadow:0 3px 10px rgba(0,0,0,.12);}
+    .post-cat{display:inline-block;background:var(--primary-light);color:var(--primary-dark);font-size:.75rem;font-weight:700;padding:.2rem .6rem;border-radius:2rem;margin-bottom:.5rem;text-transform:uppercase;letter-spacing:.05em;}
+    .post-card h3{font-size:1.05rem;font-weight:700;color:var(--gray-900);margin-bottom:.4rem;line-height:1.35;}
+    .post-card p{font-size:.9rem;color:var(--gray-600);margin-bottom:.5rem;}
+    .read-more{font-size:.9rem;font-weight:600;color:var(--primary);}
+    .cta-banner{background:linear-gradient(135deg,var(--primary) 0%,var(--primary-dark) 100%);color:white;padding:2rem 1rem;text-align:center;margin:1rem 0;}
+    .cta-banner h3{font-size:1.4rem;font-weight:700;margin-bottom:.5rem;}
+    .cta-banner p{font-size:.95rem;opacity:.9;margin-bottom:1.25rem;}
+    .cta-btn{display:inline-flex;align-items:center;gap:.5rem;padding:.875rem 1.5rem;border-radius:var(--radius);font-weight:700;font-size:1rem;background:white;color:var(--primary);}
+    footer{background:var(--gray-900);color:#9ca3af;padding:1.5rem 1rem;font-size:.9rem;text-align:center;}
+    footer a{color:#d1d5db;}
+    .footer-links{display:flex;flex-wrap:wrap;justify-content:center;gap:1rem;margin-bottom:1rem;}
+    .sticky-cta{position:fixed;bottom:0;left:0;right:0;background:var(--primary);display:flex;z-index:999;box-shadow:0 -2px 12px rgba(0,0,0,.15);}
+    .sticky-cta a{flex:1;color:white;font-weight:600;font-size:.95rem;padding:1rem .5rem;display:flex;align-items:center;justify-content:center;gap:.4rem;min-height:56px;}
+    .sticky-cta a:first-child{background:white;color:var(--primary);border-right:1px solid var(--gray-200);}
+    .nav-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.5);z-index:200;}
+    .nav-menu.open{display:block;}
+    .nav-drawer{background:white;width:80%;max-width:300px;height:100%;padding:1.5rem 1rem;overflow-y:auto;}
+    .nav-drawer a{display:flex;align-items:center;gap:.75rem;padding:.875rem 0;border-bottom:1px solid var(--gray-100);font-weight:500;color:var(--gray-900);font-size:1rem;}
+    .nav-close{background:none;border:none;font-size:1.5rem;cursor:pointer;margin-bottom:1rem;color:var(--gray-600);}
+    .hidden{display:none;}
+  </style>
+</head>
+<body>
+  <header class="header">
+    <a href="../index.html"><img src="../../metrotec-logo.png" alt="MetroTec"></a>
+    <div style="display:flex;gap:1rem;align-items:center;">
+      <a href="tel:+13132427311" class="header-call"><i class="bi bi-telephone-fill"></i> Call</a>
+      <button onclick="document.getElementById('navMenu').classList.toggle('open')" class="header-menu-btn"><i class="bi bi-list"></i></button>
+    </div>
+  </header>
+  <div class="nav-menu" id="navMenu" onclick="if(event.target===this)this.classList.remove('open')">
+    <div class="nav-drawer">
+      <button class="nav-close" onclick="document.getElementById('navMenu').classList.remove('open')"><i class="bi bi-x-lg"></i></button>
+      <a href="../index.html"><i class="bi bi-house"></i> Home</a>
+      <a href="../services.html"><i class="bi bi-grid"></i> Services</a>
+      <a href="../managed-it.html"><i class="bi bi-gear"></i> Managed IT</a>
+      <a href="../cybersecurity.html"><i class="bi bi-shield-check"></i> Cybersecurity</a>
+      <a href="../about.html"><i class="bi bi-people"></i> About</a>
+      <a href="../contact.html"><i class="bi bi-envelope"></i> Contact</a>
+      <a href="index.html" style="color:var(--primary);font-weight:700;"><i class="bi bi-newspaper"></i> Blog</a>
+      <a href="../../m/portal.html"><i class="bi bi-box-arrow-in-right"></i> Client Portal</a><a href="../../m/submit-ticket.html"><i class="bi bi-life-preserver"></i> Submit a Ticket</a><a href="../get-quote.html" style="color:var(--primary);font-weight:700;"><i class="bi bi-file-text"></i> Get Free Quote</a>
+    </div>
+  </div>
+
+  <section class="hero">
+    <h1>MetroTec IT Blog</h1>
+    <p>Tech insights for Metro Detroit businesses</p>
+  </section>
+
+  <div class="search-wrap">
+    <input type="search" id="searchInput" placeholder="🔍 Search articles..." oninput="filterPosts(this.value)">
+  </div>
+
+  <div class="posts" id="postList">
+    <a href="5g-network-business-2026.html" class="post-card">
+      <span class="post-cat">IT Insights</span>
+      <h3>5G Network Business 2026</h3>
+      <p>Read the full article on the MetroTec IT Blog.</p>
+      <span class="read-more">Read more →</span>
+    </a>
+    <a href="active-directory-security.html" class="post-card">
+      <span class="post-cat">IT Insights</span>
+      <h3>Active Directory Security</h3>
+      <p>Read the full article on the MetroTec IT Blog.</p>
+      <span class="read-more">Read more →</span>
+    </a>
+    <a href="ai-business-it-2026.html" class="post-card">
+      <span class="post-cat">IT Insights</span>
+      <h3>Ai Business It 2026</h3>
+      <p>Read the full article on the MetroTec IT Blog.</p>
+      <span class="read-more">Read more →</span>
+    </a>
+    <a href="aws-vs-azure.html" class="post-card">
+      <span class="post-cat">IT Insights</span>
+      <h3>Aws Vs Azure</h3>
+      <p>Read the full article on the MetroTec IT Blog.</p>
+      <span class="read-more">Read more →</span>
+    </a>
+    <a href="backup-strategy-guide.html" class="post-card">
+      <span class="post-cat">IT Insights</span>
+      <h3>Backup Strategy Guide</h3>
+      <p>Read the full article on the MetroTec IT Blog.</p>
+      <span class="read-more">Read more →</span>
+    </a>
+    <a href="behavior-shield-ransomware-protection.html" class="post-card">
+      <span class="post-cat">Threat Prevention</span>
+      <h3>How Behavior-Based Security Stops Zero-Day Ransomware</h3>
+      <p>Traditional antivirus misses 40% of new threats.</p>
+      <span class="read-more">Read more →</span>
+    </a>
+    <a href="business-security-essential-vs-premium.html" class="post-card">
+      <span class="post-cat">IT Insights</span>
+      <h3>Business Security Essential Vs Premium</h3>
+      <p>Read the full article on the MetroTec IT Blog.</p>
+      <span class="read-more">Read more →</span>
+    </a>
+    <a href="business-security-tiers-comparison.html" class="post-card">
+      <span class="post-cat">IT Insights</span>
+      <h3>Business Security Tiers Comparison</h3>
+      <p>Read the full article on the MetroTec IT Blog.</p>
+      <span class="read-more">Read more →</span>
+    </a>
+    <a href="centralized-security-management.html" class="post-card">
+      <span class="post-cat">IT Insights</span>
+      <h3>Centralized Security Management</h3>
+      <p>Read the full article on the MetroTec IT Blog.</p>
+      <span class="read-more">Read more →</span>
+    </a>
+    <a href="cloud-backup-business-guide.html" class="post-card">
+      <span class="post-cat">IT Insights</span>
+      <h3>Cloud Backup Business Guide</h3>
+      <p>Read the full article on the MetroTec IT Blog.</p>
+      <span class="read-more">Read more →</span>
+    </a>
+    <a href="cloud-backup-disaster-recovery-guide.html" class="post-card">
+      <span class="post-cat">Data Protection</span>
+      <h3>Cloud Backup and Disaster Recovery Guide</h3>
+      <p>60% of businesses without backup fail within 6 months of data loss.</p>
+      <span class="read-more">Read more →</span>
+    </a>
+    <a href="cloud-backup-solutions.html" class="post-card">
+      <span class="post-cat">IT Insights</span>
+      <h3>Cloud Backup Solutions</h3>
+      <p>Read the full article on the MetroTec IT Blog.</p>
+      <span class="read-more">Read more →</span>
+    </a>
+    <a href="cloud-backup-vs-traditional.html" class="post-card">
+      <span class="post-cat">IT Insights</span>
+      <h3>Cloud Backup Vs Traditional</h3>
+      <p>Read the full article on the MetroTec IT Blog.</p>
+      <span class="read-more">Read more →</span>
+    </a>
+    <a href="cloud-cost-optimization.html" class="post-card">
+      <span class="post-cat">IT Insights</span>
+      <h3>Cloud Cost Optimization</h3>
+      <p>Read the full article on the MetroTec IT Blog.</p>
+      <span class="read-more">Read more →</span>
+    </a>
+    <a href="cloud-migration-guide.html" class="post-card">
+      <span class="post-cat">IT Insights</span>
+      <h3>Cloud Migration Guide</h3>
+      <p>Read the full article on the MetroTec IT Blog.</p>
+      <span class="read-more">Read more →</span>
+    </a>
+    <a href="cloud-vs-onpremise-comparison.html" class="post-card">
+      <span class="post-cat">Cloud Strategy</span>
+      <h3>Cloud vs On-Premise: Which Is Right for Your Business?</h3>
+      <p>Hybrid solutions offer best of both worlds.</p>
+      <span class="read-more">Read more →</span>
+    </a>
+    <a href="cnc-machine-monitoring.html" class="post-card">
+      <span class="post-cat">IT Insights</span>
+      <h3>Cnc Machine Monitoring</h3>
+      <p>Read the full article on the MetroTec IT Blog.</p>
+      <span class="read-more">Read more →</span>
+    </a>
+    <a href="compliance-requirements-small-business.html" class="post-card">
+      <span class="post-cat">Compliance</span>
+      <h3>IT Compliance Requirements for Metro Detroit Businesses</h3>
+      <p>Non-compliance fines start at $10,000 per violation.</p>
+      <span class="read-more">Read more →</span>
+    </a>
+    <a href="cost-of-downtime.html" class="post-card">
+      <span class="post-cat">IT Insights</span>
+      <h3>Cost Of Downtime</h3>
+      <p>Read the full article on the MetroTec IT Blog.</p>
+      <span class="read-more">Read more →</span>
+    </a>
+    <a href="cybersecurity-insurance.html" class="post-card">
+      <span class="post-cat">IT Insights</span>
+      <h3>Cybersecurity Insurance</h3>
+      <p>Read the full article on the MetroTec IT Blog.</p>
+      <span class="read-more">Read more →</span>
+    </a>
+    <a href="cybersecurity-threats-2026.html" class="post-card">
+      <span class="post-cat">Cybersecurity</span>
+      <h3>5 Cybersecurity Threats Facing Detroit Businesses in 2026</h3>
+      <p>Ransomware attacks targeting Michigan businesses have surged 23% this year.</p>
+      <span class="read-more">Read more →</span>
+    </a>
+    <a href="data-backup-strategy-321-rule.html" class="post-card">
+      <span class="post-cat">Data Protection</span>
+      <h3>The 3-2-1 Backup Rule: Why Your Business Needs It</h3>
+      <p>Single backup location = single point of failure.</p>
+      <span class="read-more">Read more →</span>
+    </a>
+    <a href="data-backup-vs-archive.html" class="post-card">
+      <span class="post-cat">IT Insights</span>
+      <h3>Data Backup Vs Archive</h3>
+      <p>Read the full article on the MetroTec IT Blog.</p>
+      <span class="read-more">Read more →</span>
+    </a>
+    <a href="disaster-recovery-planning.html" class="post-card">
+      <span class="post-cat">Business Continuity</span>
+      <h3>Disaster Recovery Planning: Business Continuity Essentials</h3>
+      <p>60% of businesses without DR plan fail within 6 months.</p>
+      <span class="read-more">Read more →</span>
+    </a>
+    <a href="disaster-recovery-testing.html" class="post-card">
+      <span class="post-cat">IT Insights</span>
+      <h3>Disaster Recovery Testing</h3>
+      <p>Read the full article on the MetroTec IT Blog.</p>
+      <span class="read-more">Read more →</span>
+    </a>
+    <a href="email-security-best-practices.html" class="post-card">
+      <span class="post-cat">IT Insights</span>
+      <h3>Email Security Best Practices</h3>
+      <p>Read the full article on the MetroTec IT Blog.</p>
+      <span class="read-more">Read more →</span>
+    </a>
+    <a href="email-security-spam-filtering.html" class="post-card">
+      <span class="post-cat">Email Security</span>
+      <h3>Email Security: Beyond Basic Spam Filtering</h3>
+      <p>Email is the #1 attack vector for cybercriminals.</p>
+      <span class="read-more">Read more →</span>
+    </a>
+    <a href="endpoint-detection-response.html" class="post-card">
+      <span class="post-cat">Endpoint Security</span>
+      <h3>Next-Gen Endpoint Protection Solutions</h3>
+      <p>EDR stops threats traditional antivirus misses.</p>
+      <span class="read-more">Read more →</span>
+    </a>
+    <a href="endpoint-security-guide.html" class="post-card">
+      <span class="post-cat">IT Insights</span>
+      <h3>Endpoint Security Guide</h3>
+      <p>Read the full article on the MetroTec IT Blog.</p>
+      <span class="read-more">Read more →</span>
+    </a>
+    <a href="endpoint-security-tiers-guide.html" class="post-card">
+      <span class="post-cat">IT Insights</span>
+      <h3>Endpoint Security Tiers Guide</h3>
+      <p>Read the full article on the MetroTec IT Blog.</p>
+      <span class="read-more">Read more →</span>
+    </a>
+    <a href="erp-systems-manufacturing.html" class="post-card">
+      <span class="post-cat">IT Insights</span>
+      <h3>Erp Systems Manufacturing</h3>
+      <p>Read the full article on the MetroTec IT Blog.</p>
+      <span class="read-more">Read more →</span>
+    </a>
+    <a href="hipaa-compliance-guide.html" class="post-card">
+      <span class="post-cat">IT Insights</span>
+      <h3>Hipaa Compliance Guide</h3>
+      <p>Read the full article on the MetroTec IT Blog.</p>
+      <span class="read-more">Read more →</span>
+    </a>
+    <a href="hybrid-work-security-2026.html" class="post-card">
+      <span class="post-cat">IT Insights</span>
+      <h3>Hybrid Work Security 2026</h3>
+      <p>Read the full article on the MetroTec IT Blog.</p>
+      <span class="read-more">Read more →</span>
+    </a>
+    <a href="incident-response-plan.html" class="post-card">
+      <span class="post-cat">IT Insights</span>
+      <h3>Incident Response Plan</h3>
+      <p>Read the full article on the MetroTec IT Blog.</p>
+      <span class="read-more">Read more →</span>
+    </a>
+    <a href="iot-manufacturing-sensors.html" class="post-card">
+      <span class="post-cat">IT Insights</span>
+      <h3>Iot Manufacturing Sensors</h3>
+      <p>Read the full article on the MetroTec IT Blog.</p>
+      <span class="read-more">Read more →</span>
+    </a>
+    <a href="it-budget-planning-2026.html" class="post-card">
+      <span class="post-cat">IT Insights</span>
+      <h3>It Budget Planning 2026</h3>
+      <p>Read the full article on the MetroTec IT Blog.</p>
+      <span class="read-more">Read more →</span>
+    </a>
+    <a href="it-documentation-disaster-recovery.html" class="post-card">
+      <span class="post-cat">IT Management</span>
+      <h3>IT Documentation: Essential for Business Continuity</h3>
+      <p>Undocumented systems cost 3x more to maintain and recover.</p>
+      <span class="read-more">Read more →</span>
+    </a>
+    <a href="it-documentation-guide.html" class="post-card">
+      <span class="post-cat">IT Insights</span>
+      <h3>It Documentation Guide</h3>
+      <p>Read the full article on the MetroTec IT Blog.</p>
+      <span class="read-more">Read more →</span>
+    </a>
+    <a href="kubernetes-basics.html" class="post-card">
+      <span class="post-cat">IT Insights</span>
+      <h3>Kubernetes Basics</h3>
+      <p>Read the full article on the MetroTec IT Blog.</p>
+      <span class="read-more">Read more →</span>
+    </a>
+    <a href="layered-security-approach-small-business.html" class="post-card">
+      <span class="post-cat">Security Planning</span>
+      <h3>Layered Security Approach for Small Business</h3>
+      <p>Single-layer security fails 70% of the time against modern attacks.</p>
+      <span class="read-more">Read more →</span>
+    </a>
+    <a href="managed-it-troy-businesses.html" class="post-card">
+      <span class="post-cat">IT Insights</span>
+      <h3>Managed It Troy Businesses</h3>
+      <p>Read the full article on the MetroTec IT Blog.</p>
+      <span class="read-more">Read more →</span>
+    </a>
+    <a href="manufacturing-downtime-prevention.html" class="post-card">
+      <span class="post-cat">IT Insights</span>
+      <h3>Manufacturing Downtime Prevention</h3>
+      <p>Read the full article on the MetroTec IT Blog.</p>
+      <span class="read-more">Read more →</span>
+    </a>
+    <a href="mes-manufacturing-execution.html" class="post-card">
+      <span class="post-cat">IT Insights</span>
+      <h3>Mes Manufacturing Execution</h3>
+      <p>Read the full article on the MetroTec IT Blog.</p>
+      <span class="read-more">Read more →</span>
+    </a>
+    <a href="mfa-security-guide.html" class="post-card">
+      <span class="post-cat">IT Insights</span>
+      <h3>Mfa Security Guide</h3>
+      <p>Read the full article on the MetroTec IT Blog.</p>
+      <span class="read-more">Read more →</span>
+    </a>
+    <a href="microsoft-365-migration-guide.html" class="post-card">
+      <span class="post-cat">Cloud Migration</span>
+      <h3>Microsoft 365 Migration Guide for Small Businesses</h3>
+      <p>Moving to Microsoft 365 improves collaboration and reduces IT costs.</p>
+      <span class="read-more">Read more →</span>
+    </a>
+    <a href="microsoft-365-security.html" class="post-card">
+      <span class="post-cat">IT Insights</span>
+      <h3>Microsoft 365 Security</h3>
+      <p>Read the full article on the MetroTec IT Blog.</p>
+      <span class="read-more">Read more →</span>
+    </a>
+    <a href="modernizing-cybersecurity-smb.html" class="post-card">
+      <span class="post-cat">IT Insights</span>
+      <h3>Modernizing Cybersecurity Smb</h3>
+      <p>Read the full article on the MetroTec IT Blog.</p>
+      <span class="read-more">Read more →</span>
+    </a>
+    <a href="multi-factor-authentication-guide.html" class="post-card">
+      <span class="post-cat">Access Control</span>
+      <h3>Multi-Factor Authentication: Adding Critical Security Layer</h3>
+      <p>MFA blocks 99.9% of automated attacks.</p>
+      <span class="read-more">Read more →</span>
+    </a>
+    <a href="network-monitoring-prevent-downtime.html" class="post-card">
+      <span class="post-cat">Network Management</span>
+      <h3>Network Monitoring: Catch Problems Before Downtime</h3>
+      <p>Proactive monitoring detects 90% of issues before users notice.</p>
+      <span class="read-more">Read more →</span>
+    </a>
+    <a href="network-monitoring-tools.html" class="post-card">
+      <span class="post-cat">IT Insights</span>
+      <h3>Network Monitoring Tools</h3>
+      <p>Read the full article on the MetroTec IT Blog.</p>
+      <span class="read-more">Read more →</span>
+    </a>
+    <a href="network-security-layers.html" class="post-card">
+      <span class="post-cat">IT Insights</span>
+      <h3>Network Security Layers</h3>
+      <p>Read the full article on the MetroTec IT Blog.</p>
+      <span class="read-more">Read more →</span>
+    </a>
+    <a href="network-segmentation-security.html" class="post-card">
+      <span class="post-cat">Network Architecture</span>
+      <h3>Network Segmentation: Limiting Breach Impact</h3>
+      <p>Segmentation contains threats to single network zones.</p>
+      <span class="read-more">Read more →</span>
+    </a>
+    <a href="network-segmentation.html" class="post-card">
+      <span class="post-cat">IT Insights</span>
+      <h3>Network Segmentation</h3>
+      <p>Read the full article on the MetroTec IT Blog.</p>
+      <span class="read-more">Read more →</span>
+    </a>
+    <a href="office-365-migration.html" class="post-card">
+      <span class="post-cat">IT Insights</span>
+      <h3>Office 365 Migration</h3>
+      <p>Read the full article on the MetroTec IT Blog.</p>
+      <span class="read-more">Read more →</span>
+    </a>
+    <a href="password-management-guide.html" class="post-card">
+      <span class="post-cat">IT Insights</span>
+      <h3>Password Management Guide</h3>
+      <p>Read the full article on the MetroTec IT Blog.</p>
+      <span class="read-more">Read more →</span>
+    </a>
+    <a href="password-manager-business-security.html" class="post-card">
+      <span class="post-cat">Security Tools</span>
+      <h3>Password Managers: Essential Security Tool</h3>
+      <p>Weak passwords cause 81% of data breaches.</p>
+      <span class="read-more">Read more →</span>
+    </a>
+    <a href="patch-management-automation.html" class="post-card">
+      <span class="post-cat">System Management</span>
+      <h3>Automated Patch Management: Closing Security Gaps</h3>
+      <p>Unpatched systems are the easiest attack vector.</p>
+      <span class="read-more">Read more →</span>
+    </a>
+    <a href="patch-management-critical-security.html" class="post-card">
+      <span class="post-cat">IT Insights</span>
+      <h3>Patch Management Critical Security</h3>
+      <p>Read the full article on the MetroTec IT Blog.</p>
+      <span class="read-more">Read more →</span>
+    </a>
+    <a href="patch-management-strategy.html" class="post-card">
+      <span class="post-cat">IT Insights</span>
+      <h3>Patch Management Strategy</h3>
+      <p>Read the full article on the MetroTec IT Blog.</p>
+      <span class="read-more">Read more →</span>
+    </a>
+    <a href="phishing-training-employees.html" class="post-card">
+      <span class="post-cat">Security Training</span>
+      <h3>Employee Security Training: Best Defense Against Phishing</h3>
+      <p>95% of breaches start with human error.</p>
+      <span class="read-more">Read more →</span>
+    </a>
+    <a href="quality-management-software.html" class="post-card">
+      <span class="post-cat">IT Insights</span>
+      <h3>Quality Management Software</h3>
+      <p>Read the full article on the MetroTec IT Blog.</p>
+      <span class="read-more">Read more →</span>
+    </a>
+    <a href="ransomware-recovery-plan.html" class="post-card">
+      <span class="post-cat">IT Insights</span>
+      <h3>Ransomware Recovery Plan</h3>
+      <p>Read the full article on the MetroTec IT Blog.</p>
+      <span class="read-more">Read more →</span>
+    </a>
+    <a href="remote-control-it-support-efficiency.html" class="post-card">
+      <span class="post-cat">IT Management</span>
+      <h3>Remote IT Support: Faster Response Times, Lower Costs</h3>
+      <p>Remote support resolves 80% of IT issues in under 15 minutes.</p>
+      <span class="read-more">Read more →</span>
+    </a>
+    <a href="remote-control-it-support.html" class="post-card">
+      <span class="post-cat">IT Insights</span>
+      <h3>Remote Control It Support</h3>
+      <p>Read the full article on the MetroTec IT Blog.</p>
+      <span class="read-more">Read more →</span>
+    </a>
+    <a href="remote-work-security.html" class="post-card">
+      <span class="post-cat">IT Insights</span>
+      <h3>Remote Work Security</h3>
+      <p>Read the full article on the MetroTec IT Blog.</p>
+      <span class="read-more">Read more →</span>
+    </a>
+    <a href="scada-systems-guide.html" class="post-card">
+      <span class="post-cat">IT Insights</span>
+      <h3>Scada Systems Guide</h3>
+      <p>Read the full article on the MetroTec IT Blog.</p>
+      <span class="read-more">Read more →</span>
+    </a>
+    <a href="secure-web-gateway-business-protection.html" class="post-card">
+      <span class="post-cat">Network Security</span>
+      <h3>Secure Web Gateway: Protecting from Web-Based Threats</h3>
+      <p>92% of malware is delivered via web traffic.</p>
+      <span class="read-more">Read more →</span>
+    </a>
+    <a href="security-management-console-benefits.html" class="post-card">
+      <span class="post-cat">IT Insights</span>
+      <h3>Security Management Console Benefits</h3>
+      <p>Read the full article on the MetroTec IT Blog.</p>
+      <span class="read-more">Read more →</span>
+    </a>
+    <a href="server-maintenance-best-practices.html" class="post-card">
+      <span class="post-cat">Infrastructure</span>
+      <h3>Server Maintenance: Preventing Costly Downtime</h3>
+      <p>Scheduled maintenance costs 10x less than emergency repairs.</p>
+      <span class="read-more">Read more →</span>
+    </a>
+    <a href="server-virtualization-benefits.html" class="post-card">
+      <span class="post-cat">IT Insights</span>
+      <h3>Server Virtualization Benefits</h3>
+      <p>Read the full article on the MetroTec IT Blog.</p>
+      <span class="read-more">Read more →</span>
+    </a>
+    <a href="soc2-compliance-guide.html" class="post-card">
+      <span class="post-cat">IT Insights</span>
+      <h3>Soc2 Compliance Guide</h3>
+      <p>Read the full article on the MetroTec IT Blog.</p>
+      <span class="read-more">Read more →</span>
+    </a>
+    <a href="software-patches-cybersecurity-seatbelt.html" class="post-card">
+      <span class="post-cat">IT Insights</span>
+      <h3>Software Patches Cybersecurity Seatbelt</h3>
+      <p>Read the full article on the MetroTec IT Blog.</p>
+      <span class="read-more">Read more →</span>
+    </a>
+    <a href="vdi-virtual-desktop.html" class="post-card">
+      <span class="post-cat">IT Insights</span>
+      <h3>Vdi Virtual Desktop</h3>
+      <p>Read the full article on the MetroTec IT Blog.</p>
+      <span class="read-more">Read more →</span>
+    </a>
+    <a href="virtual-desktop-infrastructure.html" class="post-card">
+      <span class="post-cat">Remote Work</span>
+      <h3>Virtual Desktop Infrastructure: Remote Work Solution</h3>
+      <p>VDI enables secure access from anywhere.</p>
+      <span class="read-more">Read more →</span>
+    </a>
+    <a href="voip-phone-system-benefits.html" class="post-card">
+      <span class="post-cat">Business Communications</span>
+      <h3>VoIP Phone Systems: Cost Savings and Features</h3>
+      <p>Cut phone costs 50% while adding advanced features.</p>
+      <span class="read-more">Read more →</span>
+    </a>
+    <a href="voip-troubleshooting.html" class="post-card">
+      <span class="post-cat">IT Insights</span>
+      <h3>Voip Troubleshooting</h3>
+      <p>Read the full article on the MetroTec IT Blog.</p>
+      <span class="read-more">Read more →</span>
+    </a>
+    <a href="voip-vs-traditional-phone.html" class="post-card">
+      <span class="post-cat">IT Insights</span>
+      <h3>Voip Vs Traditional Phone</h3>
+      <p>Read the full article on the MetroTec IT Blog.</p>
+      <span class="read-more">Read more →</span>
+    </a>
+    <a href="wireless-network-security.html" class="post-card">
+      <span class="post-cat">Network Security</span>
+      <h3>Wireless Network Security: Protecting Your Business WiFi</h3>
+      <p>Unsecured WiFi networks expose all internal traffic.</p>
+      <span class="read-more">Read more →</span>
+    </a>
+    <a href="zero-trust-security.html" class="post-card">
+      <span class="post-cat">IT Insights</span>
+      <h3>Zero Trust Security</h3>
+      <p>Read the full article on the MetroTec IT Blog.</p>
+      <span class="read-more">Read more →</span>
+    </a>
+  </div>
+
+  <div class="cta-banner">
+    <h3>Need IT Help?</h3>
+    <p>MetroTec serves Metro Detroit businesses with managed IT, cybersecurity, and cloud solutions.</p>
+    <a href="../get-quote.html" class="cta-btn"><i class="bi bi-file-earmark-text"></i> Get Free Quote</a>
+  </div>
+
+  <footer>
+    <div class="footer-links"><a href="../services.html">Services</a><a href="../about.html">About</a><a href="../contact.html">Contact</a><a href="../privacy-policy.html">Privacy</a></div>
+    <p>© 2026 MetroTec · Metro Detroit IT Support</p><p style="margin-top:.5rem;font-style:normal;"><i class="bi bi-geo-alt-fill"></i> 607 Shelby St, Detroit, MI 48226</p>
+    <p style="margin-top:.75rem;font-size:.8rem;"><a href="../../blog/index.html" onclick="sessionStorage.setItem('prefer_desktop','1')">View full site →</a></p>
+  </footer>
+  <div class="sticky-cta">
+    <a href="tel:+13132427311"><i class="bi bi-telephone-fill"></i> Call Now</a>
+    <a href="../get-quote.html"><i class="bi bi-file-earmark-text"></i> Get Quote</a>
+  </div>
+
+  <script>
+    function filterPosts(q) {
+      q = q.toLowerCase();
+      document.querySelectorAll('#postList .post-card').forEach(function(c) {
+        c.classList.toggle('hidden', q && !c.textContent.toLowerCase().includes(q));
+      });
+    }
+  </script>
+</body>
+</html>

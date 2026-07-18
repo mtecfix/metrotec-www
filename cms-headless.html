@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8815300775068949" crossorigin="anonymous"></script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-17815464842"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'AW-17815464842');
+</script>
+    <title>MetroTec Headless CMS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 20px; min-width: 1024px; }
+        .container { max-width: 1200px; margin: 0 auto; }
+        .header { text-align: center; margin-bottom: 30px; }
+        .sections { display: flex; gap: 30px; }
+        .section { flex: 1; }
+        .item { border: 1px solid #ddd; padding: 15px; margin: 10px 0; border-radius: 5px; }
+        .btn { background: #0070f3; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; }
+        .form { background: #f5f5f5; padding: 20px; border-radius: 5px; margin: 20px 0; }
+        .form input, .form textarea { width: 100%; padding: 10px; margin: 5px 0; border: 1px solid #ddd; border-radius: 4px; }
+        .form textarea { height: 200px; }
+        .hidden { display: none; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>MetroTec Headless CMS</h1>
+            <button class="btn" onclick="showAddForm()">Add New Page</button>
+            <button class="btn" onclick="generateSite()">Generate Static Site</button>
+        </div>
+
+        <div id="addForm" class="form hidden">
+            <h3>Add New Page</h3>
+            <input type="text" id="pageTitle" placeholder="Page Title">
+            <input type="text" id="pageSlug" placeholder="page-slug">
+            <textarea id="pageContent" placeholder="Page content (HTML)"></textarea>
+            <button class="btn" onclick="savePage()">Save Page</button>
+            <button class="btn" onclick="hideAddForm()">Cancel</button>
+        </div>
+
+        <div class="sections">
+            <div class="section">
+                <h2>Pages</h2>
+                <div id="pagesList"></div>
+            </div>
+            <div class="section">
+                <h2>Blog Posts</h2>
+                <div id="postsList"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let pages = JSON.parse(localStorage.getItem('cms_pages') || '[]');
+        let posts = JSON.parse(localStorage.getItem('cms_posts') || '[]');
+
+        function showAddForm() {
+            document.getElementById('addForm').classList.remove('hidden');
+        }
+
+        function hideAddForm() {
+            document.getElementById('addForm').classList.add('hidden');
+            document.getElementById('pageTitle').value = '';
+            document.getElementById('pageSlug').value = '';
+            document.getElementById('pageContent').value = '';
+        }
+
+        function savePage() {
+            const title = document.getElementById('pageTitle').value;
+            const slug = document.getElementById('pageSlug').value;
+            const content = document.getElementById('pageContent').value;
+            
+            if (!title || !slug) {
+                alert('Title and slug are required');
+                return;
+            }
+
+            const page = {
+                id: Date.now(),
+                title,
+                slug,
+                content,
+                created: new Date().toISOString()
+            };
+
+            pages.push(page);
+            localStorage.setItem('cms_pages', JSON.stringify(pages));
+            hideAddForm();
+            renderPages();
+        }
+
+        function deletePage(id) {
+            pages = pages.filter(p => p.id !== id);
+            localStorage.setItem('cms_pages', JSON.stringify(pages));
+            renderPages();
+        }
+
+        function renderPages() {
+            const container = document.getElementById('pagesList');
+            container.innerHTML = pages.map(page => `
+                <div class="item">
+                    <h3>${page.title}</h3>
+                    <p><strong>Slug:</strong> ${page.slug}</p>
+                    <p><strong>Created:</strong> ${new Date(page.created).toLocaleDateString()}</p>
+                    <button class="btn" onclick="deletePage(${page.id})">Delete</button>
+                </div>
+            `).join('');
+        }
+
+        function generateSite() {
+            // Update existing HTML files directly
+            pages.forEach(page => {
+                updateHTMLFile(page);
+            });
+            
+            alert('HTML files updated! Ready to deploy to S3.');
+        }
+
+        function updateHTMLFile(page) {
+            // This would need server-side implementation
+            // For now, just show the HTML content to copy/paste
+            const htmlContent = generatePageHTML(page);
+            
+            const newWindow = window.open('', '_blank');
+            newWindow.document.write(`
+                <h3>Copy this HTML for ${page.slug}.html:</h3>
+                <textarea style="width:100%;height:400px;">${htmlContent}</textarea>
+            `);
+        }
+
+        function generatePageHTML(page) {
+            return `<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8815300775068949" crossorigin="anonymous"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>${page.title} - MetroTec</title>
+    <script src="js/mobile-detect.js"></script>
+    <link rel="stylesheet" href="universal-ui.css">
+  <link rel="stylesheet" href="mobile-optimized.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+                <a href="index.html" class="nav-brand">
+                    <img loading="lazy" src="metrotec-logo.png" alt="MetroTec">
+                </a>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+        
+        <div class="desktop-only">
+          <a href="get-quote.html" class="btn btn-primary" style="white-space: nowrap;">Get Quote</a>
+        </div>
+                <div class="nav-menu-toggle" id="navMenuToggle">
+                    <span></span><span></span><span></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+    
+    <main class="container" style="padding: 2rem 0;">
+        <h1>${page.title}</h1>
+        ${page.content}
+    </main>
+<!-- Footer -->
+<footer style="background:#0284c7;padding:24px 0;color:white"><div style="max-width:1200px;margin:auto;display:flex;flex-wrap:wrap;justify-content:space-around;padding:0 20px"><div style="flex:1;min-width:200px;margin:10px"><h4 style="margin-top:0;font-size:1rem">Quick Links</h4><ul style="list-style:none;padding:0;font-size:0.875rem"><li style="margin:8px 0"><a href="index.html" style="color:white;text-decoration:none">Home</a></li><li style="margin:8px 0"><a href="services.html" style="color:white;text-decoration:none">Services</a></li><li style="margin:8px 0"><a href="about.html" style="color:white;text-decoration:none">About Us</a></li><li style="margin:8px 0"><a href="contact.html" style="color:white;text-decoration:none">Contact</a></li></ul></div><div style="flex:1;min-width:200px;margin:10px"><h4 style="margin-top:0;font-size:1rem">Connect</h4><ul style="list-style:none;padding:0;font-size:0.875rem"><li style="margin:8px 0"><a href="https://www.linkedin.com/company/metrotec" target="_blank" style="color:white;text-decoration:none">LinkedIn</a></li><li style="margin:8px 0"><a href="get-quote.html" style="color:white;text-decoration:none">Get a Quote</a></li><li style="margin:8px 0"><a href="blog/index.html" style="color:white;text-decoration:none">Blog</a></li></ul></div><div style="flex:1;min-width:200px;margin:10px"><h4 style="margin-top:0;font-size:1rem">Troy, Michigan</h4><p style="font-size:0.875rem;margin:8px 0">Professional IT Services<br>Managed IT & Cybersecurity</p></div></div><div style="text-align:center;padding:12px 0;font-size:0.75rem;border-top:1px solid rgba(255,255,255,0.2);margin-top:20px">&copy; 2026 MetroTec | <a href="terms-of-service.html" style="color:white;text-decoration:none">Terms</a> | <a href="privacy-policy.html" style="color:white;text-decoration:none">Privacy</a></div></footer>
+<style>
+  .ft-footer { background-color: #0284c7; padding: 24px 0; color: white; }
+  .ft-container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+  .ft-columns { display: flex; flex-wrap: wrap; gap: 20px; }
+  .ft-brand { flex: 1 1 250px; position: relative; }
+  .ft-accent-bar { position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(to right, #fff, rgba(255,255,255,0.3)); transform: scaleX(0); transform-origin: left; animation: accent-bar 0.5s ease forwards; }
+  @keyframes accent-bar { to { transform: scaleX(1); } }
+  .ft-brand img { width: 150px; margin-bottom: 20px; }
+  .ft-tagline { margin-bottom: 16px; color: rgba(255,255,255,0.8); font-size: 0.875rem; }
+  .ft-social-icons a { display: inline-flex; justify-content: center; align-items: center; width: 36px; height: 36px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.4); margin-right: 8px; color: white; transition: all 0.25s ease; }
+  .ft-social-icons a:hover { border-color: white; box-shadow: 0 0 10px rgba(255,255,255,0.3); transform: scale(1.1); }
+  .ft-services, .ft-company, .ft-contact { flex: 1 1 150px; }
+  .ft-services h5, .ft-company h5, .ft-contact h5 { margin-bottom: 12px; color: rgba(255,255,255,0.7); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; }
+  .ft-services ul, .ft-company ul, .ft-contact ul { list-style: none; padding: 0; margin: 0; }
+  .ft-services li, .ft-company li, .ft-contact li { margin-bottom: 4px; }
+  .ft-services a, .ft-company a, .ft-contact a { text-decoration: none; position: relative; color: rgba(255,255,255,0.85); }
+  .ft-services a:hover, .ft-company a:hover, .ft-contact a:hover { color: white; }
+  .ft-services a::before, .ft-company a::before, .ft-contact a:not([href^="tel"]):not([href^="mailto"])::before { content: "\2192"; position: absolute; left: -15px; opacity: 0; transition: all 0.2s ease; }
+  .ft-services a:hover::before, .ft-company a:hover::before, .ft-contact a:not([href^="tel"]):not([href^="mailto"]):hover::before { left: 0; opacity: 1; }
+  .ft-bottom-bar { margin-top: 20px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.2); display: flex; justify-content: space-between; font-size: 0.8rem; flex-wrap: wrap; gap: 8px; }
+  .ft-bottom-bar a { color: rgba(255,255,255,0.8); text-decoration: none; }
+  .ft-bottom-bar a:hover { color: white; text-decoration: underline; }
+  @media (max-width: 992px) { .ft-brand, .ft-services, .ft-company, .ft-contact { flex: 1 1 45%; } }
+  @media (max-width: 576px) { .ft-brand, .ft-services, .ft-company, .ft-contact { flex: 1 1 100%; } .ft-bottom-bar { flex-direction: column; align-items: center; } }
+</style>
+</body>
+</html>`;
+        }
+
+        // Initialize
+        renderPages();
+    </script>
+</body>
+</html>
