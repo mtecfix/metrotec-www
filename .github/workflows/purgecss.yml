@@ -9,11 +9,16 @@ on:
       - 'blog/**/*.html'
       - 'm/**/*.html'
 
+permissions:
+  contents: write
+
 jobs:
   purge:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -64,9 +69,9 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add -A "*.min.css"
+          git add *.min.css 2>/dev/null || true
           if git diff --staged --quiet; then
-            echo "No CSS changes"
+            echo "No CSS changes to commit"
           else
             git commit -m "🎨 Auto-purge unused CSS [skip ci]"
             git push
